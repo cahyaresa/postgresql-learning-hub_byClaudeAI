@@ -14,6 +14,7 @@ const DataPartitioningModule = () => {
     { id: 'maintenance', label: '🔧 Maintenance', desc: 'Adding/dropping partitions' },
     { id: 'indexing', label: '🔍 Indexing', desc: 'Index types & strategies' },
     { id: 'toast', label: '🍞 TOAST', desc: 'Large value storage' },
+    { id: 'check-constraints', label: '✅ CHECK Constraints', desc: 'Constraint pada partitioned tables' },
   ]
 
   const renderContent = () => {
@@ -881,6 +882,283 @@ CREATE INDEX idx_products_color ON products
                   <li>✓ VACUUM cleans TOAST tables too — run regularly on high-churn tables</li>
                   <li>✓ Consider chunking very large blobs at application level (&gt;1MB)</li>
                 </ul>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'check-constraints':
+        return (
+          <div style={{ animation: 'float-up 0.6s ease-out' }}>
+            <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
+              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '8px' }}>
+                CHECK Constraints pada Partitioned Tables
+              </h3>
+              <p style={{ color: '#a0c8ff', fontSize: '13px', lineHeight: '1.8', marginBottom: '20px' }}>
+                Pada partitioned tables, CHECK constraint memiliki perilaku khusus. Partisi inherits constraint dari parent,
+                tapi ada kondisi di mana kamu perlu menambahkan CHECK secara eksplisit di partisi —
+                terutama saat <strong>ATTACH PARTITION</strong> tabel yang sudah ada, atau saat menggunakan
+                <strong> constraint exclusion</strong> untuk query optimization.
+              </p>
+
+              {/* Kenapa CHECK dibutuhkan di partisi */}
+              <div style={{ background: 'rgba(251,191,36,0.08)', border: '1px solid rgba(251,191,36,0.25)', borderRadius: '8px', padding: '14px 16px', marginBottom: '14px' }}>
+                <p style={{ color: '#fbbf24', fontWeight: 'bold', fontSize: '12px', marginBottom: '10px' }}>⚠️ Kapan CHECK Constraint Diperlukan?</p>
+                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px', lineHeight: '2' }}>
+                  <li>✓ <strong>ATTACH PARTITION</strong> — PostgreSQL harus verifikasi semua baris cocok dengan partition bound; CHECK membuktikan ini tanpa full table scan</li>
+                  <li>✓ <strong>constraint_exclusion</strong> — planner gunakan CHECK untuk skip partisi yang tidak relevan (legacy; declarative partitioning sudah handle ini otomatis)</li>
+                  <li>✓ <strong>Tabel legacy / non-declarative</strong> — tabel biasa yang dijadikan partisi butuh CHECK eksplisit</li>
+                  <li>✓ <strong>Validasi data bisnis</strong> — CHECK tambahan di luar partition key (misal: qty &gt; 0, status harus valid)</li>
+                </ul>
+              </div>
+
+              {/* Skenario 1: ATTACH PARTITION tabel yang sudah ada */}
+              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', marginBottom: '14px' }}>
+                <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '12px' }}>📌 Skenario 1: ATTACH tabel existing sebagai partisi</p>
+                <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '10px', borderRadius: '4px', margin: '0 0 12px 0', overflow: 'auto' }}>
+{`-- Parent table
+CREATE TABLE orders (
+  id         BIGSERIAL,
+  order_date DATE NOT NULL,
+  user_id    BIGINT,
+  total      NUMERIC
+) PARTITION BY RANGE (order_date);
+
+-- Tabel yang sudah ada (legacy / sudah berisi data)
+CREATE TABLE orders_2024 (
+  id         BIGINT,
+  order_date DATE NOT NULL,
+  user_id    BIGINT,
+  total      NUMERIC
+);
+INSERT INTO orders_2024 SELECT ... FROM old_orders WHERE order_date >= '2024-01-01';
+
+-- ATTACH tanpa CHECK constraint:
+-- PostgreSQL wajib scan SELURUH tabel orders_2024 untuk verifikasi
+-- semua baris masuk dalam range '2024-01-01' .. '2025-01-01'
+-- Ini bisa makan waktu lama untuk tabel besar!
+
+ALTER TABLE orders ATTACH PARTITION orders_2024
+  FOR VALUES FROM ('2024-01-01') TO ('2025-01-01');
+-- WARNING: full table scan, potentially slow!`}
+                </pre>
+                <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '10px', borderRadius: '4px', margin: 0, overflow: 'auto' }}>
+{`-- SOLUSI: tambahkan CHECK constraint terlebih dahulu
+-- PostgreSQL akan percaya CHECK sudah valid → skip full scan saat ATTACH
+ALTER TABLE orders_2024
+  ADD CONSTRAINT chk_orders_2024_date
+  CHECK (order_date >= '2024-01-01' AND order_date < '2025-01-01')
+  NOT VALID;   -- ← skip scan data yang sudah ada (trust constraint)
+
+-- Validasi di background (tidak lock tabel)
+ALTER TABLE orders_2024
+  VALIDATE CONSTRAINT chk_orders_2024_date;
+
+-- Sekarang ATTACH instant: PostgreSQL lihat CHECK → tidak perlu scan!
+ALTER TABLE orders ATTACH PARTITION orders_2024
+  FOR VALUES FROM ('2024-01-01') TO ('2025-01-01');
+
+-- Setelah ATTACH, CHECK constraint otomatis di-drop (sudah di-encode di partition bound)
+-- Cek:
+SELECT conname, contype FROM pg_constraint WHERE conrelid = 'orders_2024'::regclass;`}
+                </pre>
+              </div>
+
+              {/* NOT VALID explained */}
+              <div style={{ background: 'rgba(74,222,128,0.08)', border: '1px solid rgba(74,222,128,0.25)', borderRadius: '8px', padding: '14px 16px', marginBottom: '14px' }}>
+                <p style={{ color: '#4ade80', fontWeight: 'bold', fontSize: '12px', marginBottom: '10px' }}>💡 NOT VALID + VALIDATE CONSTRAINT — Teknik Zero-Lock</p>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                  {[
+                    {
+                      title: 'ADD CONSTRAINT ... NOT VALID',
+                      color: '#fbbf24',
+                      points: [
+                        'Constraint berlaku untuk data BARU saja',
+                        'Data lama tidak dicek (tidak scan tabel)',
+                        'Tidak lock tabel — aman di production',
+                        'Cukup untuk "meyakinkan" ATTACH PARTITION',
+                      ],
+                    },
+                    {
+                      title: 'VALIDATE CONSTRAINT',
+                      color: '#38bdf8',
+                      points: [
+                        'Scan tabel untuk validasi data lama',
+                        'Hanya ambil ShareUpdateExclusiveLock (baca boleh)',
+                        'Write tetap bisa berjalan selama validasi',
+                        'Setelah selesai: constraint fully valid',
+                      ],
+                    },
+                  ].map((s, i) => (
+                    <div key={i} style={{ background: `${s.color}11`, border: `1px solid ${s.color}33`, borderRadius: '6px', padding: '10px' }}>
+                      <p style={{ color: s.color, fontWeight: 'bold', fontSize: '11px', marginBottom: '6px' }}>{s.title}</p>
+                      <ul style={{ color: '#a0c8ff', fontSize: '11px', marginLeft: '12px', lineHeight: '1.9' }}>
+                        {s.points.map((p, j) => <li key={j}>{p}</li>)}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Skenario 2: constraint_exclusion */}
+              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', marginBottom: '14px' }}>
+                <p style={{ color: '#a78bfa', fontWeight: 'bold', marginBottom: '12px' }}>📌 Skenario 2: constraint_exclusion untuk legacy partisi manual</p>
+                <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '10px', borderRadius: '4px', margin: '0 0 12px 0', overflow: 'auto' }}>
+{`-- PostgreSQL lama (pre-10) atau tabel inheritance manual:
+-- CHECK dipakai agar query planner bisa skip child table
+
+-- Parent
+CREATE TABLE logs (
+  id         BIGSERIAL,
+  log_date   DATE NOT NULL,
+  message    TEXT
+);
+
+-- Child tables dengan CHECK (inheritance manual, bukan declarative)
+CREATE TABLE logs_2024 () INHERITS (logs);
+ALTER TABLE logs_2024
+  ADD CONSTRAINT chk_logs_2024
+  CHECK (log_date >= '2024-01-01' AND log_date < '2025-01-01');
+
+CREATE TABLE logs_2025 () INHERITS (logs);
+ALTER TABLE logs_2025
+  ADD CONSTRAINT chk_logs_2025
+  CHECK (log_date >= '2025-01-01' AND log_date < '2026-01-01');
+
+-- Aktifkan constraint exclusion di postgresql.conf
+-- constraint_exclusion = partition   (default, hanya untuk child tables)
+-- constraint_exclusion = on          (untuk semua tabel, lebih lambat planning)
+-- constraint_exclusion = off         (matikan)
+
+SET constraint_exclusion = partition;
+
+-- Query ini: planner baca CHECK, skip logs_2025 karena tidak overlap
+EXPLAIN SELECT * FROM logs WHERE log_date = '2024-06-15';
+-- Result: Append → Seq Scan on logs_2024 (logs_2025 di-skip!)`}
+                </pre>
+                <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '10px', borderRadius: '4px', margin: 0, overflow: 'auto' }}>
+{`-- ℹ️ Pada DECLARATIVE partitioning (PostgreSQL 10+),
+-- constraint_exclusion tidak diperlukan —
+-- partition pruning dilakukan oleh planner secara otomatis
+-- berdasarkan partition bound definition, bukan CHECK constraint.
+
+-- Cek partition pruning aktif:
+SHOW enable_partition_pruning;   -- default: on
+
+EXPLAIN SELECT * FROM orders WHERE order_date = '2024-06-15';
+-- Partition Pruning on orders
+-- → Seq Scan on orders_2024 (partisi lain tidak muncul di plan)`}
+                </pre>
+              </div>
+
+              {/* Skenario 3: CHECK tambahan untuk validasi bisnis */}
+              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', marginBottom: '14px' }}>
+                <p style={{ color: '#38bdf8', fontWeight: 'bold', marginBottom: '12px' }}>📌 Skenario 3: CHECK bisnis di partisi (di luar partition key)</p>
+                <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '10px', borderRadius: '4px', margin: 0, overflow: 'auto' }}>
+{`-- CHECK di parent: otomatis diwariskan ke semua partisi
+CREATE TABLE order_items (
+  id         BIGSERIAL,
+  order_date DATE NOT NULL,
+  product_id BIGINT NOT NULL,
+  qty        INT NOT NULL,
+  price      NUMERIC NOT NULL,
+  discount   NUMERIC DEFAULT 0,
+
+  -- CHECK ini berlaku di SEMUA partisi
+  CONSTRAINT chk_qty_positive    CHECK (qty > 0),
+  CONSTRAINT chk_price_positive  CHECK (price > 0),
+  CONSTRAINT chk_discount_range  CHECK (discount BETWEEN 0 AND 1)
+
+) PARTITION BY RANGE (order_date);
+
+CREATE TABLE order_items_2026_q1 PARTITION OF order_items
+  FOR VALUES FROM ('2026-01-01') TO ('2026-04-01');
+
+-- Cek: partisi inherit constraint dari parent
+SELECT conname, contype, pg_get_constraintdef(oid)
+FROM pg_constraint
+WHERE conrelid = 'order_items_2026_q1'::regclass;
+-- Output: chk_qty_positive, chk_price_positive, chk_discount_range
+
+-- CHECK tambahan KHUSUS di partisi tertentu (bukan dari parent)
+ALTER TABLE order_items_2026_q1
+  ADD CONSTRAINT chk_q1_date_double_check
+  CHECK (EXTRACT(QUARTER FROM order_date) = 1);
+-- Berguna untuk jaminan tambahan / audit, meski partition bound sudah handle ini`}
+                </pre>
+              </div>
+
+              {/* Investigasi */}
+              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', marginBottom: '14px' }}>
+                <p style={{ color: '#f87171', fontWeight: 'bold', marginBottom: '12px' }}>🔍 Investigasi CHECK Constraints pada Partisi</p>
+                <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '10px', borderRadius: '4px', margin: 0, overflow: 'auto' }}>
+{`-- Lihat semua constraint di tabel (termasuk partisi)
+SELECT conname, contype,
+  CASE contype
+    WHEN 'c' THEN 'CHECK'
+    WHEN 'p' THEN 'PRIMARY KEY'
+    WHEN 'u' THEN 'UNIQUE'
+    WHEN 'f' THEN 'FOREIGN KEY'
+  END AS type_label,
+  pg_get_constraintdef(oid) AS definition,
+  convalidated  -- FALSE jika NOT VALID belum di-VALIDATE
+FROM pg_constraint
+WHERE conrelid = 'orders_2024'::regclass
+ORDER BY contype, conname;
+
+-- Cek constraint yang belum divalidasi (NOT VALID)
+SELECT conrelid::regclass AS table_name, conname, convalidated
+FROM pg_constraint
+WHERE contype = 'c' AND NOT convalidated
+ORDER BY table_name;
+
+-- Lihat partition bounds (informasi partisi)
+SELECT relname,
+  pg_get_expr(relpartbound, oid) AS partition_bound
+FROM pg_class
+WHERE relispartition = TRUE
+  AND relname LIKE 'orders_%'
+ORDER BY relname;
+
+-- Cek apakah tabel adalah partitioned table
+SELECT relname, relkind,
+  CASE relkind
+    WHEN 'p' THEN 'partitioned table'
+    WHEN 'r' THEN 'regular table'
+  END AS kind
+FROM pg_class
+WHERE relname = 'orders';`}
+                </pre>
+              </div>
+
+              {/* Ringkasan */}
+              <div style={{ background: 'rgba(74,222,128,0.1)', border: '1px solid rgba(74,222,128,0.3)', borderRadius: '8px', padding: '14px 16px' }}>
+                <p style={{ color: '#4ade80', fontWeight: 'bold', fontSize: '12px', marginBottom: '10px' }}>✅ Ringkasan — Kapan Pakai CHECK di Partisi</p>
+                <div style={{ overflowX: 'auto' }}>
+                  <table style={{ width: '100%', color: '#a0c8ff', fontSize: '11px', borderCollapse: 'collapse' }}>
+                    <tbody>
+                      <tr style={{ borderBottom: '1px solid rgba(74,222,128,0.3)' }}>
+                        {['Kondisi', 'Perlu CHECK?', 'Cara'].map((h, i) => (
+                          <td key={i} style={{ padding: '6px 8px', color: '#4ade80', fontWeight: 'bold' }}>{h}</td>
+                        ))}
+                      </tr>
+                      {[
+                        ['ATTACH tabel baru (kosong)', 'Tidak perlu', 'Langsung ATTACH'],
+                        ['ATTACH tabel berisi data (kecil)', 'Opsional', 'PostgreSQL scan otomatis'],
+                        ['ATTACH tabel berisi data (besar)', 'Wajib', 'ADD CONSTRAINT NOT VALID → VALIDATE → ATTACH'],
+                        ['Declarative partitioning, query SELECT', 'Tidak perlu', 'enable_partition_pruning=on sudah cukup'],
+                        ['Legacy table inheritance', 'Wajib', 'CHECK + constraint_exclusion=partition'],
+                        ['Validasi bisnis (qty, status, dll)', 'Di parent', 'CHECK di parent → inherit ke semua partisi'],
+                      ].map((row, i) => (
+                        <tr key={i} style={{ borderBottom: '1px solid rgba(100,200,255,0.08)' }}>
+                          <td style={{ padding: '6px 8px' }}>{row[0]}</td>
+                          <td style={{ padding: '6px 8px', color: row[1] === 'Wajib' ? '#f87171' : row[1] === 'Tidak perlu' ? '#4ade80' : '#fbbf24' }}>{row[1]}</td>
+                          <td style={{ padding: '6px 8px', color: '#708090', fontSize: '10px' }}>{row[2]}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>

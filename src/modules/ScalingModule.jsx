@@ -815,48 +815,411 @@ WHERE r.created_at >= NOW() - INTERVAL '7 days';`}
       </Code>
     </Block>
 
-    <Block title="📁 file_fdw — Baca CSV/file sebagai tabel" color="#fbbf24">
+    <Block title="📁 file_fdw — Konsep & Setup" color="#fbbf24">
+      <p style={{ color: '#a0c8ff', fontSize: '12px', lineHeight: '1.8', marginBottom: '10px' }}>
+        <code style={{ color: '#86efac', fontFamily: 'monospace' }}>file_fdw</code> adalah extension bawaan PostgreSQL untuk membaca
+        file sistem (CSV, TSV, teks) <strong>seolah-olah tabel biasa</strong> — tanpa harus import ke tabel dulu.
+        Data dibaca langsung dari disk saat query dijalankan. Berguna untuk ETL, audit log, bulk import, dan monitoring file.
+      </p>
       <Code>
-{`-- Aktifkan extension
+{`-- Aktifkan extension (bawaan PostgreSQL, tidak perlu install)
 CREATE EXTENSION IF NOT EXISTS file_fdw;
 
--- Buat server (satu saja untuk semua file)
+-- Satu SERVER untuk semua file (bisa pakai satu server saja)
 CREATE SERVER file_server FOREIGN DATA WRAPPER file_fdw;
 
--- Buat foreign table untuk CSV
-CREATE FOREIGN TABLE sales_import (
-  sale_date   DATE,
-  product_id  INT,
-  quantity    INT,
-  revenue     NUMERIC
+-- Tidak perlu USER MAPPING untuk file_fdw
+-- (file dibaca oleh OS user yang menjalankan postgres process)
+-- File harus readable oleh user 'postgres'
+
+-- Cek extension aktif
+SELECT extname, extversion FROM pg_extension WHERE extname = 'file_fdw';`}
+      </Code>
+    </Block>
+
+    <Block title="📄 file_fdw — Format CSV (semua opsi)" color="#fbbf24">
+      <Code>
+{`-- ─── CSV dengan header ────────────────────────────────────
+-- File: /tmp/employees.csv
+-- id,name,department,salary,hire_date
+-- 1,Budi Santoso,Engineering,8000000,2023-03-15
+-- 2,Siti Rahayu,Finance,7500000,2022-08-01
+
+CREATE FOREIGN TABLE ft_employees_csv (
+  id          INT,
+  name        VARCHAR(100),
+  department  VARCHAR(50),
+  salary      NUMERIC,
+  hire_date   DATE
 )
 SERVER file_server
 OPTIONS (
-  filename '/tmp/sales_2026_01.csv',
-  format 'csv',
-  header 'true',
-  delimiter ',',
-  null 'NULL'
+  filename  '/tmp/employees.csv',  -- path absolut, harus bisa dibaca oleh postgres
+  format    'csv',                 -- csv | text | binary
+  header    'true',                -- baris pertama adalah header (skip saat baca)
+  delimiter ',',                   -- pemisah kolom (default: ',' untuk csv)
+  quote     '"',                   -- karakter quote (default: '"')
+  escape    '"',                   -- karakter escape (default: sama dengan quote)
+  null      '',                    -- representasi NULL dalam file (default: '')
+  encoding  'UTF8'                 -- encoding file
 );
 
 -- Query langsung
-SELECT product_id, SUM(revenue) AS total
-FROM sales_import
-GROUP BY product_id
-ORDER BY total DESC;
+SELECT * FROM ft_employees_csv;
+SELECT department, AVG(salary) FROM ft_employees_csv GROUP BY department;
 
--- Import ke tabel lokal
-INSERT INTO sales SELECT * FROM sales_import;
+-- ─── CSV tanpa header ──────────────────────────────────────
+-- File: /tmp/data_noheader.csv
+-- 1,Budi,Engineering
+-- 2,Siti,Finance
 
--- PROGRAM: baca dari output command (bukan file statis)
-CREATE FOREIGN TABLE live_logs (
+CREATE FOREIGN TABLE ft_data_noheader (
+  id    INT,
+  name  TEXT,
+  dept  TEXT
+)
+SERVER file_server
+OPTIONS (
+  filename '/tmp/data_noheader.csv',
+  format   'csv',
+  header   'false'   -- tidak ada header
+);
+
+-- ─── CSV dengan delimiter custom ───────────────────────────
+-- File: /tmp/report.csv (semicolon-separated)
+-- id;name;value
+-- 1;Item A;9999
+
+CREATE FOREIGN TABLE ft_semicolon (
+  id    INT,
+  name  TEXT,
+  value NUMERIC
+)
+SERVER file_server
+OPTIONS (
+  filename  '/tmp/report.csv',
+  format    'csv',
+  header    'true',
+  delimiter ';'     -- bisa: ';' '|' '\t' dll
+);
+
+-- ─── TSV (Tab-separated) ───────────────────────────────────
+CREATE FOREIGN TABLE ft_tsv (
+  id    INT,
+  name  TEXT,
+  score NUMERIC
+)
+SERVER file_server
+OPTIONS (
+  filename  '/tmp/data.tsv',
+  format    'text',     -- 'text' untuk format psql COPY default
+  null      '\\N'       -- NULL representation dalam format text
+);`}
+      </Code>
+    </Block>
+
+    <Block title="📋 file_fdw — Format TEXT & BINARY" color="#38bdf8">
+      <Code>
+{`-- ─── FORMAT TEXT (format default psql COPY) ────────────────
+-- Kolom dipisahkan tab, NULL = \N, backslash sebagai escape
+
+CREATE FOREIGN TABLE ft_text_format (
+  user_id   BIGINT,
+  action    TEXT,
+  timestamp TIMESTAMPTZ
+)
+SERVER file_server
+OPTIONS (
+  filename '/var/lib/postgresql/exports/actions.txt',
+  format   'text',
+  null     '\\N',
+  delimiter E'\t'  -- tab character
+);
+
+-- ─── FORMAT BINARY (output dari COPY ... WITH BINARY) ───────
+-- Lebih cepat, tidak bisa diedit manual
+-- Dihasilkan oleh: COPY tabel TO '/tmp/data.bin' WITH BINARY;
+
+CREATE FOREIGN TABLE ft_binary (
+  id     INT,
+  name   TEXT,
+  amount NUMERIC
+)
+SERVER file_server
+OPTIONS (
+  filename '/tmp/exported_data.bin',
+  format   'binary'
+);
+
+-- ─── Hanya baca kolom tertentu dari file lebar ──────────────
+-- File punya 20 kolom tapi kita hanya butuh 3:
+-- Kolom yang tidak didefinisikan akan dilewati
+-- (tidak bisa skip kolom di tengah — harus definisi semua s.d kolom terakhir yang dipakai)
+
+CREATE FOREIGN TABLE ft_partial_read (
+  id          INT,
+  name        TEXT,
+  email       TEXT,
+  department  TEXT
+  -- sisa kolom di file tidak perlu didefinisikan jika di akhir
+)
+SERVER file_server
+OPTIONS (
+  filename '/tmp/full_export.csv',
+  format   'csv',
+  header   'true'
+);`}
+      </Code>
+    </Block>
+
+    <Block title="⚙️ file_fdw — PROGRAM option (baca dari command)" color="#a78bfa">
+      <Code>
+{`-- PROGRAM: jalankan command shell, output-nya dibaca sebagai tabel
+-- Butuh superuser atau pg_read_server_files privilege
+
+-- ─── Baca log PostgreSQL real-time ──────────────────────────
+CREATE FOREIGN TABLE ft_pg_log (
   log_line TEXT
 )
 SERVER file_server
 OPTIONS (
-  program 'tail -n 1000 /var/log/postgresql/postgresql.log',
-  format 'text'
+  program 'tail -n 500 /var/log/postgresql/postgresql.log',
+  format  'text'
+);
+
+SELECT log_line FROM ft_pg_log WHERE log_line LIKE '%ERROR%';
+SELECT log_line FROM ft_pg_log WHERE log_line LIKE '%duration%';
+
+-- ─── Parse log terstruktur dengan grep + awk ─────────────────
+CREATE FOREIGN TABLE ft_slow_queries (
+  log_line TEXT
+)
+SERVER file_server
+OPTIONS (
+  program $$grep "duration:" /var/log/postgresql/postgresql.log | tail -n 200$$,
+  format  'text'
+);
+
+-- ─── Baca output dari sistem (df, ps, dll) ───────────────────
+CREATE FOREIGN TABLE ft_disk_usage (
+  filesystem  TEXT,
+  size_1k     BIGINT,
+  used_1k     BIGINT,
+  avail_1k    BIGINT,
+  use_pct     TEXT,
+  mountpoint  TEXT
+)
+SERVER file_server
+OPTIONS (
+  program 'df -k --output=source,size,used,avail,pcent,target | tail -n +2',
+  format  'text'
+);
+
+SELECT mountpoint, round(used_1k/1024.0/1024, 2) AS used_gb,
+       round(avail_1k/1024.0/1024, 2) AS avail_gb
+FROM ft_disk_usage
+ORDER BY used_gb DESC;
+
+-- ─── Baca file gz langsung (tanpa extract) ───────────────────
+CREATE FOREIGN TABLE ft_gz_log (
+  log_line TEXT
+)
+SERVER file_server
+OPTIONS (
+  program 'zcat /var/log/postgresql/postgresql-2026-01-01.log.gz',
+  format  'text'
+);
+
+-- ─── Gabungkan beberapa file sekaligus ───────────────────────
+CREATE FOREIGN TABLE ft_all_access_logs (
+  log_line TEXT
+)
+SERVER file_server
+OPTIONS (
+  program 'cat /var/log/app/access.log /var/log/app/access.log.1',
+  format  'text'
 );`}
+      </Code>
+    </Block>
+
+    <Block title="🔒 Permission & Keamanan file_fdw" color="#f87171">
+      <Code>
+{`-- file_fdw membaca file sebagai OS user 'postgres'
+-- File HARUS bisa dibaca oleh user postgres
+
+-- Cek permission file
+-- ls -la /tmp/employees.csv
+-- -rw-r--r-- 1 root root ... → postgres bisa baca (world-readable)
+-- -rw------- 1 root root ... → postgres TIDAK bisa baca → ERROR
+
+-- Fix permission:
+-- chmod 644 /tmp/employees.csv
+-- chown postgres:postgres /tmp/employees.csv
+
+-- ─── Privilege yang dibutuhkan ────────────────────────────────
+-- CREATE FOREIGN TABLE dengan filename: butuh superuser atau pg_read_server_files
+-- CREATE FOREIGN TABLE dengan program:  butuh superuser saja (lebih ketat)
+
+-- Grant akses file kepada user biasa (non-superuser):
+GRANT pg_read_server_files TO analyst;   -- bisa buat foreign table filename
+-- pg_read_server_files tidak termasuk program option!
+
+-- Cek apakah user punya privilege
+SELECT has_role_privilege('analyst', 'pg_read_server_files', 'MEMBER');
+
+-- ─── Batasi direktori yang boleh diakses ──────────────────────
+-- Tidak ada mekanisme built-in untuk batasi direktori di file_fdw
+-- Rekomendasi: buat direktori khusus untuk file import
+-- mkdir -p /var/lib/postgresql/imports
+-- chown postgres:postgres /var/lib/postgresql/imports
+-- chmod 750 /var/lib/postgresql/imports
+-- Hanya taruh file yang boleh diakses di direktori ini
+
+-- Grant EXECUTE pada foreign table (bukan buat FT-nya)
+GRANT SELECT ON ft_employees_csv TO analyst;
+GRANT SELECT ON ft_employees_csv TO role_readonly;`}
+      </Code>
+    </Block>
+
+    <Block title="🔄 file_fdw — Pola ETL & Import Bulk" color="#4ade80">
+      <Code>
+{`-- ─── Pola 1: Import CSV ke tabel permanen ───────────────────
+CREATE FOREIGN TABLE ft_sales_raw (
+  sale_date   TEXT,   -- baca sebagai TEXT dulu, konversi saat INSERT
+  product_id  INT,
+  qty         INT,
+  revenue     TEXT
+)
+SERVER file_server
+OPTIONS (filename '/tmp/sales_jan.csv', format 'csv', header 'true');
+
+-- Import dengan transformasi
+INSERT INTO sales (sale_date, product_id, qty, revenue)
+SELECT
+  sale_date::DATE,
+  product_id,
+  qty,
+  REPLACE(revenue, ',', '')::NUMERIC   -- hapus koma ribuan
+FROM ft_sales_raw
+WHERE product_id IS NOT NULL
+  AND qty > 0;
+
+-- ─── Pola 2: Upsert dari file ────────────────────────────────
+INSERT INTO products (id, name, price, updated_at)
+SELECT id, name, price::NUMERIC, NOW()
+FROM ft_products_csv
+ON CONFLICT (id) DO UPDATE
+  SET name       = EXCLUDED.name,
+      price      = EXCLUDED.price,
+      updated_at = EXCLUDED.updated_at;
+
+-- ─── Pola 3: Validasi sebelum import ─────────────────────────
+-- Cek data kotor sebelum insert ke tabel utama
+SELECT
+  COUNT(*) AS total_rows,
+  COUNT(*) FILTER (WHERE product_id IS NULL)  AS null_product,
+  COUNT(*) FILTER (WHERE qty <= 0)            AS invalid_qty,
+  COUNT(*) FILTER (WHERE revenue !~ '^[0-9.,]+$') AS non_numeric_revenue
+FROM ft_sales_raw;
+
+-- ─── Pola 4: Partisi otomatis dari file ──────────────────────
+-- Tabel partisi berdasarkan tahun
+CREATE TABLE sales_2026_q1 PARTITION OF sales
+  FOR VALUES FROM ('2026-01-01') TO ('2026-04-01');
+
+-- Insert file ke partisi yang tepat (routing otomatis)
+INSERT INTO sales (sale_date, product_id, qty, revenue)
+SELECT sale_date::DATE, product_id, qty, revenue::NUMERIC
+FROM ft_sales_raw;  -- PostgreSQL routing otomatis ke partisi yang benar
+
+-- ─── Pola 5: Banding file vs tabel ───────────────────────────
+-- Cari produk di file yang belum ada di database
+SELECT f.product_id FROM ft_products_csv f
+WHERE NOT EXISTS (
+  SELECT 1 FROM products p WHERE p.id = f.product_id
+);`}
+      </Code>
+    </Block>
+
+    <Block title="🛠️ ALTER & DROP Foreign Table" color="#64c8ff">
+      <Code>
+{`-- Update path file (jika file dipindah)
+ALTER FOREIGN TABLE ft_employees_csv
+  OPTIONS (SET filename '/data/imports/employees.csv');
+
+-- Ganti ke file baru (bulan berikutnya)
+ALTER FOREIGN TABLE ft_sales_raw
+  OPTIONS (SET filename '/tmp/sales_feb.csv');
+
+-- Ubah format
+ALTER FOREIGN TABLE ft_sales_raw
+  OPTIONS (SET delimiter ';');
+
+-- Tambah kolom (jika file bertambah kolom)
+ALTER FOREIGN TABLE ft_employees_csv ADD COLUMN phone TEXT;
+
+-- Drop kolom
+ALTER FOREIGN TABLE ft_employees_csv DROP COLUMN IF EXISTS phone;
+
+-- Drop foreign table (tidak hapus file di disk!)
+DROP FOREIGN TABLE IF EXISTS ft_employees_csv;
+DROP FOREIGN TABLE IF EXISTS ft_sales_raw;
+
+-- Lihat semua foreign tables
+SELECT foreign_table_schema, foreign_table_name, foreign_server_name
+FROM information_schema.foreign_tables
+ORDER BY foreign_table_name;
+
+-- Lihat opsi per foreign table
+SELECT ft.foreign_table_name,
+       fto.option_name,
+       fto.option_value
+FROM information_schema.foreign_tables ft
+JOIN information_schema.foreign_table_options fto
+  ON ft.foreign_table_name = fto.foreign_table_name
+WHERE ft.foreign_server_name = 'file_server'
+ORDER BY ft.foreign_table_name, fto.option_name;`}
+      </Code>
+    </Block>
+
+    <Block title="⚡ Performa & Keterbatasan file_fdw" color="#fb923c">
+      <Code>
+{`-- ─── Keterbatasan file_fdw ────────────────────────────────────
+-- ✗ Read-only: tidak bisa INSERT/UPDATE/DELETE ke foreign table
+-- ✗ Tidak ada index: selalu full file scan untuk setiap query
+-- ✗ Tidak ada pushdown filter: WHERE diproses SETELAH baca file
+-- ✗ File harus statis selama query berjalan (concurrent write = undefined behavior)
+-- ✗ PROGRAM option: hanya superuser, potensi command injection (hati-hati!)
+
+-- ─── Performa tips ─────────────────────────────────────────────
+-- 1. Untuk file besar: import ke tabel lokal, baru query
+--    Jangan query berulang dari file (baca dari disk setiap kali)
+
+-- 2. Gunakan CTE untuk baca file sekali
+WITH raw AS (
+  SELECT * FROM ft_sales_raw   -- baca file SEKALI
+)
+SELECT product_id, SUM(revenue::NUMERIC) AS total
+FROM raw
+WHERE sale_date::DATE >= '2026-01-01'
+GROUP BY product_id;
+
+-- 3. Estimate baris untuk planner (file_fdw tidak punya statistik)
+-- Default: planner asumsikan 1000 baris → bisa salah untuk file besar
+-- Solusi: beri hint via ANALYZE (tidak benar-benar scan, tapi bisa dikasih manual)
+-- Atau: import ke temp table dulu
+CREATE TEMP TABLE tmp_sales AS
+  SELECT * FROM ft_sales_raw;   -- baca file sekali, simpan ke temp
+ANALYZE tmp_sales;               -- update statistik
+-- Sekarang query dari tmp_sales: planner punya info yang akurat
+
+-- 4. Paralel membaca file TIDAK didukung (single worker)
+
+-- ─── Bandingkan: file_fdw vs COPY ──────────────────────────────
+-- COPY: batch import sekali, data masuk ke tabel permanen
+-- file_fdw: baca real-time dari file, tidak ada persistent storage
+-- Untuk import rutin: COPY lebih cepat
+-- Untuk query ad-hoc / explorasi: file_fdw lebih fleksibel`}
       </Code>
     </Block>
 
