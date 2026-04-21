@@ -1,0 +1,18 @@
+export {
+  truncate,
+  capitalize,
+  chunk,
+  getColorByIndex,
+  getRandomColor,
+  storage,
+  favorites,
+  progress,
+  formatCode,
+  copyToClipboard,
+  searchInText,
+  printPage,
+  shareModule,
+  getTimeGreeting,
+  debounce,
+  throttle,
+} from './helpers'

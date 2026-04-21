@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  postgres-learning-hub:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: postgres-learning-hub
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    networks:
+      - postgres-hub-network
+
+  # Optional: Development service with hot reload
+  postgres-learning-hub-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: postgres-learning-hub-dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: npm run dev
+    networks:
+      - postgres-hub-network
+
+networks:
+  postgres-hub-network:
+    driver: bridge
