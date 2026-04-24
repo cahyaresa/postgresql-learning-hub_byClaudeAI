@@ -13,10 +13,10 @@ export function Footer() {
         <p style={{ color: '#a0c8ff', marginBottom: '8px' }}>
           📚 PostgreSQL Learning Hub - Complete Educational Resource
         </p>
-        <p style={{ color: '#708090', fontSize: '14px' }}>
+        <p style={{ color: '#708090', fontSize: '18px' }}>
           Created for comprehensive understanding of PostgreSQL & System Administration
         </p>
-        <p style={{ color: '#708090', fontSize: '12px', marginTop: '16px' }}>
+        <p style={{ color: '#708090', fontSize: '16px', marginTop: '16px' }}>
           © {new Date().getFullYear()} PostgreSQL Learning Hub. All rights reserved.
         </p>
       </div>

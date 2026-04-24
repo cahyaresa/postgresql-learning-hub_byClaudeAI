@@ -85,7 +85,7 @@ export function CodeBlock({ code, language = 'bash' }) {
           padding: '6px 12px',
           borderRadius: '4px',
           cursor: 'pointer',
-          fontSize: '11px',
+          fontSize: '15px',
           fontWeight: 'bold',
           display: 'flex',
           alignItems: 'center',
@@ -229,7 +229,7 @@ export function Badge({ children, variant = 'default' }) {
       color: style.text,
       padding: '4px 8px',
       borderRadius: '4px',
-      fontSize: '11px',
+      fontSize: '15px',
       fontWeight: 'bold',
       display: 'inline-block'
     }}>
@@ -302,7 +302,7 @@ export function ProgressBar({ value = 0, max = 100, label = '' }) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          fontSize: '11px',
+          fontSize: '15px',
           color: '#0f1419',
           fontWeight: 'bold'
         }}>

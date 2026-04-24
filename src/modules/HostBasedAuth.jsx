@@ -29,14 +29,14 @@ const PostgreSQLHostBasedAuth = () => {
 
   const RuleBox = ({ rule, description, example = null, color = '#64c8ff' }) => (
     <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', marginBottom: '10px', borderLeft: `3px solid ${color}` }}>
-      <code style={{ color: color, fontFamily: 'monospace', fontWeight: 'bold', fontSize: '12px', display: 'block', marginBottom: '6px' }}>
+      <code style={{ color: color, fontFamily: 'monospace', fontWeight: 'bold', fontSize: '16px', display: 'block', marginBottom: '6px' }}>
         {rule}
       </code>
-      <p style={{ color: '#a0c8ff', fontSize: '11px', marginBottom: '4px' }}>
+      <p style={{ color: '#a0c8ff', fontSize: '15px', marginBottom: '4px' }}>
         {description}
       </p>
       {example && (
-        <p style={{ color: '#708090', fontSize: '10px', fontStyle: 'italic' }}>
+        <p style={{ color: '#708090', fontSize: '14px', fontStyle: 'italic' }}>
           💡 {example}
         </p>
       )}
@@ -53,7 +53,7 @@ const PostgreSQLHostBasedAuth = () => {
           <h1 className="text-4xl font-bold mb-2" style={{ color: '#e0f2ff', fontFamily: 'Segoe UI' }}>
             PostgreSQL Host-Based Authentication 🔐
           </h1>
-          <p style={{ color: '#a0c8ff', fontSize: '16px' }}>
+          <p style={{ color: '#a0c8ff', fontSize: '20px' }}>
             pg_hba.conf: Controlling client connections, authentication methods, dan access policies
           </p>
         </div>
@@ -111,14 +111,14 @@ const PostgreSQLHostBasedAuth = () => {
 
               {expandedSection === 'what-is-hba' && (
                 <div className="mt-6 space-y-4">
-                  <p style={{ color: '#a0c8ff', lineHeight: '1.8', fontSize: '15px' }}>
+                  <p style={{ color: '#a0c8ff', lineHeight: '1.8', fontSize: '19px' }}>
                     <strong>Host-Based Authentication (HBA)</strong> adalah PostgreSQL mechanism untuk control client connections. 
                     Config file <strong>pg_hba.conf</strong> define siapa boleh connect, dari mana, dan dengan method apa untuk authenticate.
                   </p>
 
                   <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80' }}>
                     <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '12px' }}>🎯 Purpose:</p>
-                    <ul style={{ color: '#a0c8ff', fontSize: '13px', marginLeft: '16px' }}>
+                    <ul style={{ color: '#a0c8ff', fontSize: '17px', marginLeft: '16px' }}>
                       <li>✓ Control siapa boleh connect ke PostgreSQL</li>
                       <li>✓ Specify authentication method (password, certificate, etc)</li>
                       <li>✓ Allow/deny based on: user, host, database, IP range</li>
@@ -132,14 +132,14 @@ const PostgreSQLHostBasedAuth = () => {
                     <code style={{ color: '#86efac', fontFamily: 'monospace', display: 'block', marginBottom: '8px', fontWeight: 'bold' }}>
                       {`$PGDATA/pg_hba.conf`}
                     </code>
-                    <p style={{ color: '#a0c8ff', fontSize: '12px' }}>
+                    <p style={{ color: '#a0c8ff', fontSize: '16px' }}>
                       Example: <code style={{ color: '#86efac', fontFamily: 'monospace' }}>/var/lib/postgresql/14/main/pg_hba.conf</code>
                     </p>
                   </div>
 
                   <div style={{ background: 'rgba(251, 191, 36, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #fbbf24' }}>
                     <p style={{ color: '#fbbf24', fontWeight: 'bold', marginBottom: '12px' }}>⚡ How It Works:</p>
-                    <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '12px', color: '#a0c8ff', lineHeight: '2' }}>
+                    <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '16px', color: '#a0c8ff', lineHeight: '2' }}>
                       <p>Client connection request</p>
                       <p style={{ marginLeft: '20px', color: '#4ade80' }}>↓ PostgreSQL read pg_hba.conf</p>
                       <p>Check FIRST MATCHING RULE:</p>
@@ -159,7 +159,7 @@ const PostgreSQLHostBasedAuth = () => {
 
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
               <h3 className="text-lg font-bold mb-4" style={{ color: '#64c8ff' }}>🔍 Simple Example</h3>
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '12px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '12px', color: '#a0c8ff', lineHeight: '1.8' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '12px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '16px', color: '#a0c8ff', lineHeight: '1.8' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '8px' }}>pg_hba.conf entry:</p>
                 <p>host    database    user    192.168.1.0/24    md5</p>
                 <p style={{ marginTop: '12px', color: '#4ade80' }}>Meaning:</p>
@@ -179,7 +179,7 @@ const PostgreSQLHostBasedAuth = () => {
 
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-4" style={{ color: '#64c8ff' }}>Format: 5 Required Fields</h4>
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '13px', color: '#64c8ff', lineHeight: '2', marginBottom: '20px' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '17px', color: '#64c8ff', lineHeight: '2', marginBottom: '20px' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '8px' }}>CONNECTION_TYPE  DATABASE  USER  ADDRESS  AUTH_METHOD</p>
                 <p>├─ TYPE:         local | host | hostssl | hostnossl</p>
                 <p>├─ DATABASE:     database_name | all | @include_file | replication</p>
@@ -218,13 +218,13 @@ const PostgreSQLHostBasedAuth = () => {
                   }
                 ].map((item, idx) => (
                   <div key={idx} style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', borderLeft: '3px solid #64c8ff' }}>
-                    <p style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '12px', marginBottom: '4px' }}>
+                    <p style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '16px', marginBottom: '4px' }}>
                       {item.field}
                     </p>
-                    <p style={{ color: '#fbbf24', fontSize: '11px', fontFamily: 'monospace', marginBottom: '3px' }}>
+                    <p style={{ color: '#fbbf24', fontSize: '15px', fontFamily: 'monospace', marginBottom: '3px' }}>
                       {item.options}
                     </p>
-                    <p style={{ color: '#a0c8ff', fontSize: '11px' }}>{item.desc}</p>
+                    <p style={{ color: '#a0c8ff', fontSize: '15px' }}>{item.desc}</p>
                   </div>
                 ))}
               </div>
@@ -232,7 +232,7 @@ const PostgreSQLHostBasedAuth = () => {
 
             <div style={{ background: 'rgba(74, 222, 128, 0.1)', border: '1px solid rgba(74, 222, 128, 0.3)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-4" style={{ color: '#4ade80' }}>💡 Important Rules</h4>
-              <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '12px' }}>
+              <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '12px' }}>
                 <li>✓ Rules evaluated TOP to BOTTOM - FIRST match is used!</li>
                 <li>✓ Order matters - put specific rules BEFORE general rules</li>
                 <li>✓ Comments: # character (from # to end of line)</li>
@@ -292,29 +292,29 @@ const PostgreSQLHostBasedAuth = () => {
                 }
               ].map((item, idx) => (
                 <div key={idx} style={{ background: item.color === '#4ade80' ? 'rgba(74, 222, 128, 0.1)' : item.color === '#10b981' ? 'rgba(16, 185, 129, 0.1)' : item.color === '#fbbf24' ? 'rgba(251, 191, 36, 0.1)' : 'rgba(100, 200, 255, 0.1)', border: `1px solid ${item.color}`, borderRadius: '12px', padding: '16px', marginBottom: '16px' }}>
-                  <h4 style={{ color: item.color, fontWeight: 'bold', fontSize: '14px', marginBottom: '8px' }}>
+                  <h4 style={{ color: item.color, fontWeight: 'bold', fontSize: '18px', marginBottom: '8px' }}>
                     {item.type.toUpperCase()}
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <p style={{ color: '#a0c8ff', fontSize: '11px', marginBottom: '2px' }}>
+                      <p style={{ color: '#a0c8ff', fontSize: '15px', marginBottom: '2px' }}>
                         <strong>Description:</strong> {item.desc}
                       </p>
-                      <p style={{ color: '#a0c8ff', fontSize: '11px', marginBottom: '2px' }}>
+                      <p style={{ color: '#a0c8ff', fontSize: '15px', marginBottom: '2px' }}>
                         <strong>Usage:</strong> {item.usage}
                       </p>
-                      <p style={{ color: '#a0c8ff', fontSize: '11px', marginBottom: '2px' }}>
+                      <p style={{ color: '#a0c8ff', fontSize: '15px', marginBottom: '2px' }}>
                         <strong>Example:</strong> <code style={{ color: item.color, fontFamily: 'monospace' }}>{item.example}</code>
                       </p>
                     </div>
                     <div>
-                      <p style={{ color: '#a0c8ff', fontSize: '11px', marginBottom: '2px' }}>
+                      <p style={{ color: '#a0c8ff', fontSize: '15px', marginBottom: '2px' }}>
                         <strong>Address:</strong> {item.address}
                       </p>
-                      <p style={{ color: '#a0c8ff', fontSize: '11px', marginBottom: '2px' }}>
+                      <p style={{ color: '#a0c8ff', fontSize: '15px', marginBottom: '2px' }}>
                         <strong>Security:</strong> {item.security}
                       </p>
-                      <p style={{ color: '#a0c8ff', fontSize: '11px' }}>
+                      <p style={{ color: '#a0c8ff', fontSize: '15px' }}>
                         <strong>When to use:</strong> {item.when}
                       </p>
                     </div>
@@ -404,18 +404,18 @@ const PostgreSQLHostBasedAuth = () => {
               ].map((item, idx) => (
                 <div key={idx} style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', marginBottom: '10px', borderLeft: '3px solid #64c8ff' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                    <p style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '12px', fontFamily: 'monospace' }}>
+                    <p style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '16px', fontFamily: 'monospace' }}>
                       {item.method}
                     </p>
-                    <p style={{ color: '#a0c8ff', fontSize: '10px' }}>{item.security}</p>
+                    <p style={{ color: '#a0c8ff', fontSize: '14px' }}>{item.security}</p>
                   </div>
-                  <p style={{ color: '#a0c8ff', fontSize: '11px', marginBottom: '3px' }}>
+                  <p style={{ color: '#a0c8ff', fontSize: '15px', marginBottom: '3px' }}>
                     <strong>Description:</strong> {item.desc}
                   </p>
-                  <p style={{ color: '#a0c8ff', fontSize: '11px', marginBottom: '3px' }}>
+                  <p style={{ color: '#a0c8ff', fontSize: '15px', marginBottom: '3px' }}>
                     <strong>Use:</strong> {item.use}
                   </p>
-                  <code style={{ color: '#86efac', fontFamily: 'monospace', fontSize: '10px', display: 'block' }}>
+                  <code style={{ color: '#86efac', fontFamily: 'monospace', fontSize: '14px', display: 'block' }}>
                     {item.example}
                   </code>
                 </div>
@@ -424,10 +424,10 @@ const PostgreSQLHostBasedAuth = () => {
 
             <div style={{ background: 'rgba(74, 222, 128, 0.1)', border: '1px solid rgba(74, 222, 128, 0.3)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-4" style={{ color: '#4ade80' }}>🎯 Recommendation</h4>
-              <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '12px' }}>
+              <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '12px' }}>
                 For modern PostgreSQL (12+): <strong>Use scram-sha-256</strong>
               </p>
-              <ul style={{ color: '#a0c8ff', fontSize: '11px', marginLeft: '12px' }}>
+              <ul style={{ color: '#a0c8ff', fontSize: '15px', marginLeft: '12px' }}>
                 <li>✓ Secure: SCRAM-SHA-256 hashing, salted, iterated</li>
                 <li>✓ Compatible: Supported oleh semua modern clients</li>
                 <li>✓ Standard: Default recommendation dari PostgreSQL</li>
@@ -443,7 +443,7 @@ const PostgreSQLHostBasedAuth = () => {
 
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-4" style={{ color: '#64c8ff' }}>Development Setup (localhost)</h4>
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '12px', color: '#a0c8ff', lineHeight: '2' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '16px', color: '#a0c8ff', lineHeight: '2' }}>
                 <p style={{ color: '#fbbf24' }}>pg_hba.conf:</p>
                 <p>
                   <span style={{ color: '#4ade80' }}>local</span>   <span style={{ color: '#a0c8ff' }}>all</span>   <span style={{ color: '#a0c8ff' }}>all</span>   <span style={{ color: '#86efac' }}>trust</span>
@@ -463,7 +463,7 @@ const PostgreSQLHostBasedAuth = () => {
 
             <div style={{ background: 'rgba(251, 191, 36, 0.1)', border: '1px solid rgba(251, 191, 36, 0.3)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-4" style={{ color: '#fbbf24' }}>Production Setup (secure)</h4>
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '12px', color: '#a0c8ff', lineHeight: '2' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '16px', color: '#a0c8ff', lineHeight: '2' }}>
                 <p style={{ color: '#fbbf24' }}>pg_hba.conf:</p>
                 <p>
                   <span style={{ color: '#f87171' }}># Local administrative access</span>
@@ -488,7 +488,7 @@ const PostgreSQLHostBasedAuth = () => {
 
             <div style={{ background: 'rgba(74, 222, 128, 0.1)', border: '1px solid rgba(74, 222, 128, 0.3)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-4" style={{ color: '#4ade80' }}>Complex Example (multiple rules)</h4>
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', lineHeight: '1.8' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', lineHeight: '1.8' }}>
                 <p style={{ color: '#f87171', marginBottom: '8px' }}># Admin user dapat connect dari localhost</p>
                 <p>local   all   postgres   peer</p>
                 <p>host    all   postgres   127.0.0.1/32   scram-sha-256</p>
@@ -554,10 +554,10 @@ const PostgreSQLHostBasedAuth = () => {
                   }
                 ].map((item, idx) => (
                   <div key={idx} style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '10px', borderRadius: '6px' }}>
-                    <p style={{ color: '#4ade80', fontWeight: 'bold', fontSize: '11px', marginBottom: '3px' }}>
+                    <p style={{ color: '#4ade80', fontWeight: 'bold', fontSize: '15px', marginBottom: '3px' }}>
                       {item.practice}
                     </p>
-                    <p style={{ color: '#a0c8ff', fontSize: '10px' }}>{item.reason}</p>
+                    <p style={{ color: '#a0c8ff', fontSize: '14px' }}>{item.reason}</p>
                   </div>
                 ))}
               </div>
@@ -597,10 +597,10 @@ const PostgreSQLHostBasedAuth = () => {
                   }
                 ].map((item, idx) => (
                   <div key={idx} style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '10px', borderRadius: '6px' }}>
-                    <p style={{ color: '#f87171', fontWeight: 'bold', fontSize: '11px', marginBottom: '3px' }}>
+                    <p style={{ color: '#f87171', fontWeight: 'bold', fontSize: '15px', marginBottom: '3px' }}>
                       {item.bad}
                     </p>
-                    <p style={{ color: '#fca5a5', fontSize: '10px' }}>Risk: {item.risk}</p>
+                    <p style={{ color: '#fca5a5', fontSize: '14px' }}>Risk: {item.risk}</p>
                   </div>
                 ))}
               </div>
@@ -608,7 +608,7 @@ const PostgreSQLHostBasedAuth = () => {
 
             <div style={{ background: 'rgba(74, 222, 128, 0.1)', border: '1px solid rgba(74, 222, 128, 0.3)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-4" style={{ color: '#4ade80' }}>🎯 Security Checklist</h4>
-              <ul style={{ color: '#a0c8ff', fontSize: '11px', marginLeft: '12px' }}>
+              <ul style={{ color: '#a0c8ff', fontSize: '15px', marginLeft: '12px' }}>
                 <li>☑️ Authentication method: scram-sha-256 (modern) atau md5 (legacy)</li>
                 <li>☑️ SSL/TLS required untuk remote connections (hostssl)</li>
                 <li>☑️ IP ranges restricted (not 0.0.0.0/0 unless intended)</li>
@@ -702,16 +702,16 @@ const PostgreSQLHostBasedAuth = () => {
                 }
               ].map((item, idx) => (
                 <div key={idx} style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', marginBottom: '12px', borderLeft: '3px solid #f87171' }}>
-                  <p style={{ color: '#f87171', fontWeight: 'bold', fontSize: '12px', marginBottom: '6px' }}>
+                  <p style={{ color: '#f87171', fontWeight: 'bold', fontSize: '16px', marginBottom: '6px' }}>
                     ❌ {item.error}
                   </p>
-                  <p style={{ color: '#fbbf24', fontSize: '11px', marginBottom: '6px', fontWeight: 'bold' }}>
+                  <p style={{ color: '#fbbf24', fontSize: '15px', marginBottom: '6px', fontWeight: 'bold' }}>
                     Cause: {item.cause}
                   </p>
-                  <p style={{ color: '#4ade80', fontSize: '11px', fontWeight: 'bold', marginBottom: '4px' }}>
+                  <p style={{ color: '#4ade80', fontSize: '15px', fontWeight: 'bold', marginBottom: '4px' }}>
                     Solution:
                   </p>
-                  <ul style={{ color: '#a0c8ff', fontSize: '10px', marginLeft: '12px' }}>
+                  <ul style={{ color: '#a0c8ff', fontSize: '14px', marginLeft: '12px' }}>
                     {item.solution.map((sol, sidx) => (
                       <li key={sidx}>· {sol}</li>
                     ))}
@@ -722,7 +722,7 @@ const PostgreSQLHostBasedAuth = () => {
 
             <div style={{ background: 'rgba(74, 222, 128, 0.1)', border: '1px solid rgba(74, 222, 128, 0.3)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-4" style={{ color: '#4ade80' }}>🔍 Debugging Tips</h4>
-              <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', lineHeight: '1.8' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', lineHeight: '1.8' }}>
                 <p style={{ color: '#4ade80', marginBottom: '8px', fontWeight: 'bold' }}>1. Check current pg_hba.conf:</p>
                 <p>cat /var/lib/postgresql/14/main/pg_hba.conf | grep -v "^#" | grep -v "^$"</p>
                 
@@ -750,10 +750,10 @@ const PostgreSQLHostBasedAuth = () => {
             {/* Development */}
             <div style={{ background: 'rgba(74, 222, 128, 0.08)', border: '1px solid rgba(74, 222, 128, 0.3)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-2" style={{ color: '#4ade80' }}>1. Development / Local Machine</h4>
-              <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '12px' }}>
+              <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '12px' }}>
                 Untuk environment development lokal — trust semua koneksi dari localhost. <strong>Jangan dipakai di production!</strong>
               </p>
-              <pre style={{ background: 'rgba(0,0,0,0.35)', padding: '14px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', overflow: 'auto', lineHeight: '1.9' }}>
+              <pre style={{ background: 'rgba(0,0,0,0.35)', padding: '14px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', overflow: 'auto', lineHeight: '1.9' }}>
 {`# TYPE  DATABASE        USER            ADDRESS                 METHOD
 
 # Local Unix socket — admin tanpa password
@@ -771,10 +771,10 @@ host    all             all             ::1/128                 trust`}
             {/* Staging */}
             <div style={{ background: 'rgba(251, 191, 36, 0.08)', border: '1px solid rgba(251, 191, 36, 0.3)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-2" style={{ color: '#fbbf24' }}>2. Staging / Internal Network</h4>
-              <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '12px' }}>
+              <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '12px' }}>
                 Staging environment — hanya internal network, password wajib, belum perlu SSL.
               </p>
-              <pre style={{ background: 'rgba(0,0,0,0.35)', padding: '14px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', overflow: 'auto', lineHeight: '1.9' }}>
+              <pre style={{ background: 'rgba(0,0,0,0.35)', padding: '14px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', overflow: 'auto', lineHeight: '1.9' }}>
 {`# TYPE  DATABASE        USER            ADDRESS                 METHOD
 
 # Admin via Unix socket (OS-level auth)
@@ -798,10 +798,10 @@ host    all             all             ::/0                    reject`}
             {/* Production */}
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.3)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-2" style={{ color: '#64c8ff' }}>3. Production (Recommended)</h4>
-              <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '12px' }}>
+              <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '12px' }}>
                 Production setup — SSL wajib untuk remote, scram-sha-256, principle of least privilege, default deny.
               </p>
-              <pre style={{ background: 'rgba(0,0,0,0.35)', padding: '14px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', overflow: 'auto', lineHeight: '1.9' }}>
+              <pre style={{ background: 'rgba(0,0,0,0.35)', padding: '14px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', overflow: 'auto', lineHeight: '1.9' }}>
 {`# TYPE  DATABASE        USER            ADDRESS                 METHOD
 
 # =========================================================
@@ -863,10 +863,10 @@ host    all             all             ::/0                    reject`}
             {/* High Security */}
             <div style={{ background: 'rgba(167, 139, 250, 0.08)', border: '1px solid rgba(167, 139, 250, 0.3)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-2" style={{ color: '#a78bfa' }}>4. High-Security (Certificate + MFA)</h4>
-              <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '12px' }}>
+              <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '12px' }}>
                 Untuk sistem yang membutuhkan keamanan tinggi — semua koneksi remote wajib SSL + client certificate.
               </p>
-              <pre style={{ background: 'rgba(0,0,0,0.35)', padding: '14px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', overflow: 'auto', lineHeight: '1.9' }}>
+              <pre style={{ background: 'rgba(0,0,0,0.35)', padding: '14px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', overflow: 'auto', lineHeight: '1.9' }}>
 {`# TYPE  DATABASE        USER            ADDRESS                 METHOD
 
 # Admin lokal via peer (OS auth)
@@ -892,10 +892,10 @@ host    all             all             0.0.0.0/0               reject`}
             {/* Multi-tenant */}
             <div style={{ background: 'rgba(248, 113, 113, 0.08)', border: '1px solid rgba(248, 113, 113, 0.3)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-2" style={{ color: '#f87171' }}>5. Multi-Tenant SaaS</h4>
-              <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '12px' }}>
+              <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '12px' }}>
                 Setiap tenant punya database sendiri, user sendiri, subnet sendiri. Row-level isolation via pg_hba + schema.
               </p>
-              <pre style={{ background: 'rgba(0,0,0,0.35)', padding: '14px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', overflow: 'auto', lineHeight: '1.9' }}>
+              <pre style={{ background: 'rgba(0,0,0,0.35)', padding: '14px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', overflow: 'auto', lineHeight: '1.9' }}>
 {`# TYPE  DATABASE        USER            ADDRESS                 METHOD
 
 # Superuser — local only
@@ -924,7 +924,7 @@ host    all             all             0.0.0.0/0               reject`}
             {/* Tips */}
             <div style={{ background: 'rgba(74, 222, 128, 0.1)', border: '1px solid rgba(74, 222, 128, 0.3)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-3" style={{ color: '#4ade80' }}>💡 Tips Menulis pg_hba.conf</h4>
-              <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px', lineHeight: '2' }}>
+              <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px', lineHeight: '2' }}>
                 <li>✓ Urutan <strong>paling spesifik di atas</strong>, paling umum di bawah — first match wins</li>
                 <li>✓ Selalu akhiri dengan <code style={{ color: '#f87171', fontFamily: 'monospace' }}>host all all 0.0.0.0/0 reject</code> sebagai default deny</li>
                 <li>✓ Gunakan komentar (<code style={{ color: '#86efac', fontFamily: 'monospace' }}>#</code>) untuk menjelaskan setiap blok rule</li>
@@ -942,10 +942,10 @@ host    all             all             0.0.0.0/0               reject`}
 
       {/* Footer */}
       <footer style={{ background: 'rgba(15, 20, 25, 0.5)', borderTop: '1px solid rgba(100, 200, 255, 0.2)', marginTop: '60px', padding: '40px 0', textAlign: 'center' }}>
-        <p style={{ color: '#708090', fontSize: '14px', marginBottom: '8px' }}>
+        <p style={{ color: '#708090', fontSize: '18px', marginBottom: '8px' }}>
           🔐 pg_hba.conf = First line of defense untuk PostgreSQL security
         </p>
-        <p style={{ color: '#708090', fontSize: '14px' }}>
+        <p style={{ color: '#708090', fontSize: '18px' }}>
           💡 Golden Rule: Be specific dengan rules, deny by default, reload untuk testing! 🛡️
         </p>
       </footer>

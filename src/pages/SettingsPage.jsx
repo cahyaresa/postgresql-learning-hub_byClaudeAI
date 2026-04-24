@@ -74,7 +74,7 @@ function SettingsPage() {
             padding: '12px 16px',
             marginBottom: '20px',
             color: '#4ade80',
-            fontSize: '14px'
+            fontSize: '18px'
           }}>
             {message}
           </div>
@@ -88,7 +88,7 @@ function SettingsPage() {
           padding: '20px',
           marginBottom: '20px'
         }}>
-          <h2 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+          <h2 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
             📺 Display Settings
           </h2>
 
@@ -106,7 +106,7 @@ function SettingsPage() {
                 border: '1px solid rgba(100, 200, 255, 0.3)',
                 borderRadius: '6px',
                 color: '#a0c8ff',
-                fontSize: '14px',
+                fontSize: '18px',
                 cursor: 'pointer'
               }}
             >
@@ -130,7 +130,7 @@ function SettingsPage() {
                 border: '1px solid rgba(100, 200, 255, 0.3)',
                 borderRadius: '6px',
                 color: '#a0c8ff',
-                fontSize: '14px',
+                fontSize: '18px',
                 cursor: 'pointer'
               }}
             >
@@ -149,7 +149,7 @@ function SettingsPage() {
           padding: '20px',
           marginBottom: '20px'
         }}>
-          <h2 style={{ fontSize: '18px', fontWeight: 'bold', color: '#4ade80', marginBottom: '16px' }}>
+          <h2 style={{ fontSize: '22px', fontWeight: 'bold', color: '#4ade80', marginBottom: '16px' }}>
             ⚡ General Settings
           </h2>
 
@@ -163,7 +163,7 @@ function SettingsPage() {
               />
               <span style={{ color: '#a0c8ff', fontWeight: 'bold' }}>Enable Notifications</span>
             </label>
-            <p style={{ color: '#708090', fontSize: '12px', marginLeft: '30px', marginTop: '4px' }}>
+            <p style={{ color: '#708090', fontSize: '16px', marginLeft: '30px', marginTop: '4px' }}>
               Get notified about new modules and updates
             </p>
           </div>
@@ -178,7 +178,7 @@ function SettingsPage() {
               />
               <span style={{ color: '#a0c8ff', fontWeight: 'bold' }}>Auto-Save Progress</span>
             </label>
-            <p style={{ color: '#708090', fontSize: '12px', marginLeft: '30px', marginTop: '4px' }}>
+            <p style={{ color: '#708090', fontSize: '16px', marginLeft: '30px', marginTop: '4px' }}>
               Automatically save learning progress locally
             </p>
           </div>
@@ -192,7 +192,7 @@ function SettingsPage() {
           padding: '20px',
           marginBottom: '20px'
         }}>
-          <h2 style={{ fontSize: '18px', fontWeight: 'bold', color: '#fbbf24', marginBottom: '16px' }}>
+          <h2 style={{ fontSize: '22px', fontWeight: 'bold', color: '#fbbf24', marginBottom: '16px' }}>
             💾 Data Management
           </h2>
 
@@ -208,7 +208,7 @@ function SettingsPage() {
                 fontWeight: 'bold',
                 cursor: 'pointer',
                 transition: 'all 0.2s',
-                fontSize: '14px'
+                fontSize: '18px'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = 'rgba(251, 191, 36, 0.3)'
@@ -231,7 +231,7 @@ function SettingsPage() {
                 fontWeight: 'bold',
                 cursor: 'pointer',
                 transition: 'all 0.2s',
-                fontSize: '14px',
+                fontSize: '18px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -252,7 +252,7 @@ function SettingsPage() {
                 fontWeight: 'bold',
                 cursor: 'pointer',
                 transition: 'all 0.2s',
-                fontSize: '14px',
+                fontSize: '18px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -273,7 +273,7 @@ function SettingsPage() {
                 fontWeight: 'bold',
                 cursor: 'pointer',
                 transition: 'all 0.2s',
-                fontSize: '14px',
+                fontSize: '18px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -284,7 +284,7 @@ function SettingsPage() {
             </button>
           </div>
 
-          <p style={{ color: '#708090', fontSize: '12px', textAlign: 'center' }}>
+          <p style={{ color: '#708090', fontSize: '16px', textAlign: 'center' }}>
             💡 Tip: Export your data before clearing for backup
           </p>
         </div>
@@ -297,16 +297,16 @@ function SettingsPage() {
           padding: '20px',
           textAlign: 'center'
         }}>
-          <h2 style={{ fontSize: '18px', fontWeight: 'bold', color: '#a78bfa', marginBottom: '12px' }}>
+          <h2 style={{ fontSize: '22px', fontWeight: 'bold', color: '#a78bfa', marginBottom: '12px' }}>
             ℹ️ About
           </h2>
-          <p style={{ color: '#a0c8ff', fontSize: '13px', marginBottom: '8px' }}>
+          <p style={{ color: '#a0c8ff', fontSize: '17px', marginBottom: '8px' }}>
             PostgreSQL Learning Hub v1.0.0
           </p>
-          <p style={{ color: '#708090', fontSize: '12px' }}>
+          <p style={{ color: '#708090', fontSize: '16px' }}>
             Comprehensive educational platform for PostgreSQL & System Administration
           </p>
-          <p style={{ color: '#708090', fontSize: '11px', marginTop: '12px' }}>
+          <p style={{ color: '#708090', fontSize: '15px', marginTop: '12px' }}>
             © 2024 PostgreSQL Learning Hub. All rights reserved.
           </p>
         </div>

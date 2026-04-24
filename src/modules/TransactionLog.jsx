@@ -22,20 +22,20 @@ const PostgreSQLTransactionLog = () => {
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Write-Ahead Logging (WAL)
               </h3>
-              <p style={{ color: '#a0c8ff', lineHeight: '1.8', fontSize: '14px', marginBottom: '16px' }}>
+              <p style={{ color: '#a0c8ff', lineHeight: '1.8', fontSize: '18px', marginBottom: '16px' }}>
                 Write-Ahead Logging (WAL) adalah fundamental mechanism dalam PostgreSQL untuk menjamin ACID properties. 
                 Sebelum data page ditulis ke disk, PostgreSQL HARUS write transaction log (WAL record) terlebih dahulu.
               </p>
               
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80', marginBottom: '16px' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '12px' }}>🎯 Core Principle:</p>
-                <p style={{ color: '#a0c8ff', fontFamily: 'monospace', fontSize: '13px', fontWeight: 'bold', marginBottom: '8px' }}>
+                <p style={{ color: '#a0c8ff', fontFamily: 'monospace', fontSize: '17px', fontWeight: 'bold', marginBottom: '8px' }}>
                   "Write the log BEFORE writing the data"
                 </p>
-                <ul style={{ color: '#a0c8ff', fontSize: '13px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '17px', marginLeft: '16px' }}>
                   <li>① Transaction modify data page dalam shared buffers</li>
                   <li>② SEBELUM apply, write WAL record to disk ← CRITICAL!</li>
                   <li>③ After WAL durable, data page can apply</li>
@@ -48,7 +48,7 @@ const PostgreSQLTransactionLog = () => {
                 <code style={{ color: '#86efac', fontFamily: 'monospace', display: 'block', marginBottom: '8px', fontWeight: 'bold' }}>
                   $PGDATA/pg_wal/
                 </code>
-                <p style={{ color: '#a0c8ff', fontSize: '12px' }}>
+                <p style={{ color: '#a0c8ff', fontSize: '16px' }}>
                   Example: <code style={{ color: '#86efac', fontFamily: 'monospace' }}>/var/lib/postgresql/14/main/pg_wal/</code>
                 </p>
               </div>
@@ -60,14 +60,14 @@ const PostgreSQLTransactionLog = () => {
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 WAL File Structure
               </h3>
-              <p style={{ color: '#a0c8ff', fontSize: '13px', marginBottom: '12px' }}>
+              <p style={{ color: '#a0c8ff', fontSize: '17px', marginBottom: '12px' }}>
                 WAL files terorganisir dalam $PGDATA/pg_wal/ directory dengan naming convention hexadecimal.
               </p>
               
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '12px', color: '#a0c8ff', marginBottom: '16px' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '16px', color: '#a0c8ff', marginBottom: '16px' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '8px' }}>Directory structure:</p>
                 <p>$PGDATA/pg_wal/</p>
                 <p style={{ marginLeft: '20px' }}>├─ 000000010000000000000001 (16 MB)</p>
@@ -78,10 +78,10 @@ const PostgreSQLTransactionLog = () => {
 
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '8px' }}>LSN (Log Sequence Number)</p>
-                <p style={{ color: '#a0c8ff', fontSize: '12px' }}>
+                <p style={{ color: '#a0c8ff', fontSize: '16px' }}>
                   LSN = unique position dalam WAL stream (8-byte number, monotonically increasing)
                 </p>
-                <p style={{ color: '#a0c8ff', fontSize: '12px', marginTop: '8px' }}>
+                <p style={{ color: '#a0c8ff', fontSize: '16px', marginTop: '8px' }}>
                   Format: <code style={{ color: '#64c8ff', fontFamily: 'monospace' }}>0/00001234</code> (high/low 32-bit hex)
                 </p>
               </div>
@@ -93,11 +93,11 @@ const PostgreSQLTransactionLog = () => {
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Transaction IDs (XID)
               </h3>
               
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '12px', color: '#a0c8ff', marginBottom: '16px' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '16px', color: '#a0c8ff', marginBottom: '16px' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '8px' }}>XID Properties:</p>
                 <p>• 32-bit unsigned integer (0 to 4,294,967,295)</p>
                 <p>• Assigned sequentially, monotonically increasing</p>
@@ -107,7 +107,7 @@ const PostgreSQLTransactionLog = () => {
 
               <div style={{ background: 'rgba(251, 191, 36, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #fbbf24' }}>
                 <p style={{ color: '#fbbf24', fontWeight: 'bold', marginBottom: '8px' }}>XMIN & XMAX</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li>xmin = XID yang created row</li>
                   <li>xmax = XID yang deleted row (NULL jika tidak deleted)</li>
                   <li>Digunakan untuk MVCC visibility determination</li>
@@ -121,15 +121,15 @@ const PostgreSQLTransactionLog = () => {
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 MVCC & WAL Integration
               </h3>
               
-              <p style={{ color: '#a0c8ff', fontSize: '13px', marginBottom: '16px' }}>
+              <p style={{ color: '#a0c8ff', fontSize: '17px', marginBottom: '16px' }}>
                 MVCC (Multi-Version Concurrency Control) dan WAL bekerja together untuk provide consistency dan durability:
               </p>
 
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '12px', color: '#a0c8ff', marginBottom: '16px' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '16px', color: '#a0c8ff', marginBottom: '16px' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '8px' }}>Scenario: Transaction 1000 UPDATE row</p>
                 <p>Old version: xmin=999, xmax=1000 ← marked for deletion</p>
                 <p>New version: xmin=1000, xmax=NULL ← new data</p>
@@ -139,7 +139,7 @@ const PostgreSQLTransactionLog = () => {
 
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '8px' }}>Why WAL Essential untuk MVCC?</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li>✓ Consistency: WAL guarantee all versions durable</li>
                   <li>✓ Atomicity: Multiple versions created atomically</li>
                   <li>✓ Isolation: Each transaction see consistent snapshot</li>
@@ -154,15 +154,15 @@ const PostgreSQLTransactionLog = () => {
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Checkpoint Mechanism
               </h3>
               
-              <p style={{ color: '#a0c8ff', fontSize: '13px', marginBottom: '16px' }}>
+              <p style={{ color: '#a0c8ff', fontSize: '17px', marginBottom: '16px' }}>
                 Checkpoint = moment untuk flush semua dirty pages to disk. Create stable recovery point.
               </p>
 
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '12px', color: '#a0c8ff', marginBottom: '16px', lineHeight: '1.8' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '16px', color: '#a0c8ff', marginBottom: '16px', lineHeight: '1.8' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '8px' }}>Checkpoint trigger:</p>
                 <p>Time interval: checkpoint_timeout (default 5 min)</p>
                 <p>WAL size: max_wal_size (default 1 GB)</p>
@@ -176,7 +176,7 @@ const PostgreSQLTransactionLog = () => {
 
               <div style={{ background: 'rgba(251, 191, 36, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #fbbf24' }}>
                 <p style={{ color: '#fbbf24', fontWeight: 'bold', marginBottom: '8px' }}>Performance Impact:</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li>⚠️ I/O spike: intensive disk I/O when flushing</li>
                   <li>⚠️ Latency: queries slower during checkpoint</li>
                   <li>🟢 Recovery faster: skip old WAL</li>
@@ -191,11 +191,11 @@ const PostgreSQLTransactionLog = () => {
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Crash Recovery
               </h3>
               
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '12px', color: '#a0c8ff', marginBottom: '16px', lineHeight: '1.8' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '16px', color: '#a0c8ff', marginBottom: '16px', lineHeight: '1.8' }}>
                 <p style={{ color: '#f87171', marginBottom: '8px' }}>Scenario: Server Crash</p>
                 <p>Normal operation:</p>
                 <p style={{ marginLeft: '20px', color: '#4ade80' }}>Transaction 1000: INSERT, WAL logged, data in memory</p>
@@ -213,10 +213,10 @@ const PostgreSQLTransactionLog = () => {
 
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '8px' }}>Point-in-Time Recovery (PITR)</p>
-                <p style={{ color: '#a0c8ff', fontSize: '12px' }}>
+                <p style={{ color: '#a0c8ff', fontSize: '16px' }}>
                   Recover database to specific point in time (not just crash):
                 </p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px', marginTop: '8px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px', marginTop: '8px' }}>
                   <li>1. Restore base backup</li>
                   <li>2. Replay archived WAL files</li>
                   <li>3. Stop at target time</li>
@@ -231,11 +231,11 @@ const PostgreSQLTransactionLog = () => {
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 WAL Streaming Replication
               </h3>
               
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '12px', color: '#a0c8ff', marginBottom: '16px', lineHeight: '1.8' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '16px', color: '#a0c8ff', marginBottom: '16px', lineHeight: '1.8' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '8px' }}>Architecture:</p>
                 <p>PRIMARY SERVER:</p>
                 <p style={{ marginLeft: '20px', color: '#4ade80' }}>Transactions → WAL Writer → pg_wal/</p>
@@ -248,7 +248,7 @@ const PostgreSQLTransactionLog = () => {
 
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '8px' }}>Synchronous vs Asynchronous</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li><strong>Async (default):</strong> Commit immediately, STANDBY apply in background. Low latency, risk data loss.</li>
                   <li><strong>Sync:</strong> Commit wait untuk STANDBY ack. Zero data loss, slower.</li>
                 </ul>
@@ -261,11 +261,11 @@ const PostgreSQLTransactionLog = () => {
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Monitoring WAL & Transaction Log
               </h3>
               
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', marginBottom: '16px' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', marginBottom: '16px' }}>
                 <p style={{ color: '#4ade80', marginBottom: '8px' }}>Useful Queries:</p>
                 <p>1. SELECT pg_current_wal_lsn();</p>
                 <p style={{ marginTop: '8px' }}>2. du -sh $PGDATA/pg_wal/</p>
@@ -276,7 +276,7 @@ const PostgreSQLTransactionLog = () => {
 
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '8px' }}>Health Checks:</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li>🔍 WAL disk space (alert if 80%+ full)</li>
                   <li>🔍 Checkpoint frequency (alert if too frequent)</li>
                   <li>🔍 Replication lag (alert if behind threshold)</li>
@@ -292,10 +292,10 @@ const PostgreSQLTransactionLog = () => {
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '8px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '8px' }}>
                 pg_waldump — Membaca & Menganalisis WAL Records
               </h3>
-              <p style={{ color: '#a0c8ff', fontSize: '13px', lineHeight: '1.8', marginBottom: '20px' }}>
+              <p style={{ color: '#a0c8ff', fontSize: '17px', lineHeight: '1.8', marginBottom: '20px' }}>
                 <code style={{ color: '#86efac', fontFamily: 'monospace' }}>pg_waldump</code> adalah tool bawaan PostgreSQL
                 untuk membaca isi WAL file secara human-readable. Sangat berguna untuk debugging, forensik transaksi,
                 dan memahami apa yang terjadi di database.
@@ -303,8 +303,8 @@ const PostgreSQLTransactionLog = () => {
 
               {/* Cara pakai */}
               <div style={{ background: 'rgba(0,0,0,0.3)', padding: '16px', borderRadius: '8px', marginBottom: '16px' }}>
-                <p style={{ color: '#fbbf24', fontWeight: 'bold', fontSize: '12px', marginBottom: '10px' }}>🖥️ Cara Penggunaan</p>
-                <pre style={{ color: '#a0c8ff', fontFamily: 'monospace', fontSize: '11px', overflow: 'auto', lineHeight: '2', margin: 0 }}>
+                <p style={{ color: '#fbbf24', fontWeight: 'bold', fontSize: '16px', marginBottom: '10px' }}>🖥️ Cara Penggunaan</p>
+                <pre style={{ color: '#a0c8ff', fontFamily: 'monospace', fontSize: '15px', overflow: 'auto', lineHeight: '2', margin: 0 }}>
 {`# Baca WAL segment tertentu
 pg_waldump $PGDATA/pg_wal/000000010000000000000001
 
@@ -324,8 +324,8 @@ pg_waldump --stats $PGDATA/pg_wal/000000010000000000000001`}
 
               {/* Anatomi satu record */}
               <div style={{ background: 'rgba(251,191,36,0.08)', border: '1px solid rgba(251,191,36,0.2)', borderRadius: '8px', padding: '16px', marginBottom: '16px' }}>
-                <p style={{ color: '#fbbf24', fontWeight: 'bold', fontSize: '12px', marginBottom: '12px' }}>🔍 Anatomi Satu WAL Record</p>
-                <pre style={{ color: '#a0c8ff', fontFamily: 'monospace', fontSize: '11px', overflow: 'auto', lineHeight: '1.7', margin: 0 }}>
+                <p style={{ color: '#fbbf24', fontWeight: 'bold', fontSize: '16px', marginBottom: '12px' }}>🔍 Anatomi Satu WAL Record</p>
+                <pre style={{ color: '#a0c8ff', fontFamily: 'monospace', fontSize: '15px', overflow: 'auto', lineHeight: '1.7', margin: 0 }}>
 {`rmgr: Heap   len (rec/tot): 258/ 258, tx: 765,
   lsn: 0/01F4D030, prev 0/01F4CFA0,
   desc: INPLACE off: 3; inval msgs: catcache 57 ...`}
@@ -340,8 +340,8 @@ pg_waldump --stats $PGDATA/pg_wal/000000010000000000000001`}
                     { field: 'desc', color: '#38bdf8', val: 'Deskripsi aksi yang dilakukan beserta parameter spesifik' },
                   ].map((r, i) => (
                     <div key={i} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                      <code style={{ color: r.color, fontFamily: 'monospace', fontSize: '11px', minWidth: '100px', flexShrink: 0 }}>{r.field}</code>
-                      <p style={{ color: '#a0c8ff', fontSize: '11px', lineHeight: '1.6', margin: 0 }}>{r.val}</p>
+                      <code style={{ color: r.color, fontFamily: 'monospace', fontSize: '15px', minWidth: '100px', flexShrink: 0 }}>{r.field}</code>
+                      <p style={{ color: '#a0c8ff', fontSize: '15px', lineHeight: '1.6', margin: 0 }}>{r.val}</p>
                     </div>
                   ))}
                 </div>
@@ -349,7 +349,7 @@ pg_waldump --stats $PGDATA/pg_wal/000000010000000000000001`}
 
               {/* Resource Managers */}
               <div style={{ background: 'rgba(167,139,250,0.08)', border: '1px solid rgba(167,139,250,0.2)', borderRadius: '8px', padding: '16px', marginBottom: '16px' }}>
-                <p style={{ color: '#a78bfa', fontWeight: 'bold', fontSize: '12px', marginBottom: '12px' }}>📦 Resource Managers (rmgr) & Artinya</p>
+                <p style={{ color: '#a78bfa', fontWeight: 'bold', fontSize: '16px', marginBottom: '12px' }}>📦 Resource Managers (rmgr) & Artinya</p>
                 {[
                   { rmgr: 'Heap', color: '#4ade80', ops: 'INSERT, UPDATE, DELETE, HOT_UPDATE, INPLACE, MULTI_INSERT, INSERT+INIT', desc: 'Operasi baris data di tabel (heap pages)' },
                   { rmgr: 'Heap2', color: '#4ade80', ops: 'MULTI_INSERT, CLEAN, FREEZE_PAGE, VISIBLE', desc: 'Operasi heap lanjutan — vacuum, freeze, multi-insert' },
@@ -360,17 +360,17 @@ pg_waldump --stats $PGDATA/pg_wal/000000010000000000000001`}
                 ].map((r, i) => (
                   <div key={i} style={{ background: 'rgba(0,0,0,0.2)', borderRadius: '6px', padding: '10px 12px', marginBottom: '8px', borderLeft: `3px solid ${r.color}` }}>
                     <div style={{ display: 'flex', gap: '10px', alignItems: 'baseline', marginBottom: '4px' }}>
-                      <code style={{ color: r.color, fontFamily: 'monospace', fontWeight: 'bold', fontSize: '12px' }}>{r.rmgr}</code>
-                      <code style={{ color: '#708090', fontFamily: 'monospace', fontSize: '10px' }}>{r.ops}</code>
+                      <code style={{ color: r.color, fontFamily: 'monospace', fontWeight: 'bold', fontSize: '16px' }}>{r.rmgr}</code>
+                      <code style={{ color: '#708090', fontFamily: 'monospace', fontSize: '14px' }}>{r.ops}</code>
                     </div>
-                    <p style={{ color: '#a0c8ff', fontSize: '11px', margin: 0 }}>{r.desc}</p>
+                    <p style={{ color: '#a0c8ff', fontSize: '15px', margin: 0 }}>{r.desc}</p>
                   </div>
                 ))}
               </div>
 
               {/* Anotasi log dari screenshot */}
               <div style={{ background: 'rgba(74,222,128,0.08)', border: '1px solid rgba(74,222,128,0.25)', borderRadius: '8px', padding: '16px', marginBottom: '16px' }}>
-                <p style={{ color: '#4ade80', fontWeight: 'bold', fontSize: '12px', marginBottom: '12px' }}>🧪 Bedah Log Nyata — Urutan Kejadian tx: 765</p>
+                <p style={{ color: '#4ade80', fontWeight: 'bold', fontSize: '16px', marginBottom: '12px' }}>🧪 Bedah Log Nyata — Urutan Kejadian tx: 765</p>
                 {[
                   { lsn: '0/01F4CE80', rmgr: 'Btree INSERT_LEAF', color: '#fbbf24', explain: 'PostgreSQL insert entry ke B-Tree index (OID 2673) — ini adalah index update akibat INSERT data baru' },
                   { lsn: '0/01F4CEC8', rmgr: 'Btree INSERT_LEAF', color: '#fbbf24', explain: 'Update B-Tree index kedua (OID 2674) — tabel dengan 2 index, keduanya harus diupdate' },
@@ -384,10 +384,10 @@ pg_waldump --stats $PGDATA/pg_wal/000000010000000000000001`}
                   { lsn: '0/01F4D378', rmgr: 'Transaction COMMIT', color: '#4ade80', explain: 'COMMIT tx 765 pada 2026-04-21 10:54:50.048889 WIB. Panjang record 1093 byte karena membawa daftar invalidasi catcache/relcache yang panjang' },
                 ].map((r, i) => (
                   <div key={i} style={{ display: 'flex', gap: '10px', marginBottom: '8px', alignItems: 'flex-start' }}>
-                    <code style={{ color: '#708090', fontFamily: 'monospace', fontSize: '10px', minWidth: '100px', flexShrink: 0, paddingTop: '1px' }}>{r.lsn}</code>
+                    <code style={{ color: '#708090', fontFamily: 'monospace', fontSize: '14px', minWidth: '100px', flexShrink: 0, paddingTop: '1px' }}>{r.lsn}</code>
                     <div>
-                      <code style={{ color: r.color, fontFamily: 'monospace', fontSize: '11px', fontWeight: 'bold' }}>{r.rmgr}</code>
-                      <p style={{ color: '#a0c8ff', fontSize: '11px', margin: '2px 0 0 0', lineHeight: '1.6' }}>{r.explain}</p>
+                      <code style={{ color: r.color, fontFamily: 'monospace', fontSize: '15px', fontWeight: 'bold' }}>{r.rmgr}</code>
+                      <p style={{ color: '#a0c8ff', fontSize: '15px', margin: '2px 0 0 0', lineHeight: '1.6' }}>{r.explain}</p>
                     </div>
                   </div>
                 ))}
@@ -395,7 +395,7 @@ pg_waldump --stats $PGDATA/pg_wal/000000010000000000000001`}
 
               {/* Checkpoint records */}
               <div style={{ background: 'rgba(56,189,248,0.08)', border: '1px solid rgba(56,189,248,0.2)', borderRadius: '8px', padding: '16px', marginBottom: '16px' }}>
-                <p style={{ color: '#38bdf8', fontWeight: 'bold', fontSize: '12px', marginBottom: '12px' }}>🏁 Checkpoint Records (tx: 0 — Background Process)</p>
+                <p style={{ color: '#38bdf8', fontWeight: 'bold', fontSize: '16px', marginBottom: '12px' }}>🏁 Checkpoint Records (tx: 0 — Background Process)</p>
                 {[
                   { op: 'Standby RUNNING_XACTS', explain: 'Broadcast snapshot ke standby: nextXid 766, latestCompletedXid 765, oldestRunningXid 766. Diulang periodik agar replica tahu transaksi apa yang aktif' },
                   { op: 'XLOG CHECKPOINT_REDO', explain: 'Mencatat titik awal checkpoint — jika crash, recovery mulai REDO dari LSN ini' },
@@ -403,20 +403,20 @@ pg_waldump --stats $PGDATA/pg_wal/000000010000000000000001`}
                   { op: 'XLOG CHECKPOINT_ONLINE', explain: 'Checkpoint selesai. Parameter penting: redo 0/1F4FAE0, tli 1 (timeline), fpw true (full_page_writes aktif), wal_level replica' },
                 ].map((r, i) => (
                   <div key={i} style={{ background: 'rgba(0,0,0,0.2)', borderRadius: '6px', padding: '8px 12px', marginBottom: '8px' }}>
-                    <code style={{ color: '#38bdf8', fontFamily: 'monospace', fontSize: '11px', fontWeight: 'bold' }}>{r.op}</code>
-                    <p style={{ color: '#a0c8ff', fontSize: '11px', margin: '4px 0 0 0', lineHeight: '1.6' }}>{r.explain}</p>
+                    <code style={{ color: '#38bdf8', fontFamily: 'monospace', fontSize: '15px', fontWeight: 'bold' }}>{r.op}</code>
+                    <p style={{ color: '#a0c8ff', fontSize: '15px', margin: '4px 0 0 0', lineHeight: '1.6' }}>{r.explain}</p>
                   </div>
                 ))}
               </div>
 
               {/* Error WAL corrupt */}
               <div style={{ background: 'rgba(248,113,113,0.1)', border: '1px solid rgba(248,113,113,0.3)', borderRadius: '8px', padding: '16px' }}>
-                <p style={{ color: '#f87171', fontWeight: 'bold', fontSize: '12px', marginBottom: '10px' }}>⚠️ Error: invalid record length — Apa Artinya?</p>
-                <pre style={{ background: 'rgba(0,0,0,0.3)', padding: '10px', borderRadius: '6px', fontFamily: 'monospace', fontSize: '11px', color: '#fca5a5', overflow: 'auto', marginBottom: '12px' }}>
+                <p style={{ color: '#f87171', fontWeight: 'bold', fontSize: '16px', marginBottom: '10px' }}>⚠️ Error: invalid record length — Apa Artinya?</p>
+                <pre style={{ background: 'rgba(0,0,0,0.3)', padding: '10px', borderRadius: '6px', fontFamily: 'monospace', fontSize: '15px', color: '#fca5a5', overflow: 'auto', marginBottom: '12px' }}>
 {`pg_waldump: error in WAL record at 0/1F4FBB0:
   invalid record length at 0/1F4FBE8: expected at least 24, got 0`}
                 </pre>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px', lineHeight: '2' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px', lineHeight: '2' }}>
                   <li>✓ <strong>Artinya:</strong> WAL record di LSN <code style={{ color: '#fbbf24', fontFamily: 'monospace' }}>0/1F4FBE8</code> hanya berisi 0 byte — WAL segment terpotong di sana</li>
                   <li>✓ <strong>Normal jika</strong> server masih running — WAL segment belum penuh, sisa halaman masih berisi nol</li>
                   <li>✓ <strong>Normal jika</strong> terjadi crash — WAL terakhir belum sempat di-flush ke disk sepenuhnya</li>
@@ -445,10 +445,10 @@ pg_waldump --stats $PGDATA/pg_wal/000000010000000000000001`}
       {/* Header */}
       <header style={{ borderBottom: '1px solid rgba(100, 200, 255, 0.2)', background: 'rgba(15, 20, 25, 0.8)' }}>
         <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '40px 24px' }}>
-          <h1 style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '8px', color: '#e0f2ff', fontFamily: 'Segoe UI' }}>
+          <h1 style={{ fontSize: '36px', fontWeight: 'bold', marginBottom: '8px', color: '#e0f2ff', fontFamily: 'Segoe UI' }}>
             PostgreSQL Transaction Log 📝
           </h1>
-          <p style={{ color: '#a0c8ff', fontSize: '16px' }}>
+          <p style={{ color: '#a0c8ff', fontSize: '20px' }}>
             Write-Ahead Logging (WAL), transaction IDs, MVCC, checkpoints, dan recovery konsep
           </p>
         </div>
@@ -465,7 +465,7 @@ pg_waldump --stats $PGDATA/pg_wal/000000010000000000000001`}
                 padding: '12px 16px',
                 fontWeight: '500',
                 whiteSpace: 'nowrap',
-                fontSize: '14px',
+                fontSize: '18px',
                 border: 'none',
                 background: 'transparent',
                 cursor: 'pointer',
@@ -485,10 +485,10 @@ pg_waldump --stats $PGDATA/pg_wal/000000010000000000000001`}
 
       {/* Footer */}
       <footer style={{ background: 'rgba(15, 20, 25, 0.5)', borderTop: '1px solid rgba(100, 200, 255, 0.2)', marginTop: '60px', padding: '40px 0', textAlign: 'center' }}>
-        <p style={{ color: '#708090', fontSize: '14px', marginBottom: '8px' }}>
+        <p style={{ color: '#708090', fontSize: '18px', marginBottom: '8px' }}>
           📝 Transaction Log = Heart of PostgreSQL durability, consistency, dan reliability
         </p>
-        <p style={{ color: '#708090', fontSize: '14px' }}>
+        <p style={{ color: '#708090', fontSize: '18px' }}>
           💡 Key insight: WAL guarantee ACID properties, recovery, replication - semua via clever logging! 🚀
         </p>
       </footer>

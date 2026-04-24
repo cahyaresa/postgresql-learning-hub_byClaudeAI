@@ -13,23 +13,23 @@ const tabs = [
 
 const Block = ({ title, color = '#64c8ff', children }) => (
   <div style={{ background: `${color}0d`, border: `1px solid ${color}33`, borderRadius: '8px', padding: '14px 16px', marginBottom: '14px' }}>
-    <p style={{ color, fontWeight: 'bold', fontSize: '12px', marginBottom: '10px' }}>{title}</p>
+    <p style={{ color, fontWeight: 'bold', fontSize: '16px', marginBottom: '10px' }}>{title}</p>
     {children}
   </div>
 )
 
 const Code = ({ children }) => (
-  <pre style={{ background: 'rgba(0,0,0,0.38)', padding: '12px', borderRadius: '6px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', overflow: 'auto', lineHeight: '1.9', margin: 0 }}>
+  <pre style={{ background: 'rgba(0,0,0,0.38)', padding: '12px', borderRadius: '6px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', overflow: 'auto', lineHeight: '1.9', margin: 0 }}>
     {children}
   </pre>
 )
 
 const Note = ({ children, color = '#708090' }) => (
-  <p style={{ color, fontSize: '11px', marginTop: '8px', lineHeight: '1.7' }}>{children}</p>
+  <p style={{ color, fontSize: '15px', marginTop: '8px', lineHeight: '1.7' }}>{children}</p>
 )
 
 const Tag = ({ children, color }) => (
-  <span style={{ background: `${color}22`, border: `1px solid ${color}55`, color, borderRadius: '4px', padding: '2px 8px', fontSize: '10px', fontWeight: 'bold', marginRight: '6px' }}>
+  <span style={{ background: `${color}22`, border: `1px solid ${color}55`, color, borderRadius: '4px', padding: '2px 8px', fontSize: '14px', fontWeight: 'bold', marginRight: '6px' }}>
     {children}
   </span>
 )
@@ -38,7 +38,7 @@ const Tag = ({ children, color }) => (
 
 const Overview = () => (
   <div>
-    <h3 style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '16px', marginBottom: '16px' }}>
+    <h3 style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '20px', marginBottom: '16px' }}>
       Scaling PostgreSQL — Strategi & Kapan Menggunakannya
     </h3>
 
@@ -67,8 +67,8 @@ const Overview = () => (
           },
         ].map((s, i) => (
           <div key={i} style={{ background: `${s.color}11`, border: `1px solid ${s.color}33`, borderRadius: '8px', padding: '12px' }}>
-            <p style={{ color: s.color, fontWeight: 'bold', fontSize: '12px', marginBottom: '8px' }}>{s.name}</p>
-            <ul style={{ color: '#a0c8ff', fontSize: '11px', marginLeft: '14px', lineHeight: '1.9' }}>
+            <p style={{ color: s.color, fontWeight: 'bold', fontSize: '16px', marginBottom: '8px' }}>{s.name}</p>
+            <ul style={{ color: '#a0c8ff', fontSize: '15px', marginLeft: '14px', lineHeight: '1.9' }}>
               {s.points.map((p, j) => <li key={j}>{p}</li>)}
             </ul>
           </div>
@@ -111,7 +111,7 @@ Tier 6 — Citus / Sharding
 
     <Block title="⚡ Decision Matrix — Pilih strategi yang tepat" color="#a78bfa">
       <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', color: '#a0c8ff', fontSize: '11px', borderCollapse: 'collapse' }}>
+        <table style={{ width: '100%', color: '#a0c8ff', fontSize: '15px', borderCollapse: 'collapse' }}>
           <tbody>
             <tr style={{ borderBottom: '1px solid rgba(167,139,250,0.3)' }}>
               <td style={{ padding: '6px 8px', color: '#a78bfa', fontWeight: 'bold' }}>Masalah</td>
@@ -130,7 +130,7 @@ Tier 6 — Citus / Sharding
               <tr key={i} style={{ borderBottom: '1px solid rgba(100,200,255,0.08)' }}>
                 <td style={{ padding: '6px 8px', color: '#f87171' }}>{problem}</td>
                 <td style={{ padding: '6px 8px', color: '#4ade80' }}>{solution}</td>
-                <td style={{ padding: '6px 8px', color: '#fbbf24', fontFamily: 'monospace', fontSize: '10px' }}>{tools}</td>
+                <td style={{ padding: '6px 8px', color: '#fbbf24', fontFamily: 'monospace', fontSize: '14px' }}>{tools}</td>
               </tr>
             ))}
           </tbody>
@@ -142,7 +142,7 @@ Tier 6 — Citus / Sharding
 
 const ScaleUp = () => (
   <div>
-    <h3 style={{ color: '#4ade80', fontWeight: 'bold', fontSize: '16px', marginBottom: '16px' }}>
+    <h3 style={{ color: '#4ade80', fontWeight: 'bold', fontSize: '20px', marginBottom: '16px' }}>
       Scale Up — Vertical Scaling & Tuning postgresql.conf
     </h3>
 
@@ -155,8 +155,8 @@ const ScaleUp = () => (
           { label: 'Connections', color: '#f87171', tips: ['max_connections = 100–200 (gunakan pgBouncer)', 'idle_in_transaction_session_timeout', 'statement_timeout untuk query limit', 'lock_timeout untuk deadlock prevention'] },
         ].map((s, i) => (
           <div key={i} style={{ background: `${s.color}11`, border: `1px solid ${s.color}33`, borderRadius: '8px', padding: '10px 12px' }}>
-            <p style={{ color: s.color, fontWeight: 'bold', fontSize: '11px', marginBottom: '6px' }}>{s.label}</p>
-            <ul style={{ color: '#a0c8ff', fontSize: '11px', marginLeft: '12px', lineHeight: '1.9' }}>
+            <p style={{ color: s.color, fontWeight: 'bold', fontSize: '15px', marginBottom: '6px' }}>{s.label}</p>
+            <ul style={{ color: '#a0c8ff', fontSize: '15px', marginLeft: '12px', lineHeight: '1.9' }}>
               {s.tips.map((t, j) => <li key={j}>{t}</li>)}
             </ul>
           </div>
@@ -293,7 +293,7 @@ SELECT pg_stat_statements_reset();`}
 
 const ScaleOut = () => (
   <div>
-    <h3 style={{ color: '#38bdf8', fontWeight: 'bold', fontSize: '16px', marginBottom: '16px' }}>
+    <h3 style={{ color: '#38bdf8', fontWeight: 'bold', fontSize: '20px', marginBottom: '16px' }}>
       Scale Out — Horizontal Scaling & Read Replicas
     </h3>
 
@@ -414,13 +414,13 @@ touch /tmp/promote_trigger
 
 const Replication = () => (
   <div>
-    <h3 style={{ color: '#e879f9', fontWeight: 'bold', fontSize: '16px', marginBottom: '16px' }}>
+    <h3 style={{ color: '#e879f9', fontWeight: 'bold', fontSize: '20px', marginBottom: '16px' }}>
       Replication — Streaming vs Logical
     </h3>
 
     <Block title="📊 Perbandingan Streaming vs Logical Replication" color="#e879f9">
       <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', color: '#a0c8ff', fontSize: '11px', borderCollapse: 'collapse' }}>
+        <table style={{ width: '100%', color: '#a0c8ff', fontSize: '15px', borderCollapse: 'collapse' }}>
           <tbody>
             {[
               ['Aspek', 'Streaming (Physical)', 'Logical'],
@@ -530,7 +530,7 @@ CREATE PUBLICATION pub_analytics
 
 const PgBouncer = () => (
   <div>
-    <h3 style={{ color: '#fb923c', fontWeight: 'bold', fontSize: '16px', marginBottom: '16px' }}>
+    <h3 style={{ color: '#fb923c', fontWeight: 'bold', fontSize: '20px', marginBottom: '16px' }}>
       pgBouncer — Connection Pooling
     </h3>
 
@@ -727,12 +727,12 @@ Batasan transaction pool mode:
 
 const FDW = () => (
   <div>
-    <h3 style={{ color: '#34d399', fontWeight: 'bold', fontSize: '16px', marginBottom: '16px' }}>
+    <h3 style={{ color: '#34d399', fontWeight: 'bold', fontSize: '20px', marginBottom: '16px' }}>
       FDW — Foreign Data Wrapper
     </h3>
 
     <Block title="💡 Apa itu FDW?" color="#34d399">
-      <p style={{ color: '#a0c8ff', fontSize: '12px', lineHeight: '1.8', marginBottom: '10px' }}>
+      <p style={{ color: '#a0c8ff', fontSize: '16px', lineHeight: '1.8', marginBottom: '10px' }}>
         FDW memungkinkan PostgreSQL <strong>query data dari sumber eksternal</strong> seolah-olah data itu ada di tabel lokal.
         Sumber bisa berupa: PostgreSQL lain, MySQL, Oracle, MongoDB, CSV/file, S3, HTTP API, Redis, dan lain-lain.
         Berguna untuk <em>data federation</em>, migrasi bertahap, dan integrasi lintas sistem.
@@ -747,8 +747,8 @@ const FDW = () => (
           { name: 'redis_fdw', color: '#fb923c', desc: 'Konek ke Redis' },
         ].map((f, i) => (
           <div key={i} style={{ background: `${f.color}11`, border: `1px solid ${f.color}33`, borderRadius: '6px', padding: '8px 10px' }}>
-            <code style={{ color: f.color, fontSize: '11px', fontWeight: 'bold' }}>{f.name}</code>
-            <p style={{ color: '#a0c8ff', fontSize: '10px', marginTop: '4px' }}>{f.desc}</p>
+            <code style={{ color: f.color, fontSize: '15px', fontWeight: 'bold' }}>{f.name}</code>
+            <p style={{ color: '#a0c8ff', fontSize: '14px', marginTop: '4px' }}>{f.desc}</p>
           </div>
         ))}
       </div>
@@ -816,7 +816,7 @@ WHERE r.created_at >= NOW() - INTERVAL '7 days';`}
     </Block>
 
     <Block title="📁 file_fdw — Konsep & Setup" color="#fbbf24">
-      <p style={{ color: '#a0c8ff', fontSize: '12px', lineHeight: '1.8', marginBottom: '10px' }}>
+      <p style={{ color: '#a0c8ff', fontSize: '16px', lineHeight: '1.8', marginBottom: '10px' }}>
         <code style={{ color: '#86efac', fontFamily: 'monospace' }}>file_fdw</code> adalah extension bawaan PostgreSQL untuk membaca
         file sistem (CSV, TSV, teks) <strong>seolah-olah tabel biasa</strong> — tanpa harus import ke tabel dulu.
         Data dibaca langsung dari disk saat query dijalankan. Berguna untuk ETL, audit log, bulk import, dan monitoring file.
@@ -1309,7 +1309,7 @@ DROP EXTENSION mysql_fdw;`}
 
 const PartitioningScaling = () => (
   <div>
-    <h3 style={{ color: '#f97316', fontWeight: 'bold', fontSize: '16px', marginBottom: '16px' }}>
+    <h3 style={{ color: '#f97316', fontWeight: 'bold', fontSize: '20px', marginBottom: '16px' }}>
       Partitioning sebagai Strategi Scaling
     </h3>
 
@@ -1409,7 +1409,7 @@ WHERE created_at >= '2026-01-01';
 
 const MonitoringScaling = () => (
   <div>
-    <h3 style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '16px', marginBottom: '16px' }}>
+    <h3 style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '20px', marginBottom: '16px' }}>
       Monitoring — Deteksi Bottleneck Sebelum Jadi Masalah
     </h3>
 
@@ -1572,10 +1572,10 @@ const ScalingModule = () => {
 
       <header style={{ borderBottom: '1px solid rgba(100, 200, 255, 0.2)', background: 'rgba(15, 20, 25, 0.8)' }}>
         <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '40px 24px' }}>
-          <h1 style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '8px', color: '#e0f2ff' }}>
+          <h1 style={{ fontSize: '36px', fontWeight: 'bold', marginBottom: '8px', color: '#e0f2ff' }}>
             Scaling PostgreSQL 📈
           </h1>
-          <p style={{ color: '#a0c8ff', fontSize: '16px' }}>
+          <p style={{ color: '#a0c8ff', fontSize: '20px' }}>
             Scale Up/Out · Read Replicas · Streaming Replication · pgBouncer Connection Pooling · Foreign Data Wrapper
           </p>
         </div>
@@ -1591,7 +1591,7 @@ const ScalingModule = () => {
                 padding: '10px 14px',
                 fontWeight: '500',
                 whiteSpace: 'nowrap',
-                fontSize: '12px',
+                fontSize: '16px',
                 border: 'none',
                 background: 'transparent',
                 cursor: 'pointer',
@@ -1611,10 +1611,10 @@ const ScalingModule = () => {
       </div>
 
       <footer style={{ background: 'rgba(15, 20, 25, 0.5)', borderTop: '1px solid rgba(100, 200, 255, 0.2)', marginTop: '60px', padding: '40px 0', textAlign: 'center' }}>
-        <p style={{ color: '#708090', fontSize: '14px', marginBottom: '8px' }}>
+        <p style={{ color: '#708090', fontSize: '18px', marginBottom: '8px' }}>
           📈 Scaling = Tune first · Pool connections · Replicate reads · Federate data
         </p>
-        <p style={{ color: '#708090', fontSize: '14px' }}>
+        <p style={{ color: '#708090', fontSize: '18px' }}>
           💡 Urutan: EXPLAIN → Index → Tune config → pgBouncer → Read Replica → Partition → FDW 🚀
         </p>
       </footer>

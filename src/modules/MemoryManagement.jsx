@@ -21,18 +21,18 @@ const MemoryManagement = () => {
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Memory Management Basics
               </h3>
               
-              <p style={{ color: '#a0c8ff', lineHeight: '1.8', fontSize: '14px', marginBottom: '16px' }}>
+              <p style={{ color: '#a0c8ff', lineHeight: '1.8', fontSize: '18px', marginBottom: '16px' }}>
                 Modern operating systems (Linux, Windows, macOS) menggunakan <strong>Virtual Memory</strong> management. 
                 Setiap process mendapat virtual address space sendiri, isolated dari processes lain.
               </p>
 
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80', marginBottom: '16px' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '12px' }}>🎯 Key Concepts:</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '13px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '17px', marginLeft: '16px' }}>
                   <li>✓ <strong>Virtual Address (VA):</strong> Address yang digunakan oleh program</li>
                   <li>✓ <strong>Physical Address (PA):</strong> Actual memory address di RAM</li>
                   <li>✓ <strong>MMU (Memory Management Unit):</strong> Hardware translate VA → PA</li>
@@ -44,7 +44,7 @@ const MemoryManagement = () => {
 
               <div style={{ background: 'rgba(100, 200, 255, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #64c8ff' }}>
                 <p style={{ color: '#64c8ff', fontWeight: 'bold', marginBottom: '12px' }}>💡 Why Virtual Memory?</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '13px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '17px', marginLeft: '16px' }}>
                   <li>✓ <strong>Isolation:</strong> Processes tidak dapat access memory process lain</li>
                   <li>✓ <strong>Protection:</strong> Segmentation Fault jika akses invalid address</li>
                   <li>✓ <strong>Flexibility:</strong> Program bisa lebih besar dari physical RAM (use disk paging)</li>
@@ -60,15 +60,15 @@ const MemoryManagement = () => {
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Virtual Address Space (VAS) Layout
               </h3>
               
-              <p style={{ color: '#a0c8ff', fontSize: '13px', marginBottom: '16px' }}>
+              <p style={{ color: '#a0c8ff', fontSize: '17px', marginBottom: '16px' }}>
                 Setiap process memiliki virtual address space dari 0x0 (minimum) sampai maksimum (tergantung architecture):
               </p>
 
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '12px', color: '#a0c8ff', marginBottom: '16px' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '16px', color: '#a0c8ff', marginBottom: '16px' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '12px', fontWeight: 'bold' }}>64-bit Linux VAS Layout (top to bottom):</p>
                 <div style={{ background: 'rgba(100, 200, 255, 0.1)', padding: '12px', borderRadius: '6px', marginBottom: '8px' }}>
                   <p style={{ color: '#f87171' }}>0xffffffffffffffff ← Maximum (48-bit: 0xffffffffffff)</p>
@@ -95,7 +95,7 @@ const MemoryManagement = () => {
 
               <div style={{ background: 'rgba(251, 191, 36, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #fbbf24' }}>
                 <p style={{ color: '#fbbf24', fontWeight: 'bold', marginBottom: '8px' }}>Architecture-specific:</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li>64-bit: typically 48-bit VAS (256 TB) - 128 TB kernel, 128 TB user</li>
                   <li>32-bit: 32-bit VAS (4 GB) - 1 GB kernel, 3 GB user (typical)</li>
                   <li>Some systems: 3 GB user / 1 GB kernel split</li>
@@ -109,7 +109,7 @@ const MemoryManagement = () => {
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Memory Segments (dari image)
               </h3>
 
@@ -146,16 +146,16 @@ const MemoryManagement = () => {
                 }
               ].map((seg, idx) => (
                 <div key={idx} style={{ background: idx % 2 === 0 ? 'rgba(74, 222, 128, 0.1)' : 'rgba(251, 191, 36, 0.1)', padding: '16px', borderRadius: '8px', marginBottom: '12px', borderLeft: `3px solid ${idx % 2 === 0 ? '#4ade80' : '#fbbf24'}` }}>
-                  <p style={{ color: idx % 2 === 0 ? '#4ade80' : '#fbbf24', fontWeight: 'bold', marginBottom: '4px', fontSize: '13px' }}>
+                  <p style={{ color: idx % 2 === 0 ? '#4ade80' : '#fbbf24', fontWeight: 'bold', marginBottom: '4px', fontSize: '17px' }}>
                     {seg.name}
                   </p>
-                  <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '6px' }}>
+                  <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '6px' }}>
                     {seg.desc}
                   </p>
-                  <p style={{ color: '#708090', fontSize: '11px', fontStyle: 'italic', marginBottom: '6px' }}>
+                  <p style={{ color: '#708090', fontSize: '15px', fontStyle: 'italic', marginBottom: '6px' }}>
                     Example: {seg.example}
                   </p>
-                  <ul style={{ color: '#a0c8ff', fontSize: '11px', marginLeft: '12px' }}>
+                  <ul style={{ color: '#a0c8ff', fontSize: '15px', marginLeft: '12px' }}>
                     {seg.properties.map((prop, pidx) => (
                       <li key={pidx}>• {prop}</li>
                     ))}
@@ -170,13 +170,13 @@ const MemoryManagement = () => {
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Kernel Space vs User Space
               </h3>
 
               <div style={{ background: 'rgba(248, 113, 113, 0.1)', padding: '16px', borderRadius: '8px', marginBottom: '16px', borderLeft: '3px solid #f87171' }}>
                 <p style={{ color: '#f87171', fontWeight: 'bold', marginBottom: '12px' }}>🔴 KERNEL SPACE</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li>✓ Address range: ~0xffffffff80000000 → 0xffffffffffffffff</li>
                   <li>✓ Only kernel code runs here (ring 0 - full privileges)</li>
                   <li>✓ Contains: kernel code, kernel data, page tables, interrupt handlers</li>
@@ -188,7 +188,7 @@ const MemoryManagement = () => {
 
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', marginBottom: '16px', borderLeft: '3px solid #4ade80' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '12px' }}>🟢 USER SPACE</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li>✓ Address range: 0x0 → ~0x7fffffffffff (128 TB on 64-bit)</li>
                   <li>✓ Application code runs here (ring 3 - limited privileges)</li>
                   <li>✓ Contains: code, data, heap, stack, libraries</li>
@@ -200,7 +200,7 @@ const MemoryManagement = () => {
 
               <div style={{ background: 'rgba(251, 191, 36, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #fbbf24' }}>
                 <p style={{ color: '#fbbf24', fontWeight: 'bold', marginBottom: '12px' }}>🔄 Context Switch (Kernel ↔ User)</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li>System call: user → kernel (CPU mode change, switch page table)</li>
                   <li>Interrupt/Exception: automatic kernel entry</li>
                   <li>Return: kernel → user (restore context, switch page table)</li>
@@ -215,11 +215,11 @@ const MemoryManagement = () => {
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Heap & Stack (Dynamic Memory)
               </h3>
 
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '12px', color: '#a0c8ff', marginBottom: '16px', lineHeight: '1.8' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '16px', color: '#a0c8ff', marginBottom: '16px', lineHeight: '1.8' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '8px' }}>Memory Layout (overlook):</p>
                 <p>HIGH ADDR: 0xffffffff...</p>
                 <p style={{ color: '#f87171' }}>  ┌─ KERNEL SPACE</p>
@@ -249,7 +249,7 @@ const MemoryManagement = () => {
 
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80', marginBottom: '16px' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '8px' }}>📌 STACK</p>
-                <table style={{ width: '100%', color: '#a0c8ff', fontSize: '12px', marginTop: '8px' }}>
+                <table style={{ width: '100%', color: '#a0c8ff', fontSize: '16px', marginTop: '8px' }}>
                   <tbody>
                     <tr style={{ borderBottom: '1px solid rgba(74, 222, 128, 0.3)' }}>
                       <td style={{ padding: '4px' }}>Grows</td>
@@ -277,7 +277,7 @@ const MemoryManagement = () => {
 
               <div style={{ background: 'rgba(251, 191, 36, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #fbbf24' }}>
                 <p style={{ color: '#fbbf24', fontWeight: 'bold', marginBottom: '8px' }}>📌 HEAP</p>
-                <table style={{ width: '100%', color: '#a0c8ff', fontSize: '12px', marginTop: '8px' }}>
+                <table style={{ width: '100%', color: '#a0c8ff', fontSize: '16px', marginTop: '8px' }}>
                   <tbody>
                     <tr style={{ borderBottom: '1px solid rgba(251, 191, 36, 0.3)' }}>
                       <td style={{ padding: '4px' }}>Grows</td>
@@ -310,16 +310,16 @@ const MemoryManagement = () => {
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Process Isolation (dari image - 2 processes)
               </h3>
 
-              <p style={{ color: '#a0c8ff', fontSize: '13px', marginBottom: '16px' }}>
+              <p style={{ color: '#a0c8ff', fontSize: '17px', marginBottom: '16px' }}>
                 Image menunjukkan Process 1 dan Process 2 masing-masing punya virtual address space sendiri. 
                 Keduanya dapat punya data di address yang sama, tetapi refer ke physical memory yang berbeda!
               </p>
 
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '12px', color: '#a0c8ff', marginBottom: '16px' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '16px', color: '#a0c8ff', marginBottom: '16px' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '12px', fontWeight: 'bold' }}>Isolation via Page Tables:</p>
                 <p>Process 1:</p>
                 <p style={{ marginLeft: '20px', color: '#4ade80' }}>Virtual 0x1000 → Physical 0x4000 (via page table 1)</p>
@@ -335,7 +335,7 @@ const MemoryManagement = () => {
 
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '12px' }}>🔐 How Isolation Works:</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li>✓ Each process has own page table (in memory, pointed by CR3 register on x86)</li>
                   <li>✓ CPU uses page table to translate VA → PA</li>
                   <li>✓ Process A cannot modify Process B's page table (kernel-protected)</li>
@@ -346,10 +346,10 @@ const MemoryManagement = () => {
 
               <div style={{ background: 'rgba(251, 191, 36, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #fbbf24' }}>
                 <p style={{ color: '#fbbf24', fontWeight: 'bold', marginBottom: '12px' }}>🚨 Segmentation Fault</p>
-                <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '8px' }}>
+                <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '8px' }}>
                   Image shows: "User code CANNOT read from non-existent addresses, doing so results in a Segmentation Fault"
                 </p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li>Try access unmapped virtual address → page fault</li>
                   <li>Page fault handler check: is it valid address for this process?</li>
                   <li>If NO → send SIGSEGV signal → process killed ☠️</li>
@@ -364,11 +364,11 @@ const MemoryManagement = () => {
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Paging & Address Translation
               </h3>
 
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '12px', color: '#a0c8ff', marginBottom: '16px' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '16px', color: '#a0c8ff', marginBottom: '16px' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '8px' }}>Virtual → Physical Translation:</p>
                 <p>1. Program generates Virtual Address (VA): 0x12345</p>
                 <p style={{ marginLeft: '20px', color: '#4ade80' }}>└─ e.g., int x; x = 10; → address of x = VA</p>
@@ -397,7 +397,7 @@ const MemoryManagement = () => {
 
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '12px' }}>🚀 TLB (Translation Lookaside Buffer)</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li>✓ Hardware cache untuk VA→PA mappings</li>
                   <li>✓ Typical: 512-4096 entries</li>
                   <li>✓ TLB hit: 1-2 cycles (very fast)</li>
@@ -409,7 +409,7 @@ const MemoryManagement = () => {
 
               <div style={{ background: 'rgba(251, 191, 36, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #fbbf24' }}>
                 <p style={{ color: '#fbbf24', fontWeight: 'bold', marginBottom: '12px' }}>Page Faults</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li><strong>Minor page fault:</strong> Page in memory, but not in TLB → reload TLB</li>
                   <li><strong>Major page fault:</strong> Page not in physical memory → fetch from disk (swap)</li>
                   <li><strong>Page not present:</strong> Invalid access → SIGSEGV</li>
@@ -423,11 +423,11 @@ const MemoryManagement = () => {
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Practical Examples & Commands
               </h3>
 
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', marginBottom: '16px' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', marginBottom: '16px' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '8px' }}>Check process memory layout:</p>
                 <p>cat /proc/PID/maps</p>
                 <p style={{ color: '#708090', marginTop: '4px' }}>Show: virtual address ranges, permissions, file mappings</p>
@@ -445,7 +445,7 @@ const MemoryManagement = () => {
 
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80', marginBottom: '16px' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '12px' }}>💻 Code Example:</p>
-                <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '6px', fontFamily: 'monospace', fontSize: '10px', color: '#86efac', lineHeight: '1.6' }}>
+                <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '6px', fontFamily: 'monospace', fontSize: '14px', color: '#86efac', lineHeight: '1.6' }}>
                   <pre style={{ margin: 0 }}>{`int global_init = 100;      // Data segment
 int global_uninit;         // BSS segment
 
@@ -474,7 +474,7 @@ int main() {
 
               <div style={{ background: 'rgba(251, 191, 36, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #fbbf24' }}>
                 <p style={{ color: '#fbbf24', fontWeight: 'bold', marginBottom: '12px' }}>Common Issues:</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li><strong>Stack overflow:</strong> Too many recursions or large local arrays</li>
                   <li><strong>Heap fragmentation:</strong> Many small allocations</li>
                   <li><strong>Memory leak:</strong> malloc but never free</li>
@@ -503,10 +503,10 @@ int main() {
       {/* Header */}
       <header style={{ borderBottom: '1px solid rgba(100, 200, 255, 0.2)', background: 'rgba(15, 20, 25, 0.8)' }}>
         <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '40px 24px' }}>
-          <h1 style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '8px', color: '#e0f2ff' }}>
+          <h1 style={{ fontSize: '36px', fontWeight: 'bold', marginBottom: '8px', color: '#e0f2ff' }}>
             Memory Management & Virtual Address Space 🗺️
           </h1>
-          <p style={{ color: '#a0c8ff', fontSize: '16px' }}>
+          <p style={{ color: '#a0c8ff', fontSize: '20px' }}>
             Process memory layout, kernel space, user space, segments, paging, dan process isolation
           </p>
         </div>
@@ -523,7 +523,7 @@ int main() {
                 padding: '12px 16px',
                 fontWeight: '500',
                 whiteSpace: 'nowrap',
-                fontSize: '13px',
+                fontSize: '17px',
                 border: 'none',
                 background: 'transparent',
                 cursor: 'pointer',
@@ -543,10 +543,10 @@ int main() {
 
       {/* Footer */}
       <footer style={{ background: 'rgba(15, 20, 25, 0.5)', borderTop: '1px solid rgba(100, 200, 255, 0.2)', marginTop: '60px', padding: '40px 0', textAlign: 'center' }}>
-        <p style={{ color: '#708090', fontSize: '14px', marginBottom: '8px' }}>
+        <p style={{ color: '#708090', fontSize: '18px', marginBottom: '8px' }}>
           🗺️ Virtual Memory = Foundation of modern operating systems
         </p>
-        <p style={{ color: '#708090', fontSize: '14px' }}>
+        <p style={{ color: '#708090', fontSize: '18px' }}>
           💡 Key insight: MMU + Page Tables = Process isolation + Protection + Flexibility! 🚀
         </p>
       </footer>

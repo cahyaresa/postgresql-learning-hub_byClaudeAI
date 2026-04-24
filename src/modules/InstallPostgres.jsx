@@ -253,10 +253,10 @@ const InstallPostgresModule = () => {
       {/* Header */}
       <header style={{ borderBottom: '1px solid rgba(100, 200, 255, 0.2)', background: 'rgba(15, 20, 25, 0.8)' }}>
         <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '40px 24px' }}>
-          <h1 style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '8px', color: '#e0f2ff' }}>
+          <h1 style={{ fontSize: '36px', fontWeight: 'bold', marginBottom: '8px', color: '#e0f2ff' }}>
             Install PostgreSQL dari Source 🐘
           </h1>
-          <p style={{ color: '#a0c8ff', fontSize: '16px' }}>
+          <p style={{ color: '#a0c8ff', fontSize: '20px' }}>
             Kompilasi dan instalasi PostgreSQL 18.3 dari source code ke direktori kustom
           </p>
         </div>
@@ -282,8 +282,8 @@ const InstallPostgresModule = () => {
                 transition: 'all 0.2s',
               }}
             >
-              <div style={{ fontSize: '18px', marginBottom: '2px' }}>{s.icon}</div>
-              <div style={{ fontSize: '10px', color: activeStep === s.id ? s.color : '#708090', fontWeight: 'bold' }}>
+              <div style={{ fontSize: '22px', marginBottom: '2px' }}>{s.icon}</div>
+              <div style={{ fontSize: '14px', color: activeStep === s.id ? s.color : '#708090', fontWeight: 'bold' }}>
                 Step {s.id}
               </div>
             </div>
@@ -320,22 +320,22 @@ const InstallPostgresModule = () => {
                   <div style={{
                     width: '32px', height: '32px', borderRadius: '50%',
                     background: `${step.color}22`, display: 'flex', alignItems: 'center',
-                    justifyContent: 'center', fontSize: '16px', flexShrink: 0,
+                    justifyContent: 'center', fontSize: '20px', flexShrink: 0,
                   }}>
                     {step.icon}
                   </div>
                   <div style={{ flex: 1 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <span style={{ color: step.color, fontWeight: 'bold', fontSize: '12px' }}>
+                      <span style={{ color: step.color, fontWeight: 'bold', fontSize: '16px' }}>
                         STEP {step.id}
                       </span>
-                      <span style={{ color: '#e0f2ff', fontWeight: 'bold', fontSize: '14px' }}>
+                      <span style={{ color: '#e0f2ff', fontWeight: 'bold', fontSize: '18px' }}>
                         {step.title}
                       </span>
                     </div>
-                    <p style={{ color: '#708090', fontSize: '12px', marginTop: '2px' }}>{step.desc}</p>
+                    <p style={{ color: '#708090', fontSize: '16px', marginTop: '2px' }}>{step.desc}</p>
                   </div>
-                  <span style={{ color: step.color, fontSize: '18px', transition: 'transform 0.25s', transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)' }}>›</span>
+                  <span style={{ color: step.color, fontSize: '22px', transition: 'transform 0.25s', transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)' }}>›</span>
                 </div>
 
                 {/* Step detail */}
@@ -345,13 +345,13 @@ const InstallPostgresModule = () => {
                     {/* Commands */}
                     {step.commands.length > 0 && (
                       <div style={{ marginTop: '16px' }}>
-                        <p style={{ color: step.color, fontWeight: 'bold', fontSize: '12px', marginBottom: '10px' }}>
+                        <p style={{ color: step.color, fontWeight: 'bold', fontSize: '16px', marginBottom: '10px' }}>
                           🖥️ Command
                         </p>
                         {step.commands.map((c, i) => (
                           <div key={i} style={{ background: 'rgba(0,0,0,0.4)', borderRadius: '8px', marginBottom: '8px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.06)' }}>
                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', gap: '12px' }}>
-                              <code style={{ color: '#86efac', fontFamily: 'monospace', fontSize: '12px', flex: 1, wordBreak: 'break-all' }}>
+                              <code style={{ color: '#86efac', fontFamily: 'monospace', fontSize: '16px', flex: 1, wordBreak: 'break-all' }}>
                                 $ {c.cmd}
                               </code>
                               <button
@@ -360,7 +360,7 @@ const InstallPostgresModule = () => {
                                   background: copied === `${step.id}-${i}` ? `${step.color}33` : 'rgba(255,255,255,0.06)',
                                   border: `1px solid ${copied === `${step.id}-${i}` ? step.color : 'rgba(255,255,255,0.1)'}`,
                                   borderRadius: '6px', padding: '4px 10px', cursor: 'pointer',
-                                  color: copied === `${step.id}-${i}` ? step.color : '#708090', fontSize: '11px',
+                                  color: copied === `${step.id}-${i}` ? step.color : '#708090', fontSize: '15px',
                                   flexShrink: 0, transition: 'all 0.2s',
                                 }}
                               >
@@ -369,7 +369,7 @@ const InstallPostgresModule = () => {
                             </div>
                             {c.note && (
                               <div style={{ padding: '6px 14px 10px', borderTop: '1px solid rgba(255,255,255,0.04)' }}>
-                                <p style={{ color: '#708090', fontSize: '11px' }}>💬 {c.note}</p>
+                                <p style={{ color: '#708090', fontSize: '15px' }}>💬 {c.note}</p>
                               </div>
                             )}
                           </div>
@@ -380,8 +380,8 @@ const InstallPostgresModule = () => {
                     {/* Notes */}
                     {step.notes.length > 0 && (
                       <div style={{ marginTop: '14px', background: `${step.color}0d`, border: `1px solid ${step.color}22`, borderRadius: '8px', padding: '12px 16px' }}>
-                        <p style={{ color: step.color, fontWeight: 'bold', fontSize: '12px', marginBottom: '8px' }}>📌 Notes</p>
-                        <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '12px', lineHeight: '1.9' }}>
+                        <p style={{ color: step.color, fontWeight: 'bold', fontSize: '16px', marginBottom: '8px' }}>📌 Notes</p>
+                        <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '12px', lineHeight: '1.9' }}>
                           {step.notes.map((n, i) => <li key={i}>· {n}</li>)}
                         </ul>
                       </div>
@@ -390,8 +390,8 @@ const InstallPostgresModule = () => {
                     {/* Detail */}
                     {step.detail && (
                       <div style={{ marginTop: '14px', background: 'rgba(0,0,0,0.25)', borderRadius: '8px', padding: '12px 16px', borderLeft: `3px solid ${step.color}` }}>
-                        <p style={{ color: step.color, fontWeight: 'bold', fontSize: '12px', marginBottom: '8px' }}>ℹ️ Detail</p>
-                        <pre style={{ color: '#a0c8ff', fontSize: '11px', whiteSpace: 'pre-wrap', fontFamily: 'inherit', lineHeight: '1.8', margin: 0 }}>
+                        <p style={{ color: step.color, fontWeight: 'bold', fontSize: '16px', marginBottom: '8px' }}>ℹ️ Detail</p>
+                        <pre style={{ color: '#a0c8ff', fontSize: '15px', whiteSpace: 'pre-wrap', fontFamily: 'inherit', lineHeight: '1.8', margin: 0 }}>
                           {step.detail}
                         </pre>
                       </div>
@@ -405,10 +405,10 @@ const InstallPostgresModule = () => {
 
         {/* Summary quick reference */}
         <div style={{ marginTop: '40px', background: 'rgba(100, 200, 255, 0.06)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-          <h4 style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '14px', marginBottom: '14px' }}>
+          <h4 style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '18px', marginBottom: '14px' }}>
             ⚡ Quick Reference — Semua Perintah
           </h4>
-          <pre style={{ background: 'rgba(0,0,0,0.4)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', overflow: 'auto', lineHeight: '2' }}>
+          <pre style={{ background: 'rgba(0,0,0,0.4)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', overflow: 'auto', lineHeight: '2' }}>
 {`# Step 1 — Extract
 tar -xf postgresql-18.3.tar.gz
 
@@ -440,10 +440,10 @@ pg_ctl -D /home/$(whoami)/Documents/postgres-training/training/apps/psql/18.3/da
 
       {/* Footer */}
       <footer style={{ background: 'rgba(15, 20, 25, 0.5)', borderTop: '1px solid rgba(100, 200, 255, 0.2)', marginTop: '60px', padding: '40px 0', textAlign: 'center' }}>
-        <p style={{ color: '#708090', fontSize: '14px', marginBottom: '8px' }}>
+        <p style={{ color: '#708090', fontSize: '18px', marginBottom: '8px' }}>
           🐘 PostgreSQL Build from Source — Full Control Over Installation
         </p>
-        <p style={{ color: '#708090', fontSize: '14px' }}>
+        <p style={{ color: '#708090', fontSize: '18px' }}>
           💡 Tip: Simpan path prefix ke ~/.bashrc agar bisa dipakai setiap sesi! 🚀
         </p>
       </footer>

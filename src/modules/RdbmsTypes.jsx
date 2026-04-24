@@ -27,12 +27,12 @@ function CodeBlock({ code }) {
           background: copied ? '#4ade80' : 'rgba(100,200,255,0.2)',
           border: 'none', color: copied ? '#0f1419' : '#64c8ff',
           padding: '4px 10px', borderRadius: '4px', cursor: 'pointer',
-          fontSize: '11px', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '4px',
+          fontSize: '15px', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '4px',
         }}
       >
         {copied ? <><Check size={12} /> Copied</> : <><Copy size={12} /> Copy</>}
       </button>
-      <pre style={{ margin: 0, color: '#a0c8ff', fontFamily: 'monospace', fontSize: '12px', whiteSpace: 'pre-wrap', paddingRight: '80px' }}>
+      <pre style={{ margin: 0, color: '#a0c8ff', fontFamily: 'monospace', fontSize: '16px', whiteSpace: 'pre-wrap', paddingRight: '80px' }}>
         {code}
       </pre>
     </div>
@@ -51,7 +51,7 @@ function Section({ title, color = 'blue', children }) {
   const c = palette[color] || palette.blue
   return (
     <div style={{ background: c.bg, border: `1px solid ${c.border}`, borderLeft: `3px solid ${c.left}`, borderRadius: '10px', padding: '16px', marginBottom: '14px' }}>
-      {title && <h4 style={{ color: c.accent, fontWeight: 'bold', marginBottom: '10px', fontSize: '14px' }}>{title}</h4>}
+      {title && <h4 style={{ color: c.accent, fontWeight: 'bold', marginBottom: '10px', fontSize: '18px' }}>{title}</h4>}
       {children}
     </div>
   )
@@ -59,7 +59,7 @@ function Section({ title, color = 'blue', children }) {
 
 function Badge({ text, color = '#64c8ff' }) {
   return (
-    <span style={{ background: `${color}22`, color, border: `1px solid ${color}55`, padding: '3px 10px', borderRadius: '20px', fontSize: '11px', fontWeight: 'bold', display: 'inline-block', margin: '3px' }}>
+    <span style={{ background: `${color}22`, color, border: `1px solid ${color}55`, padding: '3px 10px', borderRadius: '20px', fontSize: '15px', fontWeight: 'bold', display: 'inline-block', margin: '3px' }}>
       {text}
     </span>
   )
@@ -67,11 +67,11 @@ function Badge({ text, color = '#64c8ff' }) {
 
 function TypeRow({ type, size, range, useCase, pg, color = '#64c8ff' }) {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '130px 90px 1fr 1fr', gap: '10px', padding: '8px 0', borderBottom: '1px solid rgba(100,200,255,0.08)', alignItems: 'start', fontSize: '12px' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: '130px 90px 1fr 1fr', gap: '10px', padding: '8px 0', borderBottom: '1px solid rgba(100,200,255,0.08)', alignItems: 'start', fontSize: '16px' }}>
       <code style={{ color, fontWeight: 'bold', fontFamily: 'monospace' }}>{type}</code>
       <span style={{ color: '#708090' }}>{size}</span>
       <span style={{ color: '#a0c8ff' }}>{range}</span>
-      <span style={{ color: '#708090', fontSize: '11px' }}>{useCase}</span>
+      <span style={{ color: '#708090', fontSize: '15px' }}>{useCase}</span>
     </div>
   )
 }
@@ -79,15 +79,15 @@ function TypeRow({ type, size, range, useCase, pg, color = '#64c8ff' }) {
 function CompareCard({ title, good, bad, color }) {
   return (
     <div style={{ background: 'rgba(26,35,50,0.8)', border: `1px solid ${color}33`, borderRadius: '10px', padding: '14px' }}>
-      <p style={{ color, fontWeight: 'bold', fontSize: '13px', marginBottom: '10px' }}>{title}</p>
+      <p style={{ color, fontWeight: 'bold', fontSize: '17px', marginBottom: '10px' }}>{title}</p>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
         <div style={{ background: 'rgba(74,222,128,0.08)', border: '1px solid rgba(74,222,128,0.2)', borderRadius: '6px', padding: '8px' }}>
-          <p style={{ color: '#4ade80', fontSize: '10px', fontWeight: 'bold', marginBottom: '4px' }}>✅ Gunakan</p>
-          <p style={{ color: '#a0c8ff', fontSize: '11px', margin: 0 }}>{good}</p>
+          <p style={{ color: '#4ade80', fontSize: '14px', fontWeight: 'bold', marginBottom: '4px' }}>✅ Gunakan</p>
+          <p style={{ color: '#a0c8ff', fontSize: '15px', margin: 0 }}>{good}</p>
         </div>
         <div style={{ background: 'rgba(248,113,113,0.08)', border: '1px solid rgba(248,113,113,0.2)', borderRadius: '6px', padding: '8px' }}>
-          <p style={{ color: '#f87171', fontSize: '10px', fontWeight: 'bold', marginBottom: '4px' }}>❌ Hindari</p>
-          <p style={{ color: '#a0c8ff', fontSize: '11px', margin: 0 }}>{bad}</p>
+          <p style={{ color: '#f87171', fontSize: '14px', fontWeight: 'bold', marginBottom: '4px' }}>❌ Hindari</p>
+          <p style={{ color: '#a0c8ff', fontSize: '15px', margin: 0 }}>{bad}</p>
         </div>
       </div>
     </div>
@@ -109,7 +109,7 @@ function TabOverview() {
   return (
     <div style={{ animation: 'float-up 0.5s ease-out' }}>
       <Section title="🗂️ Mengapa Pemilihan Tipe Data Penting?" color="blue">
-        <p style={{ color: '#a0c8ff', fontSize: '13px', lineHeight: 1.7 }}>
+        <p style={{ color: '#a0c8ff', fontSize: '17px', lineHeight: 1.7 }}>
           Tipe data yang tepat berdampak langsung pada <strong style={{ color: '#64c8ff' }}>storage efficiency</strong>,{' '}
           <strong style={{ color: '#4ade80' }}>query performance</strong>,{' '}
           <strong style={{ color: '#fbbf24' }}>data integrity</strong>, dan{' '}
@@ -127,10 +127,10 @@ function TabOverview() {
         {categories.map(({ icon, title, desc, types, color }) => (
           <div key={title} style={{ background: 'rgba(26,35,50,0.8)', border: `1px solid ${color}22`, borderRadius: '10px', padding: '14px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-              <span style={{ fontSize: '20px' }}>{icon}</span>
-              <span style={{ color: '#e0f2ff', fontWeight: 'bold', fontSize: '13px' }}>{title}</span>
+              <span style={{ fontSize: '24px' }}>{icon}</span>
+              <span style={{ color: '#e0f2ff', fontWeight: 'bold', fontSize: '17px' }}>{title}</span>
             </div>
-            <p style={{ color: '#a0c8ff', fontSize: '12px', lineHeight: 1.6, marginBottom: '10px' }}>{desc}</p>
+            <p style={{ color: '#a0c8ff', fontSize: '16px', lineHeight: 1.6, marginBottom: '10px' }}>{desc}</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
               {types.map(t => <Badge key={t} text={t} color={color} />)}
             </div>
@@ -147,8 +147,8 @@ function TabOverview() {
           ['🆔 UUID vs SERIAL', 'UUID untuk distributed systems dan expose ke API. BIGSERIAL untuk internal tables yang butuh performa JOIN.'],
         ].map(([title, desc]) => (
           <div key={title} style={{ display: 'flex', gap: '10px', padding: '6px 0', borderBottom: '1px solid rgba(100,200,255,0.08)' }}>
-            <span style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '12px', minWidth: '160px' }}>{title}</span>
-            <span style={{ color: '#a0c8ff', fontSize: '12px' }}>{desc}</span>
+            <span style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '16px', minWidth: '160px' }}>{title}</span>
+            <span style={{ color: '#a0c8ff', fontSize: '16px' }}>{desc}</span>
           </div>
         ))}
       </Section>
@@ -160,7 +160,7 @@ function TabNumeric() {
   return (
     <div style={{ animation: 'float-up 0.5s ease-out' }}>
       <Section title="🔢 Integer Types" color="blue">
-        <div style={{ display: 'grid', gridTemplateColumns: '130px 90px 1fr 1fr', gap: '10px', padding: '6px 0', borderBottom: '1px solid rgba(100,200,255,0.15)', fontSize: '11px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '130px 90px 1fr 1fr', gap: '10px', padding: '6px 0', borderBottom: '1px solid rgba(100,200,255,0.15)', fontSize: '15px' }}>
           <span style={{ color: '#708090', fontWeight: 'bold' }}>Type</span>
           <span style={{ color: '#708090', fontWeight: 'bold' }}>Storage</span>
           <span style={{ color: '#708090', fontWeight: 'bold' }}>Range</span>
@@ -185,7 +185,7 @@ SELECT last_value, is_called FROM products_id_seq;`} />
       </Section>
 
       <Section title="💰 Decimal & Floating Point" color="yellow">
-        <div style={{ display: 'grid', gridTemplateColumns: '130px 90px 1fr 1fr', gap: '10px', padding: '6px 0', borderBottom: '1px solid rgba(251,191,36,0.15)', fontSize: '11px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '130px 90px 1fr 1fr', gap: '10px', padding: '6px 0', borderBottom: '1px solid rgba(251,191,36,0.15)', fontSize: '15px' }}>
           <span style={{ color: '#708090', fontWeight: 'bold' }}>Type</span>
           <span style={{ color: '#708090', fontWeight: 'bold' }}>Storage</span>
           <span style={{ color: '#708090', fontWeight: 'bold' }}>Presisi</span>
@@ -245,11 +245,11 @@ function TabString() {
             { type: 'CITEXT', storage: 'Same as TEXT', desc: 'Case-insensitive TEXT. Memerlukan extension citext. Berguna untuk email comparison tanpa LOWER().', use: 'Email lookup tanpa LOWER()', avoid: 'Jika tidak butuh case-insensitive', color: '#64c8ff' },
           ].map(({ type, storage, desc, use, avoid, color }) => (
             <div key={type} style={{ background: `${color}0d`, border: `1px solid ${color}33`, borderRadius: '10px', padding: '12px' }}>
-              <p style={{ color, fontWeight: 'bold', fontSize: '13px', marginBottom: '4px', fontFamily: 'monospace' }}>{type}</p>
-              <p style={{ color: '#708090', fontSize: '10px', marginBottom: '8px' }}>{storage}</p>
-              <p style={{ color: '#a0c8ff', fontSize: '11px', lineHeight: 1.5, marginBottom: '8px' }}>{desc}</p>
-              <p style={{ color: '#4ade80', fontSize: '10px', marginBottom: '2px' }}>✅ {use}</p>
-              <p style={{ color: '#f87171', fontSize: '10px' }}>❌ {avoid}</p>
+              <p style={{ color, fontWeight: 'bold', fontSize: '17px', marginBottom: '4px', fontFamily: 'monospace' }}>{type}</p>
+              <p style={{ color: '#708090', fontSize: '14px', marginBottom: '8px' }}>{storage}</p>
+              <p style={{ color: '#a0c8ff', fontSize: '15px', lineHeight: 1.5, marginBottom: '8px' }}>{desc}</p>
+              <p style={{ color: '#4ade80', fontSize: '14px', marginBottom: '2px' }}>✅ {use}</p>
+              <p style={{ color: '#f87171', fontSize: '14px' }}>❌ {avoid}</p>
             </div>
           ))}
         </div>
@@ -331,7 +331,7 @@ function TabDatetime() {
   return (
     <div style={{ animation: 'float-up 0.5s ease-out' }}>
       <Section title="📅 Date & Time Types" color="yellow">
-        <div style={{ display: 'grid', gridTemplateColumns: '130px 90px 1fr 1fr', gap: '10px', padding: '6px 0', borderBottom: '1px solid rgba(251,191,36,0.15)', fontSize: '11px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '130px 90px 1fr 1fr', gap: '10px', padding: '6px 0', borderBottom: '1px solid rgba(251,191,36,0.15)', fontSize: '15px' }}>
           <span style={{ color: '#708090', fontWeight: 'bold' }}>Type</span>
           <span style={{ color: '#708090', fontWeight: 'bold' }}>Storage</span>
           <span style={{ color: '#708090', fontWeight: 'bold' }}>Range / Presisi</span>
@@ -490,10 +490,10 @@ SELECT * FROM feature_flags WHERE is_beta IS NOT DISTINCT FROM FALSE; -- NULL-sa
             { title: 'JSONB', pros: ['Binary storage (fast read)', 'Indexable (GIN index)', 'Rich operator support (@>, ?, #>>)'], cons: ['Slower write (parse on insert)', 'Does not preserve key order', 'Slightly more storage'], color: '#4ade80' },
           ].map(({ title, pros, cons, color }) => (
             <div key={title} style={{ background: `${color}0d`, border: `1px solid ${color}33`, borderRadius: '10px', padding: '12px' }}>
-              <p style={{ color, fontWeight: 'bold', fontSize: '14px', marginBottom: '8px' }}>{title}</p>
-              {pros.map(p => <p key={p} style={{ color: '#a0c8ff', fontSize: '11px', margin: '2px 0' }}>✅ {p}</p>)}
+              <p style={{ color, fontWeight: 'bold', fontSize: '18px', marginBottom: '8px' }}>{title}</p>
+              {pros.map(p => <p key={p} style={{ color: '#a0c8ff', fontSize: '15px', margin: '2px 0' }}>✅ {p}</p>)}
               <div style={{ height: '8px' }} />
-              {cons.map(c => <p key={c} style={{ color: '#708090', fontSize: '11px', margin: '2px 0' }}>❌ {c}</p>)}
+              {cons.map(c => <p key={c} style={{ color: '#708090', fontSize: '15px', margin: '2px 0' }}>❌ {c}</p>)}
             </div>
           ))}
         </div>
@@ -703,19 +703,19 @@ function TabTableTypes() {
   return (
     <div style={{ animation: 'float-up 0.5s ease-out' }}>
       <Section title="🗄️ Jenis-Jenis Table di PostgreSQL" color="blue">
-        <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '16px' }}>
+        <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '16px' }}>
           PostgreSQL mendukung beberapa jenis table dengan karakteristik storage, persistence, dan use case yang berbeda.
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '12px' }}>
           {tableTypes.map(({ name, icon, color, desc, use, note }) => (
             <div key={name} style={{ background: 'rgba(26,35,50,0.8)', border: `1px solid ${color}33`, borderRadius: '10px', padding: '14px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                <span style={{ fontSize: '20px' }}>{icon}</span>
-                <span style={{ color, fontWeight: 'bold', fontSize: '12px' }}>{name}</span>
+                <span style={{ fontSize: '24px' }}>{icon}</span>
+                <span style={{ color, fontWeight: 'bold', fontSize: '16px' }}>{name}</span>
               </div>
-              <p style={{ color: '#a0c8ff', fontSize: '11px', lineHeight: 1.6, marginBottom: '8px' }}>{desc}</p>
-              <p style={{ color: '#4ade80', fontSize: '10px', marginBottom: '2px' }}>✅ {use}</p>
-              <p style={{ color: '#708090', fontSize: '10px', fontStyle: 'italic' }}>📌 {note}</p>
+              <p style={{ color: '#a0c8ff', fontSize: '15px', lineHeight: 1.6, marginBottom: '8px' }}>{desc}</p>
+              <p style={{ color: '#4ade80', fontSize: '14px', marginBottom: '2px' }}>✅ {use}</p>
+              <p style={{ color: '#708090', fontSize: '14px', fontStyle: 'italic' }}>📌 {note}</p>
             </div>
           ))}
         </div>
@@ -889,7 +889,7 @@ function TabBestPractice() {
                 background: activeFilter === cat ? 'rgba(100,200,255,0.2)' : 'transparent',
                 border: `1px solid ${activeFilter === cat ? 'rgba(100,200,255,0.5)' : 'rgba(100,200,255,0.2)'}`,
                 color: activeFilter === cat ? '#64c8ff' : '#708090',
-                borderRadius: '20px', padding: '4px 14px', cursor: 'pointer', fontSize: '11px', fontWeight: 'bold',
+                borderRadius: '20px', padding: '4px 14px', cursor: 'pointer', fontSize: '15px', fontWeight: 'bold',
                 textTransform: 'capitalize',
               }}
             >
@@ -907,10 +907,10 @@ function TabBestPractice() {
               borderRadius: '8px', padding: '12px'
             }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                <span style={{ color: '#e0f2ff', fontWeight: 'bold', fontSize: '12px' }}>{icon} {title}</span>
-                <span style={{ color: severityColor[severity], fontSize: '10px', fontWeight: 'bold' }}>{severityLabel[severity]}</span>
+                <span style={{ color: '#e0f2ff', fontWeight: 'bold', fontSize: '16px' }}>{icon} {title}</span>
+                <span style={{ color: severityColor[severity], fontSize: '14px', fontWeight: 'bold' }}>{severityLabel[severity]}</span>
               </div>
-              <p style={{ color: '#a0c8ff', fontSize: '11px', lineHeight: 1.6, margin: 0 }}>{desc}</p>
+              <p style={{ color: '#a0c8ff', fontSize: '15px', lineHeight: 1.6, margin: 0 }}>{desc}</p>
             </div>
           ))}
         </div>
@@ -937,8 +937,8 @@ function TabBestPractice() {
             { q: 'Rentang waktu / booking', a: 'TSTZRANGE', color: '#f97316' },
           ].map(({ q, a, color }) => (
             <div key={q} style={{ display: 'flex', flexDirection: 'column', gap: '2px', padding: '8px', background: 'rgba(26,35,50,0.6)', borderRadius: '6px' }}>
-              <span style={{ color: '#708090', fontSize: '11px' }}>Untuk: {q}</span>
-              <span style={{ color, fontWeight: 'bold', fontSize: '12px', fontFamily: 'monospace' }}>→ {a}</span>
+              <span style={{ color: '#708090', fontSize: '15px' }}>Untuk: {q}</span>
+              <span style={{ color, fontWeight: 'bold', fontSize: '16px', fontFamily: 'monospace' }}>→ {a}</span>
             </div>
           ))}
         </div>
@@ -976,7 +976,7 @@ function RdbmsTypes() {
               <h1 style={{ color: '#e0f2ff', fontSize: '28px', fontWeight: 'bold', margin: 0 }}>
                 RDBMS Data Types & Table Types
               </h1>
-              <p style={{ color: '#a0c8ff', fontSize: '14px', margin: '4px 0 0' }}>
+              <p style={{ color: '#a0c8ff', fontSize: '18px', margin: '4px 0 0' }}>
                 Choosing the right data types and table structures in PostgreSQL
               </p>
             </div>
@@ -1001,7 +1001,7 @@ function RdbmsTypes() {
                 color: activeTab === tab.id ? '#64c8ff' : '#708090',
                 padding: '8px 14px',
                 cursor: 'pointer',
-                fontSize: '12px',
+                fontSize: '16px',
                 fontWeight: activeTab === tab.id ? 'bold' : 'normal',
                 transition: 'all 0.2s',
                 display: 'flex',

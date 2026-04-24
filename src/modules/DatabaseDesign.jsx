@@ -28,12 +28,12 @@ function CodeBlock({ code }) {
           background: copied ? '#4ade80' : 'rgba(100,200,255,0.2)',
           border: 'none', color: copied ? '#0f1419' : '#64c8ff',
           padding: '4px 10px', borderRadius: '4px', cursor: 'pointer',
-          fontSize: '11px', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '4px',
+          fontSize: '15px', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '4px',
         }}
       >
         {copied ? <><Check size={12} /> Copied</> : <><Copy size={12} /> Copy</>}
       </button>
-      <pre style={{ margin: 0, color: '#a0c8ff', fontFamily: 'monospace', fontSize: '12px', whiteSpace: 'pre-wrap', paddingRight: '80px' }}>
+      <pre style={{ margin: 0, color: '#a0c8ff', fontFamily: 'monospace', fontSize: '16px', whiteSpace: 'pre-wrap', paddingRight: '80px' }}>
         {code}
       </pre>
     </div>
@@ -51,7 +51,7 @@ function Section({ title, color = 'blue', children }) {
   const c = palette[color]
   return (
     <div style={{ background: c.bg, border: `1px solid ${c.border}`, borderLeft: `3px solid ${c.left}`, borderRadius: '10px', padding: '16px', marginBottom: '14px' }}>
-      {title && <h4 style={{ color: c.accent, fontWeight: 'bold', marginBottom: '10px', fontSize: '14px' }}>{title}</h4>}
+      {title && <h4 style={{ color: c.accent, fontWeight: 'bold', marginBottom: '10px', fontSize: '18px' }}>{title}</h4>}
       {children}
     </div>
   )
@@ -59,7 +59,7 @@ function Section({ title, color = 'blue', children }) {
 
 function Badge({ text, color = '#64c8ff' }) {
   return (
-    <span style={{ background: `${color}22`, color, border: `1px solid ${color}55`, padding: '3px 10px', borderRadius: '20px', fontSize: '11px', fontWeight: 'bold', display: 'inline-block', margin: '3px' }}>
+    <span style={{ background: `${color}22`, color, border: `1px solid ${color}55`, padding: '3px 10px', borderRadius: '20px', fontSize: '15px', fontWeight: 'bold', display: 'inline-block', margin: '3px' }}>
       {text}
     </span>
   )
@@ -68,8 +68,8 @@ function Badge({ text, color = '#64c8ff' }) {
 function InfoRow({ label, value, good }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 0', borderBottom: '1px solid rgba(100,200,255,0.1)' }}>
-      <span style={{ color: '#a0c8ff', fontSize: '12px' }}>{label}</span>
-      <span style={{ color: good === undefined ? '#64c8ff' : good ? '#4ade80' : '#f87171', fontSize: '12px', fontWeight: 'bold' }}>{value}</span>
+      <span style={{ color: '#a0c8ff', fontSize: '16px' }}>{label}</span>
+      <span style={{ color: good === undefined ? '#64c8ff' : good ? '#4ade80' : '#f87171', fontSize: '16px', fontWeight: 'bold' }}>{value}</span>
     </div>
   )
 }
@@ -78,19 +78,19 @@ function NormalizationCard({ form, full, rule, example, valid, invalid }) {
   return (
     <div style={{ background: 'rgba(100,200,255,0.06)', border: '1px solid rgba(100,200,255,0.2)', borderRadius: '10px', padding: '16px', marginBottom: '14px' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
-        <span style={{ background: 'rgba(100,200,255,0.2)', color: '#64c8ff', padding: '4px 12px', borderRadius: '20px', fontWeight: 'bold', fontSize: '13px' }}>{form}</span>
-        <span style={{ color: '#e0f2ff', fontWeight: 'bold', fontSize: '13px' }}>{full}</span>
+        <span style={{ background: 'rgba(100,200,255,0.2)', color: '#64c8ff', padding: '4px 12px', borderRadius: '20px', fontWeight: 'bold', fontSize: '17px' }}>{form}</span>
+        <span style={{ color: '#e0f2ff', fontWeight: 'bold', fontSize: '17px' }}>{full}</span>
       </div>
-      <p style={{ color: '#fbbf24', fontSize: '12px', marginBottom: '8px' }}>📋 Rule: <span style={{ color: '#a0c8ff' }}>{rule}</span></p>
-      <p style={{ color: '#4ade80', fontSize: '12px', marginBottom: '8px' }}>📌 Example: <span style={{ color: '#a0c8ff' }}>{example}</span></p>
+      <p style={{ color: '#fbbf24', fontSize: '16px', marginBottom: '8px' }}>📋 Rule: <span style={{ color: '#a0c8ff' }}>{rule}</span></p>
+      <p style={{ color: '#4ade80', fontSize: '16px', marginBottom: '8px' }}>📌 Example: <span style={{ color: '#a0c8ff' }}>{example}</span></p>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginTop: '10px' }}>
         <div style={{ background: 'rgba(74,222,128,0.1)', border: '1px solid rgba(74,222,128,0.3)', borderRadius: '6px', padding: '8px' }}>
-          <p style={{ color: '#4ade80', fontSize: '11px', fontWeight: 'bold', marginBottom: '4px' }}>✅ Valid</p>
-          <p style={{ color: '#a0c8ff', fontSize: '11px' }}>{valid}</p>
+          <p style={{ color: '#4ade80', fontSize: '15px', fontWeight: 'bold', marginBottom: '4px' }}>✅ Valid</p>
+          <p style={{ color: '#a0c8ff', fontSize: '15px' }}>{valid}</p>
         </div>
         <div style={{ background: 'rgba(248,113,113,0.1)', border: '1px solid rgba(248,113,113,0.3)', borderRadius: '6px', padding: '8px' }}>
-          <p style={{ color: '#f87171', fontSize: '11px', fontWeight: 'bold', marginBottom: '4px' }}>❌ Violation</p>
-          <p style={{ color: '#a0c8ff', fontSize: '11px' }}>{invalid}</p>
+          <p style={{ color: '#f87171', fontSize: '15px', fontWeight: 'bold', marginBottom: '4px' }}>❌ Violation</p>
+          <p style={{ color: '#a0c8ff', fontSize: '15px' }}>{invalid}</p>
         </div>
       </div>
     </div>
@@ -114,7 +114,7 @@ function TabOverview() {
   return (
     <div style={{ animation: 'float-up 0.5s ease-out' }}>
       <Section title="🏛️ Apa itu Database Design?" color="blue">
-        <p style={{ color: '#a0c8ff', fontSize: '13px', lineHeight: 1.7 }}>
+        <p style={{ color: '#a0c8ff', fontSize: '17px', lineHeight: 1.7 }}>
           Database Design adalah proses mendefinisikan struktur, relasi, constraints, dan aturan penyimpanan data
           sehingga database dapat menangani kebutuhan aplikasi secara <strong style={{ color: '#64c8ff' }}>efisien</strong>,{' '}
           <strong style={{ color: '#4ade80' }}>konsisten</strong>, dan{' '}
@@ -127,15 +127,15 @@ function TabOverview() {
         </div>
       </Section>
 
-      <h3 style={{ color: '#e0f2ff', fontWeight: 'bold', fontSize: '16px', marginBottom: '14px' }}>
+      <h3 style={{ color: '#e0f2ff', fontWeight: 'bold', fontSize: '20px', marginBottom: '14px' }}>
         8 Core Principles
       </h3>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '12px' }}>
         {principles.map((p, i) => (
           <div key={i} style={{ background: 'rgba(26,35,50,0.8)', border: '1px solid rgba(100,200,255,0.15)', borderRadius: '10px', padding: '14px' }}>
-            <div style={{ fontSize: '24px', marginBottom: '8px' }}>{p.icon}</div>
-            <h4 style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '13px', marginBottom: '6px' }}>{p.title}</h4>
-            <p style={{ color: '#a0c8ff', fontSize: '12px', lineHeight: 1.6 }}>{p.desc}</p>
+            <div style={{ fontSize: '28px', marginBottom: '8px' }}>{p.icon}</div>
+            <h4 style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '17px', marginBottom: '6px' }}>{p.title}</h4>
+            <p style={{ color: '#a0c8ff', fontSize: '16px', lineHeight: 1.6 }}>{p.desc}</p>
           </div>
         ))}
       </div>
@@ -149,10 +149,10 @@ function TabOverview() {
           { step: '5', phase: 'Implementation & Migration', desc: 'Tulis DDL, setup CI migration pipeline, version control schema.' },
         ].map(s => (
           <div key={s.step} style={{ display: 'flex', gap: '12px', marginBottom: '10px', alignItems: 'flex-start' }}>
-            <span style={{ background: 'rgba(167,139,250,0.3)', color: '#a78bfa', width: '28px', height: '28px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '12px', flexShrink: 0 }}>{s.step}</span>
+            <span style={{ background: 'rgba(167,139,250,0.3)', color: '#a78bfa', width: '28px', height: '28px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '16px', flexShrink: 0 }}>{s.step}</span>
             <div>
-              <p style={{ color: '#a78bfa', fontWeight: 'bold', fontSize: '13px' }}>{s.phase}</p>
-              <p style={{ color: '#a0c8ff', fontSize: '12px' }}>{s.desc}</p>
+              <p style={{ color: '#a78bfa', fontWeight: 'bold', fontSize: '17px' }}>{s.phase}</p>
+              <p style={{ color: '#a0c8ff', fontSize: '16px' }}>{s.desc}</p>
             </div>
           </div>
         ))}
@@ -204,19 +204,19 @@ function TabNormalization() {
             { icon: '💾', title: 'Hemat Storage', desc: 'Tidak ada data yang tersimpan berulang.' },
           ].map((item, i) => (
             <div key={i} style={{ background: 'rgba(0,0,0,0.2)', borderRadius: '8px', padding: '12px', textAlign: 'center' }}>
-              <div style={{ fontSize: '22px', marginBottom: '6px' }}>{item.icon}</div>
-              <p style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '12px', marginBottom: '4px' }}>{item.title}</p>
-              <p style={{ color: '#a0c8ff', fontSize: '11px' }}>{item.desc}</p>
+              <div style={{ fontSize: '26px', marginBottom: '6px' }}>{item.icon}</div>
+              <p style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '16px', marginBottom: '4px' }}>{item.title}</p>
+              <p style={{ color: '#a0c8ff', fontSize: '15px' }}>{item.desc}</p>
             </div>
           ))}
         </div>
       </Section>
 
-      <h3 style={{ color: '#e0f2ff', fontWeight: 'bold', fontSize: '16px', marginBottom: '14px' }}>Normal Forms</h3>
+      <h3 style={{ color: '#e0f2ff', fontWeight: 'bold', fontSize: '20px', marginBottom: '14px' }}>Normal Forms</h3>
       {forms.map(f => <NormalizationCard key={f.form} {...f} />)}
 
       <Section title="💡 Kapan Denormalize?" color="yellow">
-        <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '10px' }}>
+        <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '10px' }}>
           Normalisasi tidak selalu optimal untuk <strong style={{ color: '#fbbf24' }}>read-heavy workloads</strong>.
           Denormalisasi boleh dilakukan dengan pertimbangan:
         </p>
@@ -226,7 +226,7 @@ function TabNormalization() {
           'OLAP / Data Warehouse — star/snowflake schema sengaja denormalized',
           'Selalu document alasan denormalisasi sebagai comment di migration file',
         ].map((t, i) => (
-          <p key={i} style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '6px' }}>→ {t}</p>
+          <p key={i} style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '6px' }}>→ {t}</p>
         ))}
       </Section>
 
@@ -269,14 +269,14 @@ function TabKeys() {
           { name: 'Candidate Key', color: '#f97316', desc: 'Kolom atau kombinasi kolom yang bisa menjadi PK. Dari semua kandidat, pilih satu sebagai PK.', tip: 'email dan phone bisa sama-sama candidate key untuk tabel users.' },
         ].map((k, i) => (
           <div key={i} style={{ background: 'rgba(0,0,0,0.2)', borderRadius: '8px', padding: '12px', marginBottom: '10px', borderLeft: `3px solid ${k.color}` }}>
-            <p style={{ color: k.color, fontWeight: 'bold', fontSize: '13px', marginBottom: '4px' }}>{k.name}</p>
-            <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '6px' }}>{k.desc}</p>
-            <p style={{ color: '#708090', fontSize: '11px' }}>💡 {k.tip}</p>
+            <p style={{ color: k.color, fontWeight: 'bold', fontSize: '17px', marginBottom: '4px' }}>{k.name}</p>
+            <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '6px' }}>{k.desc}</p>
+            <p style={{ color: '#708090', fontSize: '15px' }}>💡 {k.tip}</p>
           </div>
         ))}
       </Section>
 
-      <h3 style={{ color: '#e0f2ff', fontWeight: 'bold', fontSize: '16px', margin: '16px 0 10px' }}>Constraints Penting</h3>
+      <h3 style={{ color: '#e0f2ff', fontWeight: 'bold', fontSize: '20px', margin: '16px 0 10px' }}>Constraints Penting</h3>
       <CodeBlock code={`CREATE TABLE products (
   -- Primary Key: surrogate (lebih stabil dari natural key)
   product_id   SERIAL PRIMARY KEY,
@@ -311,7 +311,7 @@ function TabKeys() {
         <InfoRow label="GENERATED ALWAYS AS IDENTITY" value="SQL standard. Lebih baik dari SERIAL di PostgreSQL 10+." />
         <InfoRow label="UUID v4" value="Globally unique. Bagus untuk distributed systems, tapi index lebih besar." />
         <InfoRow label="UUID v7 (UUIDv7)" value="Time-ordered UUID. Performa index mirip BIGINT, globally unique." />
-        <p style={{ color: '#a78bfa', fontSize: '12px', marginTop: '10px' }}>
+        <p style={{ color: '#a78bfa', fontSize: '16px', marginTop: '10px' }}>
           ✅ <strong>Rekomendasi:</strong> Gunakan <code style={{ color: '#64c8ff' }}>BIGINT GENERATED ALWAYS AS IDENTITY</code> untuk internal apps, <code style={{ color: '#64c8ff' }}>UUID v7</code> untuk distributed/microservices.
         </p>
       </Section>
@@ -325,10 +325,10 @@ function TabKeys() {
           { opt: 'NO ACTION', desc: 'Seperti RESTRICT tapi check ditunda (deferred).', use: 'Butuh fleksibilitas di dalam transaction.' },
         ].map((r, i) => (
           <div key={i} style={{ display: 'flex', gap: '12px', marginBottom: '8px' }}>
-            <code style={{ color: '#fbbf24', fontSize: '11px', minWidth: '100px', fontWeight: 'bold' }}>{r.opt}</code>
+            <code style={{ color: '#fbbf24', fontSize: '15px', minWidth: '100px', fontWeight: 'bold' }}>{r.opt}</code>
             <div>
-              <p style={{ color: '#a0c8ff', fontSize: '12px' }}>{r.desc}</p>
-              <p style={{ color: '#708090', fontSize: '11px' }}>Use: {r.use}</p>
+              <p style={{ color: '#a0c8ff', fontSize: '16px' }}>{r.desc}</p>
+              <p style={{ color: '#708090', fontSize: '15px' }}>Use: {r.use}</p>
             </div>
           </div>
         ))}
@@ -403,9 +403,9 @@ SELECT * FROM org_chart ORDER BY depth, name;`,
           },
         ].map((r, i) => (
           <div key={i} style={{ marginBottom: '20px' }}>
-            <h4 style={{ color: r.color, fontWeight: 'bold', fontSize: '14px', marginBottom: '6px' }}>{r.type}</h4>
-            <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '6px' }}>{r.desc}</p>
-            <p style={{ color: '#708090', fontSize: '11px', marginBottom: '8px' }}>📌 {r.example}</p>
+            <h4 style={{ color: r.color, fontWeight: 'bold', fontSize: '18px', marginBottom: '6px' }}>{r.type}</h4>
+            <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '6px' }}>{r.desc}</p>
+            <p style={{ color: '#708090', fontSize: '15px', marginBottom: '8px' }}>📌 {r.example}</p>
             <CodeBlock code={r.sql} />
           </div>
         ))}
@@ -418,7 +418,7 @@ SELECT * FROM org_chart ORDER BY depth, name;`,
           'Jika perlu query satu arah dominan, tambahkan index terpisah untuk arah sebaliknya',
           'Pertimbangkan surrogate PK di junction jika junction itu sendiri menjadi FK dari tabel lain',
         ].map((t, i) => (
-          <p key={i} style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '6px' }}>✅ {t}</p>
+          <p key={i} style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '6px' }}>✅ {t}</p>
         ))}
       </Section>
     </div>
@@ -429,7 +429,7 @@ function TabIndexes() {
   return (
     <div style={{ animation: 'float-up 0.5s ease-out' }}>
       <Section title="⚡ Mengapa Index?" color="blue">
-        <p style={{ color: '#a0c8ff', fontSize: '12px', lineHeight: 1.7 }}>
+        <p style={{ color: '#a0c8ff', fontSize: '16px', lineHeight: 1.7 }}>
           Index adalah struktur data terpisah (B-Tree, Hash, GIN, GiST, BRIN) yang mempercepat pencarian dengan mengorbankan
           write performance dan storage. PostgreSQL menggunakan <strong style={{ color: '#64c8ff' }}>B-Tree</strong> sebagai default.
         </p>
@@ -444,10 +444,10 @@ function TabIndexes() {
           { cond: 'Kolom dengan cardinality tinggi (banyak nilai unik)', ex: 'email, uuid, timestamp' },
         ].map((item, i) => (
           <div key={i} style={{ display: 'flex', gap: '12px', marginBottom: '8px' }}>
-            <span style={{ color: '#4ade80', fontSize: '14px', flexShrink: 0 }}>✓</span>
+            <span style={{ color: '#4ade80', fontSize: '18px', flexShrink: 0 }}>✓</span>
             <div>
-              <p style={{ color: '#a0c8ff', fontSize: '12px' }}>{item.cond}</p>
-              <code style={{ color: '#64c8ff', fontSize: '11px' }}>{item.ex}</code>
+              <p style={{ color: '#a0c8ff', fontSize: '16px' }}>{item.cond}</p>
+              <code style={{ color: '#64c8ff', fontSize: '15px' }}>{item.ex}</code>
             </div>
           </div>
         ))}
@@ -460,11 +460,11 @@ function TabIndexes() {
           'Kolom yang jarang diquery (tulis sekali, baca tahunan)',
           'Terlalu banyak index di tabel write-heavy — setiap INSERT/UPDATE harus update semua index',
         ].map((t, i) => (
-          <p key={i} style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '6px' }}>❌ {t}</p>
+          <p key={i} style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '6px' }}>❌ {t}</p>
         ))}
       </Section>
 
-      <h3 style={{ color: '#e0f2ff', fontWeight: 'bold', fontSize: '16px', margin: '16px 0 10px' }}>Tipe Index PostgreSQL</h3>
+      <h3 style={{ color: '#e0f2ff', fontWeight: 'bold', fontSize: '20px', margin: '16px 0 10px' }}>Tipe Index PostgreSQL</h3>
       <CodeBlock code={`-- 1. B-Tree (default) — untuk =, <, >, BETWEEN, LIKE 'prefix%'
 CREATE INDEX idx_users_email ON users(email);
 
@@ -506,7 +506,7 @@ SELECT schemaname, tablename, indexname, idx_scan
 FROM pg_stat_user_indexes
 WHERE idx_scan = 0
 ORDER BY schemaname, tablename;`} />
-        <p style={{ color: '#a78bfa', fontSize: '12px' }}>
+        <p style={{ color: '#a78bfa', fontSize: '16px' }}>
           ✅ Selalu gunakan <code style={{ color: '#64c8ff' }}>EXPLAIN (ANALYZE, BUFFERS)</code> untuk debug query performance — bukan hanya <code style={{ color: '#64c8ff' }}>EXPLAIN</code>.
         </p>
       </Section>
@@ -640,17 +640,17 @@ $$ LANGUAGE plpgsql;`,
 
   return (
     <div style={{ animation: 'float-up 0.5s ease-out' }}>
-      <p style={{ color: '#a0c8ff', fontSize: '13px', marginBottom: '20px' }}>
+      <p style={{ color: '#a0c8ff', fontSize: '17px', marginBottom: '20px' }}>
         Design patterns yang terbukti untuk masalah umum dalam database design.
       </p>
       {patterns.map((p, i) => (
         <div key={i} style={{ background: 'rgba(26,35,50,0.8)', border: `1px solid ${p.color}44`, borderRadius: '12px', padding: '18px', marginBottom: '16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
-            <span style={{ fontSize: '22px' }}>{p.icon}</span>
-            <h4 style={{ color: p.color, fontWeight: 'bold', fontSize: '15px' }}>{p.name}</h4>
+            <span style={{ fontSize: '26px' }}>{p.icon}</span>
+            <h4 style={{ color: p.color, fontWeight: 'bold', fontSize: '19px' }}>{p.name}</h4>
           </div>
-          <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '6px' }}>{p.desc}</p>
-          <p style={{ color: '#708090', fontSize: '11px', marginBottom: '12px' }}>📌 Kapan: {p.when}</p>
+          <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '6px' }}>{p.desc}</p>
+          <p style={{ color: '#708090', fontSize: '15px', marginBottom: '12px' }}>📌 Kapan: {p.when}</p>
           <CodeBlock code={p.sql} />
         </div>
       ))}
@@ -756,7 +756,7 @@ SELECT * FROM posts WHERE 5 = ANY(tag_ids);`,
   return (
     <div style={{ animation: 'float-up 0.5s ease-out' }}>
       <Section title="⚠️ Mengapa Anti-Patterns Berbahaya?" color="red">
-        <p style={{ color: '#a0c8ff', fontSize: '12px', lineHeight: 1.7 }}>
+        <p style={{ color: '#a0c8ff', fontSize: '16px', lineHeight: 1.7 }}>
           Anti-patterns sering muncul karena keputusan desain yang terburu-buru atau kurangnya pengalaman.
           Mereka terlihat "bekerja" di awal tapi menjadi <strong style={{ color: '#f87171' }}>technical debt</strong> yang
           sangat mahal saat data tumbuh.
@@ -766,14 +766,14 @@ SELECT * FROM posts WHERE 5 = ANY(tag_ids);`,
       {antipatterns.map((ap, i) => (
         <div key={i} style={{ background: 'rgba(26,35,50,0.8)', border: '1px solid rgba(248,113,113,0.3)', borderRadius: '12px', padding: '18px', marginBottom: '16px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-            <h4 style={{ color: '#f87171', fontWeight: 'bold', fontSize: '14px' }}>❌ {ap.name}</h4>
-            <span style={{ background: `${severityColor[ap.severity]}22`, color: severityColor[ap.severity], border: `1px solid ${severityColor[ap.severity]}55`, padding: '2px 10px', borderRadius: '20px', fontSize: '11px', fontWeight: 'bold' }}>
+            <h4 style={{ color: '#f87171', fontWeight: 'bold', fontSize: '18px' }}>❌ {ap.name}</h4>
+            <span style={{ background: `${severityColor[ap.severity]}22`, color: severityColor[ap.severity], border: `1px solid ${severityColor[ap.severity]}55`, padding: '2px 10px', borderRadius: '20px', fontSize: '15px', fontWeight: 'bold' }}>
               {ap.severity}
             </span>
           </div>
-          <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '6px' }}>{ap.desc}</p>
-          <p style={{ color: '#fbbf24', fontSize: '11px', marginBottom: '6px' }}>🔍 Gejala: <span style={{ color: '#708090' }}>{ap.symptom}</span></p>
-          <p style={{ color: '#4ade80', fontSize: '11px', marginBottom: '10px' }}>✅ Fix: <span style={{ color: '#708090' }}>{ap.fix}</span></p>
+          <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '6px' }}>{ap.desc}</p>
+          <p style={{ color: '#fbbf24', fontSize: '15px', marginBottom: '6px' }}>🔍 Gejala: <span style={{ color: '#708090' }}>{ap.symptom}</span></p>
+          <p style={{ color: '#4ade80', fontSize: '15px', marginBottom: '10px' }}>✅ Fix: <span style={{ color: '#708090' }}>{ap.fix}</span></p>
           <CodeBlock code={ap.sql} />
         </div>
       ))}
@@ -848,13 +848,13 @@ function TabChecklist() {
     <div style={{ animation: 'float-up 0.5s ease-out' }}>
       <div style={{ background: 'rgba(100,200,255,0.1)', border: '1px solid rgba(100,200,255,0.3)', borderRadius: '10px', padding: '16px', marginBottom: '20px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-          <span style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '14px' }}>Overall Progress</span>
-          <span style={{ color: '#4ade80', fontWeight: 'bold', fontSize: '16px' }}>{totalChecked}/{totalItems}</span>
+          <span style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '18px' }}>Overall Progress</span>
+          <span style={{ color: '#4ade80', fontWeight: 'bold', fontSize: '20px' }}>{totalChecked}/{totalItems}</span>
         </div>
         <div style={{ background: 'rgba(0,0,0,0.3)', borderRadius: '4px', height: '12px', overflow: 'hidden' }}>
           <div style={{ background: 'linear-gradient(90deg, #64c8ff, #4ade80)', height: '100%', width: `${(totalChecked / totalItems) * 100}%`, transition: 'width 0.3s' }} />
         </div>
-        <p style={{ color: '#708090', fontSize: '11px', marginTop: '6px' }}>Klik item untuk menandai selesai</p>
+        <p style={{ color: '#708090', fontSize: '15px', marginTop: '6px' }}>Klik item untuk menandai selesai</p>
       </div>
 
       {categories.map((cat, ci) => {
@@ -862,8 +862,8 @@ function TabChecklist() {
         return (
           <div key={ci} style={{ background: 'rgba(26,35,50,0.8)', border: `1px solid ${cat.color}33`, borderRadius: '12px', padding: '16px', marginBottom: '14px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-              <h4 style={{ color: cat.color, fontWeight: 'bold', fontSize: '14px' }}>{cat.title}</h4>
-              <span style={{ color: catChecked === cat.items.length ? '#4ade80' : '#708090', fontSize: '12px', fontWeight: 'bold' }}>
+              <h4 style={{ color: cat.color, fontWeight: 'bold', fontSize: '18px' }}>{cat.title}</h4>
+              <span style={{ color: catChecked === cat.items.length ? '#4ade80' : '#708090', fontSize: '16px', fontWeight: 'bold' }}>
                 {catChecked}/{cat.items.length}
               </span>
             </div>
@@ -881,10 +881,10 @@ function TabChecklist() {
                     transition: 'background 0.2s',
                   }}
                 >
-                  <span style={{ color: isDone ? '#4ade80' : '#708090', fontSize: '16px', flexShrink: 0, lineHeight: 1.4 }}>
+                  <span style={{ color: isDone ? '#4ade80' : '#708090', fontSize: '20px', flexShrink: 0, lineHeight: 1.4 }}>
                     {isDone ? '✅' : '⬜'}
                   </span>
-                  <span style={{ color: isDone ? '#4ade80' : '#a0c8ff', fontSize: '12px', textDecoration: isDone ? 'line-through' : 'none', lineHeight: 1.6 }}>
+                  <span style={{ color: isDone ? '#4ade80' : '#a0c8ff', fontSize: '16px', textDecoration: isDone ? 'line-through' : 'none', lineHeight: 1.6 }}>
                     {item}
                   </span>
                 </div>
@@ -903,8 +903,8 @@ function TabChecklist() {
           { name: 'pg_stat_statements', desc: 'Extension PostgreSQL untuk monitoring query performance' },
         ].map((r, i) => (
           <div key={i} style={{ display: 'flex', gap: '12px', marginBottom: '8px' }}>
-            <span style={{ color: '#a78bfa', fontWeight: 'bold', fontSize: '12px', minWidth: '160px' }}>{r.name}</span>
-            <span style={{ color: '#a0c8ff', fontSize: '12px' }}>— {r.desc}</span>
+            <span style={{ color: '#a78bfa', fontWeight: 'bold', fontSize: '16px', minWidth: '160px' }}>{r.name}</span>
+            <span style={{ color: '#a0c8ff', fontSize: '16px' }}>— {r.desc}</span>
           </div>
         ))}
       </Section>
@@ -941,7 +941,7 @@ function DatabaseDesign() {
             <h1 style={{ fontSize: '28px', fontWeight: 'bold', color: '#e0f2ff', marginBottom: '4px' }}>
               Database Design Principles
             </h1>
-            <p style={{ color: '#a0c8ff', fontSize: '14px' }}>
+            <p style={{ color: '#a0c8ff', fontSize: '18px' }}>
               Panduan komprehensif: normalization, keys, relationships, indexes, patterns &amp; anti-patterns
             </p>
           </div>
@@ -969,7 +969,7 @@ function DatabaseDesign() {
               borderBottom: activeTab === tab.id ? '3px solid #64c8ff' : '3px solid transparent',
               color: activeTab === tab.id ? '#64c8ff' : '#708090',
               cursor: 'pointer',
-              fontSize: '12px',
+              fontSize: '16px',
               fontWeight: activeTab === tab.id ? 'bold' : '500',
               whiteSpace: 'nowrap',
               transition: 'all 0.2s',

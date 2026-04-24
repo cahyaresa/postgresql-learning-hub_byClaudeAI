@@ -97,11 +97,11 @@ function SearchPage() {
       <div style={{ maxWidth: '900px', margin: '0 auto' }}>
         {/* Header */}
         <div style={{ marginBottom: '32px' }}>
-          <h1 style={{ fontSize: '32px', fontWeight: 'bold', color: '#e0f2ff', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <h1 style={{ fontSize: '36px', fontWeight: 'bold', color: '#e0f2ff', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '12px' }}>
             <Search size={32} style={{ color: '#64c8ff' }} />
             Search Modules 🔍
           </h1>
-          <p style={{ color: '#a0c8ff', fontSize: '14px' }}>
+          <p style={{ color: '#a0c8ff', fontSize: '18px' }}>
             Find the perfect learning module for your needs
           </p>
         </div>
@@ -128,7 +128,7 @@ function SearchPage() {
                 background: 'transparent',
                 border: 'none',
                 color: '#a0c8ff',
-                fontSize: '14px',
+                fontSize: '18px',
                 outline: 'none'
               }}
             />
@@ -140,7 +140,7 @@ function SearchPage() {
                   border: 'none',
                   color: '#64c8ff',
                   cursor: 'pointer',
-                  fontSize: '18px'
+                  fontSize: '22px'
                 }}
               >
                 ✕
@@ -152,7 +152,7 @@ function SearchPage() {
         {/* Filters */}
         <div style={{ marginBottom: '32px', background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
-            <h3 style={{ fontSize: '16px', fontWeight: 'bold', color: '#64c8ff', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <h3 style={{ fontSize: '20px', fontWeight: 'bold', color: '#64c8ff', display: 'flex', alignItems: 'center', gap: '8px' }}>
               <Filter size={18} /> Filters
             </h3>
             {(selectedDifficulty !== 'all' || selectedTags.length > 0 || searchQuery) && (
@@ -165,7 +165,7 @@ function SearchPage() {
                   padding: '6px 12px',
                   borderRadius: '4px',
                   cursor: 'pointer',
-                  fontSize: '12px',
+                  fontSize: '16px',
                   fontWeight: 'bold'
                 }}
               >
@@ -176,7 +176,7 @@ function SearchPage() {
 
           {/* Difficulty Filter */}
           <div style={{ marginBottom: '16px' }}>
-            <label style={{ color: '#a0c8ff', fontWeight: 'bold', fontSize: '12px', display: 'block', marginBottom: '8px' }}>
+            <label style={{ color: '#a0c8ff', fontWeight: 'bold', fontSize: '16px', display: 'block', marginBottom: '8px' }}>
               DIFFICULTY LEVEL
             </label>
             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
@@ -189,7 +189,7 @@ function SearchPage() {
                   color: '#64c8ff',
                   borderRadius: '6px',
                   cursor: 'pointer',
-                  fontSize: '12px',
+                  fontSize: '16px',
                   fontWeight: 'bold',
                   transition: 'all 0.2s'
                 }}
@@ -207,7 +207,7 @@ function SearchPage() {
                     color: '#64c8ff',
                     borderRadius: '6px',
                     cursor: 'pointer',
-                    fontSize: '12px',
+                    fontSize: '16px',
                     fontWeight: 'bold',
                     transition: 'all 0.2s'
                   }}
@@ -220,7 +220,7 @@ function SearchPage() {
 
           {/* Tags Filter */}
           <div>
-            <label style={{ color: '#a0c8ff', fontWeight: 'bold', fontSize: '12px', display: 'block', marginBottom: '8px' }}>
+            <label style={{ color: '#a0c8ff', fontWeight: 'bold', fontSize: '16px', display: 'block', marginBottom: '8px' }}>
               TOPICS
             </label>
             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
@@ -235,7 +235,7 @@ function SearchPage() {
                     color: selectedTags.includes(tag) ? '#4ade80' : '#64c8ff',
                     borderRadius: '6px',
                     cursor: 'pointer',
-                    fontSize: '12px',
+                    fontSize: '16px',
                     fontWeight: 'bold',
                     transition: 'all 0.2s'
                   }}
@@ -249,7 +249,7 @@ function SearchPage() {
 
         {/* Results */}
         <div>
-          <h2 style={{ fontSize: '16px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+          <h2 style={{ fontSize: '20px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
             Results: {filteredModules.length} module{filteredModules.length !== 1 ? 's' : ''}
           </h2>
 
@@ -278,11 +278,11 @@ function SearchPage() {
                   }}
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '12px' }}>
-                    <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#e0f2ff' }}>
+                    <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#e0f2ff' }}>
                       {module.title}
                     </h3>
                     <span style={{
-                      fontSize: '12px',
+                      fontSize: '16px',
                       fontWeight: 'bold',
                       padding: '4px 12px',
                       borderRadius: '12px',
@@ -293,14 +293,14 @@ function SearchPage() {
                     </span>
                   </div>
 
-                  <p style={{ color: '#a0c8ff', fontSize: '14px', marginBottom: '12px', lineHeight: '1.5' }}>
+                  <p style={{ color: '#a0c8ff', fontSize: '18px', marginBottom: '12px', lineHeight: '1.5' }}>
                     {module.description}
                   </p>
 
                   <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                     {module.tags.map(tag => (
                       <span key={tag} style={{
-                        fontSize: '11px',
+                        fontSize: '15px',
                         background: 'rgba(100, 200, 255, 0.1)',
                         color: '#64c8ff',
                         padding: '4px 8px',
@@ -322,10 +322,10 @@ function SearchPage() {
               padding: '40px',
               textAlign: 'center'
             }}>
-              <p style={{ color: '#f87171', fontSize: '16px', fontWeight: 'bold', marginBottom: '8px' }}>
+              <p style={{ color: '#f87171', fontSize: '20px', fontWeight: 'bold', marginBottom: '8px' }}>
                 😕 No modules found
               </p>
-              <p style={{ color: '#a0c8ff', fontSize: '14px' }}>
+              <p style={{ color: '#a0c8ff', fontSize: '18px' }}>
                 Try adjusting your filters or search query
               </p>
             </div>

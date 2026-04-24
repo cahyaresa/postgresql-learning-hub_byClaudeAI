@@ -116,7 +116,7 @@ function LearningPathPage() {
             <Target size={36} style={{ color: '#64c8ff' }} />
             Learning Paths 🎯
           </h1>
-          <p style={{ color: '#a0c8ff', fontSize: '16px', maxWidth: '600px', margin: '0 auto' }}>
+          <p style={{ color: '#a0c8ff', fontSize: '20px', maxWidth: '600px', margin: '0 auto' }}>
             Follow structured learning paths based on your experience level. Each path is designed to build your skills progressively.
           </p>
         </div>
@@ -157,17 +157,17 @@ function LearningPathPage() {
                 }}
               >
                 <div>
-                  <h2 style={{ fontSize: '20px', fontWeight: 'bold', color: '#e0f2ff', marginBottom: '8px' }}>
+                  <h2 style={{ fontSize: '24px', fontWeight: 'bold', color: '#e0f2ff', marginBottom: '8px' }}>
                     {path.title}
                   </h2>
-                  <p style={{ color: '#a0c8ff', fontSize: '14px' }}>
+                  <p style={{ color: '#a0c8ff', fontSize: '18px' }}>
                     {path.description}
                   </p>
                   <div style={{ display: 'flex', gap: '16px', marginTop: '8px' }}>
-                    <span style={{ color: '#708090', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <span style={{ color: '#708090', fontSize: '16px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                       <Clock size={14} /> {path.duration}
                     </span>
-                    <span style={{ color: '#64c8ff', fontSize: '12px', fontWeight: 'bold' }}>
+                    <span style={{ color: '#64c8ff', fontSize: '16px', fontWeight: 'bold' }}>
                       {path.modules.length} modules
                     </span>
                   </div>
@@ -206,7 +206,7 @@ function LearningPathPage() {
                             justifyContent: 'center',
                             color: '#64c8ff',
                             fontWeight: 'bold',
-                            fontSize: '16px'
+                            fontSize: '20px'
                           }}>
                             {module.order}
                           </div>
@@ -243,11 +243,11 @@ function LearningPathPage() {
                           }}
                         >
                           <div style={{ display: 'flex', alignItems: 'start', justifyContent: 'space-between', marginBottom: '8px' }}>
-                            <h3 style={{ fontSize: '16px', fontWeight: 'bold', color: '#e0f2ff' }}>
+                            <h3 style={{ fontSize: '20px', fontWeight: 'bold', color: '#e0f2ff' }}>
                               {module.title}
                             </h3>
                             <span style={{
-                              fontSize: '11px',
+                              fontSize: '15px',
                               background: 'rgba(100, 200, 255, 0.2)',
                               color: '#64c8ff',
                               padding: '4px 8px',
@@ -260,14 +260,14 @@ function LearningPathPage() {
                             </span>
                           </div>
 
-                          <p style={{ color: '#a0c8ff', fontSize: '13px', marginBottom: '8px' }}>
+                          <p style={{ color: '#a0c8ff', fontSize: '17px', marginBottom: '8px' }}>
                             {module.description}
                           </p>
 
                           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                             {module.keyTopics.map(topic => (
                               <span key={topic} style={{
-                                fontSize: '11px',
+                                fontSize: '15px',
                                 background: 'rgba(74, 222, 128, 0.1)',
                                 color: '#4ade80',
                                 padding: '3px 8px',
@@ -295,7 +295,7 @@ function LearningPathPage() {
                     <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '8px' }}>
                       ✅ Path Complete!
                     </p>
-                    <p style={{ color: '#a0c8ff', fontSize: '12px' }}>
+                    <p style={{ color: '#a0c8ff', fontSize: '16px' }}>
                       After completing this path, you'll have comprehensive knowledge in this area.
                     </p>
                   </div>
@@ -313,7 +313,7 @@ function LearningPathPage() {
           borderRadius: '12px',
           padding: '24px'
         }}>
-          <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+          <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
             💡 Learning Tips
           </h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '16px' }}>
@@ -324,9 +324,9 @@ function LearningPathPage() {
               { icon: '🔄', title: 'Review', desc: 'Revisit topics to reinforce your understanding' }
             ].map((tip, idx) => (
               <div key={idx} style={{ background: 'rgba(74, 222, 128, 0.08)', borderRadius: '8px', padding: '16px', border: '1px solid rgba(74, 222, 128, 0.2)' }}>
-                <p style={{ fontSize: '24px', marginBottom: '8px' }}>{tip.icon}</p>
+                <p style={{ fontSize: '28px', marginBottom: '8px' }}>{tip.icon}</p>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '4px' }}>{tip.title}</p>
-                <p style={{ color: '#a0c8ff', fontSize: '12px' }}>{tip.desc}</p>
+                <p style={{ color: '#a0c8ff', fontSize: '16px' }}>{tip.desc}</p>
               </div>
             ))}
           </div>

@@ -20,11 +20,11 @@ const TablespacesModule = () => {
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 PostgreSQL Tablespaces Overview
               </h3>
               
-              <p style={{ color: '#a0c8ff', lineHeight: '1.8', fontSize: '14px', marginBottom: '16px' }}>
+              <p style={{ color: '#a0c8ff', lineHeight: '1.8', fontSize: '18px', marginBottom: '16px' }}>
                 <strong>Tablespace</strong> adalah lokasi filesystem tempat PostgreSQL menyimpan data files (tables, indexes, sequences). 
                 Dengan default, semua data disimpan di cluster's primary data directory, tetapi tablespaces memungkinkan Anda 
                 untuk mendistribusikan data ke multiple physical locations untuk optimization dan performance tuning.
@@ -32,7 +32,7 @@ const TablespacesModule = () => {
 
               <div style={{ background: 'rgba(100, 200, 255, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #64c8ff', marginBottom: '16px' }}>
                 <p style={{ color: '#64c8ff', fontWeight: 'bold', marginBottom: '12px' }}>💡 What is a Tablespace?</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '13px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '17px', marginLeft: '16px' }}>
                   <li>✓ Logical mapping ke filesystem directories</li>
                   <li>✓ Allows data distribution across multiple disks</li>
                   <li>✓ Separate I/O paths untuk different workloads</li>
@@ -43,7 +43,7 @@ const TablespacesModule = () => {
 
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80', marginBottom: '16px' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '12px' }}>🎯 Key Benefits</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '13px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '17px', marginLeft: '16px' }}>
                   <li>✓ <strong>Performance:</strong> Separate hot/cold data</li>
                   <li>✓ <strong>Capacity:</strong> Utilize multiple storage devices</li>
                   <li>✓ <strong>Flexibility:</strong> Move tables without recreating cluster</li>
@@ -54,10 +54,10 @@ const TablespacesModule = () => {
 
               <div style={{ background: 'rgba(251, 191, 36, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #fbbf24' }}>
                 <p style={{ color: '#fbbf24', fontWeight: 'bold', marginBottom: '12px' }}>⚠️ Default Tablespace</p>
-                <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '8px' }}>
+                <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '8px' }}>
                   PostgreSQL provides two default tablespaces:
                 </p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li>✓ <strong>pg_default:</strong> Database cluster default (PGDATA)</li>
                   <li>✓ <strong>pg_global:</strong> Shared system catalogs</li>
                 </ul>
@@ -70,7 +70,7 @@ const TablespacesModule = () => {
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Tablespace Concepts & Architecture
               </h3>
 
@@ -127,10 +127,10 @@ A tablespace name is logical; actual location is physical disk`
                   marginBottom: '12px',
                   borderLeft: `3px solid ${idx % 2 === 0 ? '#4ade80' : '#fbbf24'}`
                 }}>
-                  <p style={{ color: idx % 2 === 0 ? '#4ade80' : '#fbbf24', fontWeight: 'bold', marginBottom: '8px', fontSize: '13px' }}>
+                  <p style={{ color: idx % 2 === 0 ? '#4ade80' : '#fbbf24', fontWeight: 'bold', marginBottom: '8px', fontSize: '17px' }}>
                     {item.title}
                   </p>
-                  <pre style={{ color: '#a0c8ff', fontSize: '11px', background: 'rgba(0,0,0,0.2)', padding: '8px', borderRadius: '4px', overflow: 'auto', margin: 0 }}>
+                  <pre style={{ color: '#a0c8ff', fontSize: '15px', background: 'rgba(0,0,0,0.2)', padding: '8px', borderRadius: '4px', overflow: 'auto', margin: 0 }}>
                     {item.content}
                   </pre>
                 </div>
@@ -143,11 +143,11 @@ A tablespace name is logical; actual location is physical disk`
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Creating & Managing Tablespaces
               </h3>
 
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '12px', color: '#a0c8ff', marginBottom: '16px' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '16px', color: '#a0c8ff', marginBottom: '16px' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '12px', fontWeight: 'bold' }}>Step 1: Create Physical Directory (as root/sudo)</p>
                 <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '8px', borderRadius: '4px', margin: '0 0 12px 0', overflow: 'auto' }}>
 {`sudo mkdir -p /data/tablespace_ssd
@@ -189,7 +189,7 @@ CREATE INDEX idx_hot ON hot_table(id)
 
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '12px' }}>✅ Move Table to Different Tablespace</p>
-                <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '8px', borderRadius: '4px', color: '#86efac', fontSize: '11px', overflow: 'auto' }}>
+                <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '8px', borderRadius: '4px', color: '#86efac', fontSize: '15px', overflow: 'auto' }}>
 {`ALTER TABLE existing_table SET TABLESPACE hdd_space;
 -- Wait: This locks table! Plan carefully.`}
                 </pre>
@@ -197,7 +197,7 @@ CREATE INDEX idx_hot ON hot_table(id)
 
               <div style={{ background: 'rgba(248, 113, 113, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #f87171' }}>
                 <p style={{ color: '#f87171', fontWeight: 'bold', marginBottom: '12px' }}>🗑️ Drop Tablespace</p>
-                <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '8px', borderRadius: '4px', color: '#f87171', fontSize: '11px', overflow: 'auto' }}>
+                <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '8px', borderRadius: '4px', color: '#f87171', fontSize: '15px', overflow: 'auto' }}>
 {`-- Must be empty first!
 DROP TABLESPACE ssd_space;  -- Error if not empty
 
@@ -214,13 +214,13 @@ WHERE schemaname NOT IN ('pg_catalog', 'information_schema')`}
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Performance Optimization with Tablespaces
               </h3>
 
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80', marginBottom: '16px' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '12px' }}>🚀 Optimization Strategies</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li><strong>Separate Hot/Cold Data:</strong> SSD for hot tables, HDD for archives</li>
                   <li><strong>Index Separation:</strong> Put indexes on faster SSD</li>
                   <li><strong>Log Separation:</strong> WAL on separate disk for durability</li>
@@ -229,7 +229,7 @@ WHERE schemaname NOT IN ('pg_catalog', 'information_schema')`}
                 </ul>
               </div>
 
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', marginBottom: '16px' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', marginBottom: '16px' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '8px', fontWeight: 'bold' }}>Practical Example: Multi-Tier Storage</p>
                 <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '8px', borderRadius: '4px', margin: 0, overflow: 'auto' }}>
 {`-- Tier 1: Ultra-fast NVMe (hot OLTP)
@@ -254,7 +254,7 @@ CREATE INDEX idx_orders_date ON orders(order_date)
 
               <div style={{ background: 'rgba(251, 191, 36, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #fbbf24' }}>
                 <p style={{ color: '#fbbf24', fontWeight: 'bold', marginBottom: '12px' }}>📊 I/O Impact Analysis</p>
-                <table style={{ width: '100%', color: '#a0c8ff', fontSize: '12px', marginTop: '8px' }}>
+                <table style={{ width: '100%', color: '#a0c8ff', fontSize: '16px', marginTop: '8px' }}>
                   <tbody>
                     <tr style={{ borderBottom: '1px solid rgba(251, 191, 36, 0.3)' }}>
                       <td style={{ padding: '4px' }}><strong>Scenario</strong></td>
@@ -287,7 +287,7 @@ CREATE INDEX idx_orders_date ON orders(order_date)
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Tablespace Strategies & Best Practices
               </h3>
 
@@ -344,10 +344,10 @@ CREATE INDEX idx_orders_date ON orders(order_date)
                   marginBottom: '12px',
                   borderLeft: `3px solid ${idx % 2 === 0 ? '#4ade80' : '#fbbf24'}`
                 }}>
-                  <p style={{ color: idx % 2 === 0 ? '#4ade80' : '#fbbf24', fontWeight: 'bold', marginBottom: '8px', fontSize: '13px' }}>
+                  <p style={{ color: idx % 2 === 0 ? '#4ade80' : '#fbbf24', fontWeight: 'bold', marginBottom: '8px', fontSize: '17px' }}>
                     {strategy.title}
                   </p>
-                  <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px', margin: 0 }}>
+                  <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px', margin: 0 }}>
                     {strategy.items.map((item, i) => (
                       <li key={i}>✓ {item}</li>
                     ))}
@@ -362,11 +362,11 @@ CREATE INDEX idx_orders_date ON orders(order_date)
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Practical Examples & Scenarios
               </h3>
 
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', marginBottom: '16px' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', marginBottom: '16px' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '8px', fontWeight: 'bold' }}>Example 1: E-commerce Application</p>
                 <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '8px', borderRadius: '4px', margin: 0, overflow: 'auto' }}>
 {`-- Setup storage tiers
@@ -422,7 +422,7 @@ SELECT pg_relation_filepath('large_hot_table');`}
 
               <div style={{ background: 'rgba(248, 113, 113, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #f87171' }}>
                 <p style={{ color: '#f87171', fontWeight: 'bold', marginBottom: '8px' }}>⚠️ Important Notes</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li>ALTER TABLE locks the table! Schedule during maintenance window</li>
                   <li>Large table migration can take hours/days</li>
                   <li>Monitor disk space during migration</li>
@@ -437,7 +437,7 @@ SELECT pg_relation_filepath('large_hot_table');`}
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Troubleshooting & Common Issues
               </h3>
 
@@ -475,13 +475,13 @@ SELECT pg_relation_filepath('large_hot_table');`}
                   marginBottom: '12px',
                   borderLeft: '3px solid #f87171'
                 }}>
-                  <p style={{ color: '#f87171', fontWeight: 'bold', marginBottom: '4px', fontSize: '13px' }}>
+                  <p style={{ color: '#f87171', fontWeight: 'bold', marginBottom: '4px', fontSize: '17px' }}>
                     {item.problem}
                   </p>
-                  <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '8px' }}>
+                  <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '8px' }}>
                     {item.solution}
                   </p>
-                  <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '8px', borderRadius: '4px', color: '#86efac', fontSize: '11px', margin: 0, overflow: 'auto' }}>
+                  <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '8px', borderRadius: '4px', color: '#86efac', fontSize: '15px', margin: 0, overflow: 'auto' }}>
                     {item.fix}
                   </pre>
                 </div>
@@ -494,11 +494,11 @@ SELECT pg_relation_filepath('large_hot_table');`}
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Tablespaces Cheatsheet
               </h3>
 
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', marginBottom: '16px' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', marginBottom: '16px' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '8px', fontWeight: 'bold' }}>🗂️ Common Commands</p>
                 <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '8px', borderRadius: '4px', margin: 0, overflow: 'auto' }}>
 {`-- List tablespaces
@@ -546,7 +546,7 @@ DROP TABLESPACE space_name;  -- Must be empty`}
 
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '8px' }}>✅ Best Practices</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li>Use descriptive names (ssd_hot, hdd_archive, etc)</li>
                   <li>Reserve 10% disk space free</li>
                   <li>Monitor with regular queries</li>
@@ -577,10 +577,10 @@ DROP TABLESPACE space_name;  -- Must be empty`}
       {/* Header */}
       <header style={{ borderBottom: '1px solid rgba(100, 200, 255, 0.2)', background: 'rgba(15, 20, 25, 0.8)' }}>
         <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '40px 24px' }}>
-          <h1 style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '8px', color: '#e0f2ff' }}>
+          <h1 style={{ fontSize: '36px', fontWeight: 'bold', marginBottom: '8px', color: '#e0f2ff' }}>
             PostgreSQL Tablespaces 💾
           </h1>
-          <p style={{ color: '#a0c8ff', fontSize: '16px' }}>
+          <p style={{ color: '#a0c8ff', fontSize: '20px' }}>
             Master tablespace management untuk optimization, performance tuning, dan storage management
           </p>
         </div>
@@ -597,7 +597,7 @@ DROP TABLESPACE space_name;  -- Must be empty`}
                 padding: '12px 16px',
                 fontWeight: '500',
                 whiteSpace: 'nowrap',
-                fontSize: '13px',
+                fontSize: '17px',
                 border: 'none',
                 background: 'transparent',
                 cursor: 'pointer',
@@ -617,10 +617,10 @@ DROP TABLESPACE space_name;  -- Must be empty`}
 
       {/* Footer */}
       <footer style={{ background: 'rgba(15, 20, 25, 0.5)', borderTop: '1px solid rgba(100, 200, 255, 0.2)', marginTop: '60px', padding: '40px 0', textAlign: 'center' }}>
-        <p style={{ color: '#708090', fontSize: '14px', marginBottom: '8px' }}>
+        <p style={{ color: '#708090', fontSize: '18px', marginBottom: '8px' }}>
           💾 Tablespaces = Flexible Storage Management & Performance Optimization
         </p>
-        <p style={{ color: '#708090', fontSize: '14px' }}>
+        <p style={{ color: '#708090', fontSize: '18px' }}>
           💡 Tip: Plan your tablespace layout before storing production data! 🚀
         </p>
       </footer>

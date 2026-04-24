@@ -43,7 +43,7 @@ const PostgreSQLPgCtl = () => {
   const CommandBox = ({ command, description, example = null }) => (
     <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', marginBottom: '10px' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
-        <code style={{ color: '#64c8ff', fontFamily: 'monospace', fontWeight: 'bold', fontSize: '12px' }}>
+        <code style={{ color: '#64c8ff', fontFamily: 'monospace', fontWeight: 'bold', fontSize: '16px' }}>
           {command}
         </code>
         <button
@@ -59,18 +59,18 @@ const PostgreSQLPgCtl = () => {
             padding: '4px 8px',
             borderRadius: '4px',
             cursor: 'pointer',
-            fontSize: '11px',
+            fontSize: '15px',
             fontWeight: 'bold'
           }}
         >
           {copiedCmd === command ? '✓ Copied' : 'Copy'}
         </button>
       </div>
-      <p style={{ color: '#a0c8ff', fontSize: '11px', marginBottom: '4px' }}>
+      <p style={{ color: '#a0c8ff', fontSize: '15px', marginBottom: '4px' }}>
         {description}
       </p>
       {example && (
-        <p style={{ color: '#708090', fontSize: '10px', fontStyle: 'italic' }}>
+        <p style={{ color: '#708090', fontSize: '14px', fontStyle: 'italic' }}>
           💡 {example}
         </p>
       )}
@@ -87,7 +87,7 @@ const PostgreSQLPgCtl = () => {
           <h1 className="text-4xl font-bold mb-2" style={{ color: '#e0f2ff', fontFamily: 'Segoe UI' }}>
             pg_ctl - PostgreSQL Server Control 🎛️
           </h1>
-          <p style={{ color: '#a0c8ff', fontSize: '16px' }}>
+          <p style={{ color: '#a0c8ff', fontSize: '20px' }}>
             Master PostgreSQL server start, stop, restart, reload, dan status management
           </p>
         </div>
@@ -158,7 +158,7 @@ const PostgreSQLPgCtl = () => {
 
               {expandedSection === 'pg-ctl-def' && (
                 <div className="mt-6 space-y-4">
-                  <p style={{ color: '#a0c8ff', lineHeight: '1.8', fontSize: '15px' }}>
+                  <p style={{ color: '#a0c8ff', lineHeight: '1.8', fontSize: '19px' }}>
                     <strong>pg_ctl</strong> adalah utility command untuk manage PostgreSQL database server. 
                     Gunakan pg_ctl untuk start, stop, restart, reload, dan check status PostgreSQL instance.
                   </p>
@@ -168,14 +168,14 @@ const PostgreSQLPgCtl = () => {
                     <code style={{ color: '#86efac', fontFamily: 'monospace', display: 'block' }}>
                       /usr/lib/postgresql/14/bin/pg_ctl
                     </code>
-                    <p style={{ color: '#a0c8ff', fontSize: '12px', marginTop: '8px' }}>
+                    <p style={{ color: '#a0c8ff', fontSize: '16px', marginTop: '8px' }}>
                       (location vary by PostgreSQL version dan installation method)
                     </p>
                   </div>
 
                   <div style={{ background: 'rgba(100, 200, 255, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #64c8ff' }}>
                     <p style={{ color: '#64c8ff', fontWeight: 'bold', marginBottom: '12px' }}>⚡ Common Use Cases:</p>
-                    <ul style={{ color: '#a0c8ff', fontSize: '13px', marginLeft: '16px' }}>
+                    <ul style={{ color: '#a0c8ff', fontSize: '17px', marginLeft: '16px' }}>
                       <li>✓ Start PostgreSQL server untuk development</li>
                       <li>✓ Stop/restart untuk maintenance atau config changes</li>
                       <li>✓ Graceful shutdown untuk avoid data corruption</li>
@@ -187,7 +187,7 @@ const PostgreSQLPgCtl = () => {
 
                   <div style={{ background: 'rgba(251, 191, 36, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #fbbf24' }}>
                     <p style={{ color: '#fbbf24', fontWeight: 'bold', marginBottom: '12px' }}>💡 Key Requirements:</p>
-                    <ul style={{ color: '#a0c8ff', fontSize: '13px', marginLeft: '16px' }}>
+                    <ul style={{ color: '#a0c8ff', fontSize: '17px', marginLeft: '16px' }}>
                       <li>✓ Must run as <code style={{ color: '#fbbf24' }}>postgres</code> user (or owner of PGDATA)</li>
                       <li>✓ Must have PGDATA environment variable set atau use -D option</li>
                       <li>✓ Data directory must exist dan be initialized (initdb)</li>
@@ -199,7 +199,7 @@ const PostgreSQLPgCtl = () => {
 
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
               <h3 className="text-lg font-bold mb-4" style={{ color: '#64c8ff' }}>Basic Syntax</h3>
-              <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '13px', color: '#64c8ff', lineHeight: '1.8' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '17px', color: '#64c8ff', lineHeight: '1.8' }}>
                 <p>pg_ctl [OPTIONS] COMMAND</p>
                 <p style={{ marginTop: '12px', color: '#a0c8ff' }}>Examples:</p>
                 <p style={{ color: '#86efac' }}>pg_ctl -D /var/lib/postgresql/14/main start</p>
@@ -270,16 +270,16 @@ const PostgreSQLPgCtl = () => {
                   }
                 ].map((item, idx) => (
                   <div key={idx} style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', borderLeft: '3px solid #64c8ff' }}>
-                    <p style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '12px', marginBottom: '4px' }}>
+                    <p style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '16px', marginBottom: '4px' }}>
                       {item.cmd}
                     </p>
-                    <p style={{ color: '#fbbf24', fontSize: '11px', marginBottom: '4px' }}>
+                    <p style={{ color: '#fbbf24', fontSize: '15px', marginBottom: '4px' }}>
                       {item.desc}
                     </p>
-                    <p style={{ color: '#a0c8ff', fontSize: '10px', marginBottom: '4px' }}>
+                    <p style={{ color: '#a0c8ff', fontSize: '14px', marginBottom: '4px' }}>
                       {item.detail}
                     </p>
-                    <p style={{ color: '#708090', fontSize: '9px' }}>
+                    <p style={{ color: '#708090', fontSize: '13px' }}>
                       Modes: {item.modes.join(', ')}
                     </p>
                   </div>
@@ -344,11 +344,11 @@ const PostgreSQLPgCtl = () => {
                 }
               ].map((item, idx) => (
                 <div key={idx} style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', marginBottom: '8px', borderLeft: '3px solid #64c8ff' }}>
-                  <p style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '11px', marginBottom: '3px', fontFamily: 'monospace' }}>
+                  <p style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '15px', marginBottom: '3px', fontFamily: 'monospace' }}>
                     {item.opt}
                   </p>
-                  <p style={{ color: '#a0c8ff', fontSize: '11px', marginBottom: '3px' }}>{item.desc}</p>
-                  <p style={{ color: '#708090', fontSize: '10px', fontStyle: 'italic' }}>Example: {item.example}</p>
+                  <p style={{ color: '#a0c8ff', fontSize: '15px', marginBottom: '3px' }}>{item.desc}</p>
+                  <p style={{ color: '#708090', fontSize: '14px', fontStyle: 'italic' }}>Example: {item.example}</p>
                 </div>
               ))}
             </div>
@@ -395,7 +395,7 @@ const PostgreSQLPgCtl = () => {
                     <tr key={idx} style={{ borderBottom: '1px solid rgba(100, 200, 255, 0.2)' }}>
                       <td style={{ color: '#a0c8ff', padding: '8px', fontWeight: 'bold' }}>{item.mode}</td>
                       <td style={{ color: '#4ade80', padding: '8px', fontFamily: 'monospace' }}>{item.signal}</td>
-                      <td style={{ color: '#a0c8ff', padding: '8px', fontSize: '12px' }}>{item.behavior}</td>
+                      <td style={{ color: '#a0c8ff', padding: '8px', fontSize: '16px' }}>{item.behavior}</td>
                       <td style={{ color: '#a0c8ff', padding: '8px' }}>{item.safety}</td>
                     </tr>
                   ))}
@@ -404,7 +404,7 @@ const PostgreSQLPgCtl = () => {
 
               <div style={{ background: 'rgba(251, 191, 36, 0.1)', padding: '12px', borderRadius: '8px', borderLeft: '3px solid #fbbf24' }}>
                 <p style={{ color: '#fbbf24', fontWeight: 'bold', marginBottom: '8px' }}>⚠️ Recommendation:</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li>✓ <strong>Default to smart mode:</strong> safest, guaranteed consistency</li>
                   <li>✓ <strong>Use fast mode:</strong> jika smart timeout (jangan sering)</li>
                   <li>✓ <strong>Avoid immediate mode:</strong> only untuk emergency (power failure simulation)</li>
@@ -414,7 +414,7 @@ const PostgreSQLPgCtl = () => {
 
             <div style={{ background: 'rgba(74, 222, 128, 0.1)', border: '1px solid rgba(74, 222, 128, 0.3)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-4" style={{ color: '#4ade80' }}>Shutdown Mode Comparison Timeline</h4>
-              <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', lineHeight: '2' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', lineHeight: '2' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '8px' }}>Command: pg_ctl stop -m smart</p>
                 <p>T=0ms:    Receive SIGTERM</p>
                 <p style={{ marginLeft: '20px', color: '#4ade80' }}>↓ Disallow new connections</p>
@@ -559,7 +559,7 @@ const PostgreSQLPgCtl = () => {
               </div>
 
               <h4 className="text-base font-bold mb-4" style={{ color: '#64c8ff' }}>🔧 Options Quick Reference</h4>
-              <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', lineHeight: '1.8' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', lineHeight: '1.8' }}>
                 <p><span style={{ color: '#64c8ff' }}>-D DATADIR</span>     Data directory path (required)</p>
                 <p><span style={{ color: '#64c8ff' }}>-l LOGFILE</span>     Log file path</p>
                 <p><span style={{ color: '#64c8ff' }}>-w</span>             Wait for command (default)</p>
@@ -596,7 +596,7 @@ const PostgreSQLPgCtl = () => {
                 />
               </div>
 
-              <p style={{ color: '#a0c8ff', fontSize: '12px', marginTop: '12px', fontStyle: 'italic' }}>
+              <p style={{ color: '#a0c8ff', fontSize: '16px', marginTop: '12px', fontStyle: 'italic' }}>
                 💡 Note: Modern Linux distributions use systemd instead of direct pg_ctl. Use systemctl commands above instead.
               </p>
             </div>
@@ -629,7 +629,7 @@ const PostgreSQLPgCtl = () => {
                       <td style={{ color: '#4ade80', padding: '8px', fontWeight: 'bold' }}>{row.mode}</td>
                       <td style={{ color: '#a0c8ff', padding: '8px' }}>{row.time}</td>
                       <td style={{ color: '#a0c8ff', padding: '8px' }}>{row.safety}</td>
-                      <td style={{ color: '#a0c8ff', padding: '8px', fontSize: '12px' }}>{row.when}</td>
+                      <td style={{ color: '#a0c8ff', padding: '8px', fontSize: '16px' }}>{row.when}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -638,7 +638,7 @@ const PostgreSQLPgCtl = () => {
 
             <div style={{ background: 'rgba(100, 200, 255, 0.1)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-4" style={{ color: '#64c8ff' }}>✅ Best Practices</h4>
-              <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+              <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                 <li>✓ <strong>Default to smart mode:</strong> Always use graceful shutdown</li>
                 <li>✓ <strong>Use -w (wait) option:</strong> Ensure command completes before proceeding</li>
                 <li>✓ <strong>Log restart events:</strong> Track when server restarted</li>
@@ -652,7 +652,7 @@ const PostgreSQLPgCtl = () => {
 
             <div style={{ background: 'rgba(248, 113, 113, 0.1)', border: '1px solid rgba(248, 113, 113, 0.3)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-4" style={{ color: '#f87171' }}>⚠️ Common Mistakes to Avoid</h4>
-              <ul style={{ color: '#fca5a5', fontSize: '12px', marginLeft: '16px' }}>
+              <ul style={{ color: '#fca5a5', fontSize: '16px', marginLeft: '16px' }}>
                 <li>✗ Running pg_ctl as root (causes permission issues)</li>
                 <li>✗ Using immediate mode routinely (causes crash recovery)</li>
                 <li>✗ Forgetting -D option (must specify data directory)</li>
@@ -667,10 +667,10 @@ const PostgreSQLPgCtl = () => {
 
       {/* Footer */}
       <footer style={{ background: 'rgba(15, 20, 25, 0.5)', borderTop: '1px solid rgba(100, 200, 255, 0.2)', marginTop: '60px', padding: '40px 0', textAlign: 'center' }}>
-        <p style={{ color: '#708090', fontSize: '14px', marginBottom: '8px' }}>
+        <p style={{ color: '#708090', fontSize: '18px', marginBottom: '8px' }}>
           🎛️ pg_ctl = Your primary tool untuk manage PostgreSQL server lifecycle
         </p>
-        <p style={{ color: '#708090', fontSize: '14px' }}>
+        <p style={{ color: '#708090', fontSize: '18px' }}>
           💡 Remember: Always use graceful shutdown (smart mode) untuk production environments! 🚀
         </p>
       </footer>

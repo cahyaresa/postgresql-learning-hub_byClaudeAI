@@ -129,6 +129,62 @@ function EnhancedDashboard() {
       icon: '📈',
       tags: ['scaling', 'replication', 'pgBouncer', 'FDW', 'partitioning', 'read-replica'],
       difficulty: 'Advanced'
+    },
+    {
+      id: 'acid-concept',
+      title: '🔐 ACID Concept',
+      description: 'Atomicity, Consistency, Isolation, Durability - the core principles of reliable transactions.',
+      path: '/acid-concepts',
+      icon: '🔒',
+      tags: ['ACID', 'transactions', 'isolation-levels', 'MVCC'],
+      difficulty: 'Intermediate'
+
+    },
+    {
+      id: 'benchmarking',
+      title: '⚡ Benchmarking PostgreSQL',
+      description: 'Tools and techniques for benchmarking PostgreSQL performance under various workloads.',
+      path: '/benchmarking',
+      icon: '📊',
+      tags: ['benchmarking', 'pgbench', 'EXPLAIN', 'performance', 'pg_stat_statements', 'TPS', 'latency'],
+      difficulty: 'Intermediate'
+    },
+    {
+      id: 'backup-restore',
+      title: '💾 Backup & Restore',
+      description: 'Comprehensive guide to PostgreSQL backup and restore strategies for data safety and disaster recovery.',
+      path: '/backup-restore',
+      icon: '💾',
+      tags: ['backup', 'restore', 'pg_dump', 'pg_basebackup', 'WAL', 'PITR', 'cold', 'warm', 'hot'],
+      difficulty: 'Intermediate'
+
+    },
+    {
+      id: 'replication',
+      title: '📡 Replication',
+      description: 'In-depth guide to PostgreSQL replication methods for high availability and load balancing.',
+      path: '/replication',
+      icon: '📡',
+      tags: ['replication', 'high-availability', 'load-balancing'],
+      difficulty: 'Advanced'
+    },
+    {
+      id: 'ha-dr',
+      title: '🛡️ High Availability & Disaster Recovery',
+      description: 'Strategies for ensuring PostgreSQL availability and data integrity during disasters.',
+      path: '/ha-dr',
+      icon: '🛡️',
+      tags: ['HA', 'DR', 'Patroni', 'etcd', 'failover', 'pg_rewind', 'pgBackRest', 'VIP', 'HAProxy', 'RTO', 'RPO'],
+      difficulty: 'Advanced'
+    }, 
+    {
+      id: 'monitoring',
+      title: '📊 Monitoring PostgreSQL',
+      description: 'Tools and techniques for monitoring PostgreSQL performance and health in production.',
+      path: '/monitoring',
+      icon: '📊',
+      tags: ['monitoring', 'pg_stat_activity', 'pg_stat_statements', 'locks', 'vacuum', 'bloat', 'prometheus', 'grafana', 'alerting', 'slow-query'],
+      difficulty: 'Intermediate'
     }
   ]
 
@@ -151,10 +207,10 @@ function EnhancedDashboard() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Greeting Section */}
         <div className="mb-12 animate-float">
-          <h1 style={{ fontSize: '32px', fontWeight: 'bold', color: '#e0f2ff', marginBottom: '8px' }}>
+          <h1 style={{ fontSize: '36px', fontWeight: 'bold', color: '#e0f2ff', marginBottom: '8px' }}>
             {getTimeGreeting()}! 👋
           </h1>
-          <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '16px' }}>
+          <p style={{ color: '#a0c8ff', fontSize: '20px', marginBottom: '16px' }}>
             Welcome back to PostgreSQL Learning Hub. Continue your learning journey today!
           </p>
 
@@ -164,8 +220,8 @@ function EnhancedDashboard() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <BookOpen size={24} style={{ color: '#4ade80' }} />
                 <div>
-                  <p style={{ color: '#708090', fontSize: '12px' }}>Total Modules</p>
-                  <p style={{ color: '#4ade80', fontSize: '20px', fontWeight: 'bold' }}>{modules.length}</p>
+                  <p style={{ color: '#708090', fontSize: '16px' }}>Total Modules</p>
+                  <p style={{ color: '#4ade80', fontSize: '24px', fontWeight: 'bold' }}>{modules.length}</p>
                 </div>
               </div>
             </div>
@@ -174,8 +230,8 @@ function EnhancedDashboard() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <Heart size={24} style={{ color: '#64c8ff' }} />
                 <div>
-                  <p style={{ color: '#708090', fontSize: '12px' }}>Favorites</p>
-                  <p style={{ color: '#64c8ff', fontSize: '20px', fontWeight: 'bold' }}>{favs.length}</p>
+                  <p style={{ color: '#708090', fontSize: '16px' }}>Favorites</p>
+                  <p style={{ color: '#64c8ff', fontSize: '24px', fontWeight: 'bold' }}>{favs.length}</p>
                 </div>
               </div>
             </div>
@@ -184,8 +240,8 @@ function EnhancedDashboard() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <Clock size={24} style={{ color: '#fbbf24' }} />
                 <div>
-                  <p style={{ color: '#708090', fontSize: '12px' }}>Progress</p>
-                  <p style={{ color: '#fbbf24', fontSize: '20px', fontWeight: 'bold' }}>{totalProgress}%</p>
+                  <p style={{ color: '#708090', fontSize: '16px' }}>Progress</p>
+                  <p style={{ color: '#fbbf24', fontSize: '24px', fontWeight: 'bold' }}>{totalProgress}%</p>
                 </div>
               </div>
             </div>
@@ -197,7 +253,7 @@ function EnhancedDashboard() {
           <div style={{ marginBottom: '32px', animate: 'float-up 0.6s ease-out' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
               <Star size={24} style={{ color: '#fbbf24' }} />
-              <h2 style={{ fontSize: '24px', fontWeight: 'bold', color: '#e0f2ff' }}>
+              <h2 style={{ fontSize: '28px', fontWeight: 'bold', color: '#e0f2ff' }}>
                 Your Favorite Modules ⭐
               </h2>
             </div>
@@ -221,7 +277,7 @@ function EnhancedDashboard() {
                   onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '12px' }}>
-                    <span style={{ fontSize: '32px' }}>{module.icon}</span>
+                    <span style={{ fontSize: '36px' }}>{module.icon}</span>
                     <button
                       onClick={(e) => {
                         e.preventDefault()
@@ -232,20 +288,20 @@ function EnhancedDashboard() {
                         background: 'transparent',
                         border: 'none',
                         cursor: 'pointer',
-                        fontSize: '20px'
+                        fontSize: '24px'
                       }}
                     >
                       ❤️
                     </button>
                   </div>
-                  <h3 style={{ fontSize: '16px', fontWeight: 'bold', color: '#e0f2ff', marginBottom: '8px' }}>
+                  <h3 style={{ fontSize: '20px', fontWeight: 'bold', color: '#e0f2ff', marginBottom: '8px' }}>
                     {module.title}
                   </h3>
-                  <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '12px' }}>
+                  <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '12px' }}>
                     {module.description}
                   </p>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '12px', borderTop: '1px solid rgba(251, 191, 36, 0.2)' }}>
-                    <span style={{ color: '#fbbf24', fontSize: '11px', fontWeight: 'bold' }}>
+                    <span style={{ color: '#fbbf24', fontSize: '15px', fontWeight: 'bold' }}>
                       {module.difficulty}
                     </span>
                     <span style={{ color: '#fbbf24', fontWeight: 'bold' }}>
@@ -260,7 +316,7 @@ function EnhancedDashboard() {
 
         {/* All Modules Section */}
         <div style={{ animate: 'float-up 0.6s ease-out' }}>
-          <h2 style={{ fontSize: '24px', fontWeight: 'bold', color: '#e0f2ff', marginBottom: '16px' }}>
+          <h2 style={{ fontSize: '28px', fontWeight: 'bold', color: '#e0f2ff', marginBottom: '16px' }}>
             📚 All Modules
           </h2>
 
@@ -295,7 +351,7 @@ function EnhancedDashboard() {
                   }}
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '12px' }}>
-                    <span style={{ fontSize: '32px' }}>{module.icon}</span>
+                    <span style={{ fontSize: '36px' }}>{module.icon}</span>
                     <button
                       onClick={(e) => {
                         e.preventDefault()
@@ -306,7 +362,7 @@ function EnhancedDashboard() {
                         background: 'transparent',
                         border: 'none',
                         cursor: 'pointer',
-                        fontSize: '20px',
+                        fontSize: '24px',
                         opacity: isFavorite ? 1 : 0.5,
                         transition: 'opacity 0.2s'
                       }}
@@ -315,18 +371,18 @@ function EnhancedDashboard() {
                     </button>
                   </div>
 
-                  <h3 style={{ fontSize: '16px', fontWeight: 'bold', color: '#e0f2ff', marginBottom: '8px' }}>
+                  <h3 style={{ fontSize: '20px', fontWeight: 'bold', color: '#e0f2ff', marginBottom: '8px' }}>
                     {module.title}
                   </h3>
 
-                  <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '12px' }}>
+                  <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '12px' }}>
                     {module.description}
                   </p>
 
                   {/* Progress Bar */}
                   {moduleProgress > 0 && (
                     <div style={{ marginBottom: '12px' }}>
-                      <p style={{ color: '#a0c8ff', fontSize: '10px', fontWeight: 'bold', marginBottom: '4px' }}>
+                      <p style={{ color: '#a0c8ff', fontSize: '14px', fontWeight: 'bold', marginBottom: '4px' }}>
                         Progress: {moduleProgress}%
                       </p>
                       <div style={{
@@ -347,14 +403,14 @@ function EnhancedDashboard() {
 
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '12px' }}>
                     {module.tags.slice(0, 2).map((tag, idx) => (
-                      <span key={idx} style={{ fontSize: '10px', background: 'rgba(100, 200, 255, 0.2)', color: '#64c8ff', padding: '3px 8px', borderRadius: '12px' }}>
+                      <span key={idx} style={{ fontSize: '14px', background: 'rgba(100, 200, 255, 0.2)', color: '#64c8ff', padding: '3px 8px', borderRadius: '12px' }}>
                         {tag}
                       </span>
                     ))}
                   </div>
 
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '12px', borderTop: '1px solid rgba(100, 200, 255, 0.2)' }}>
-                    <span style={{ color: '#a0c8ff', fontSize: '11px', fontWeight: 'bold' }}>
+                    <span style={{ color: '#a0c8ff', fontSize: '15px', fontWeight: 'bold' }}>
                       {module.difficulty}
                     </span>
                     <span style={{ color: '#64c8ff', fontWeight: 'bold' }}>

@@ -27,12 +27,12 @@ function CodeBlock({ code }) {
           background: copied ? '#4ade80' : 'rgba(100,200,255,0.2)',
           border: 'none', color: copied ? '#0f1419' : '#64c8ff',
           padding: '4px 10px', borderRadius: '4px', cursor: 'pointer',
-          fontSize: '11px', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '4px',
+          fontSize: '15px', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '4px',
         }}
       >
         {copied ? <><Check size={12} /> Copied</> : <><Copy size={12} /> Copy</>}
       </button>
-      <pre style={{ margin: 0, color: '#a0c8ff', fontFamily: 'monospace', fontSize: '12px', whiteSpace: 'pre-wrap', paddingRight: '80px' }}>
+      <pre style={{ margin: 0, color: '#a0c8ff', fontFamily: 'monospace', fontSize: '16px', whiteSpace: 'pre-wrap', paddingRight: '80px' }}>
         {code}
       </pre>
     </div>
@@ -51,7 +51,7 @@ function Section({ title, color = 'blue', children }) {
   const c = palette[color] || palette.blue
   return (
     <div style={{ background: c.bg, border: `1px solid ${c.border}`, borderLeft: `3px solid ${c.left}`, borderRadius: '10px', padding: '16px', marginBottom: '14px' }}>
-      {title && <h4 style={{ color: c.accent, fontWeight: 'bold', marginBottom: '10px', fontSize: '14px' }}>{title}</h4>}
+      {title && <h4 style={{ color: c.accent, fontWeight: 'bold', marginBottom: '10px', fontSize: '18px' }}>{title}</h4>}
       {children}
     </div>
   )
@@ -59,7 +59,7 @@ function Section({ title, color = 'blue', children }) {
 
 function Badge({ text, color = '#64c8ff' }) {
   return (
-    <span style={{ background: `${color}22`, color, border: `1px solid ${color}55`, padding: '3px 10px', borderRadius: '20px', fontSize: '11px', fontWeight: 'bold', display: 'inline-block', margin: '3px' }}>
+    <span style={{ background: `${color}22`, color, border: `1px solid ${color}55`, padding: '3px 10px', borderRadius: '20px', fontSize: '15px', fontWeight: 'bold', display: 'inline-block', margin: '3px' }}>
       {text}
     </span>
   )
@@ -77,7 +77,7 @@ function StateNode({ label, color, active, onClick }) {
         padding: '10px 20px',
         color: isActive ? color : '#a0c8ff',
         fontWeight: 'bold',
-        fontSize: '13px',
+        fontSize: '17px',
         cursor: 'pointer',
         transition: 'all 0.2s',
         boxShadow: isActive ? `0 0 16px ${color}44` : 'none',
@@ -103,7 +103,7 @@ function TabOverview() {
   return (
     <div style={{ animation: 'float-up 0.5s ease-out' }}>
       <Section title="🤖 Apa itu State Machine?" color="blue">
-        <p style={{ color: '#a0c8ff', fontSize: '13px', lineHeight: 1.7 }}>
+        <p style={{ color: '#a0c8ff', fontSize: '17px', lineHeight: 1.7 }}>
           State Machine (Finite State Machine / FSM) adalah model komputasi yang mendefinisikan bagaimana sebuah sistem
           berpindah dari satu <strong style={{ color: '#64c8ff' }}>state</strong> ke state lain berdasarkan{' '}
           <strong style={{ color: '#4ade80' }}>events</strong> tertentu, sambil menjaga{' '}
@@ -120,16 +120,16 @@ function TabOverview() {
         {concepts.map(({ icon, title, desc }) => (
           <div key={title} style={{ background: 'rgba(26,35,50,0.8)', border: '1px solid rgba(100,200,255,0.15)', borderRadius: '10px', padding: '14px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-              <span style={{ fontSize: '20px' }}>{icon}</span>
-              <span style={{ color: '#e0f2ff', fontWeight: 'bold', fontSize: '13px' }}>{title}</span>
+              <span style={{ fontSize: '24px' }}>{icon}</span>
+              <span style={{ color: '#e0f2ff', fontWeight: 'bold', fontSize: '17px' }}>{title}</span>
             </div>
-            <p style={{ color: '#a0c8ff', fontSize: '12px', lineHeight: 1.6, margin: 0 }}>{desc}</p>
+            <p style={{ color: '#a0c8ff', fontSize: '16px', lineHeight: 1.6, margin: 0 }}>{desc}</p>
           </div>
         ))}
       </div>
 
       <Section title="📦 Contoh Real-World: Order Lifecycle" color="green">
-        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px', fontSize: '12px' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px', fontSize: '16px' }}>
           {[
             { state: 'DRAFT', color: '#708090' },
             { arrow: '→ place_order →' },
@@ -146,7 +146,7 @@ function TabOverview() {
               : <span key={i} style={{ background: `${item.color}22`, border: `1px solid ${item.color}55`, color: item.color, padding: '4px 12px', borderRadius: '20px', fontWeight: 'bold' }}>{item.state}</span>
           )}
         </div>
-        <p style={{ color: '#a0c8ff', fontSize: '12px', marginTop: '12px', marginBottom: 0 }}>
+        <p style={{ color: '#a0c8ff', fontSize: '16px', marginTop: '12px', marginBottom: 0 }}>
           Setiap panah adalah sebuah <strong style={{ color: '#64c8ff' }}>event</strong>. State machine memastikan
           SHIPPED tidak bisa langsung pindah ke DRAFT — hanya transisi yang valid yang diperbolehkan.
         </p>
@@ -163,8 +163,8 @@ function TabOverview() {
             ['📊 Analytics Ready', 'Mudah hitung time-in-state, conversion rate, dll'],
           ].map(([title, desc]) => (
             <div key={title} style={{ background: 'rgba(167,139,250,0.06)', borderRadius: '8px', padding: '10px' }}>
-              <p style={{ color: '#a78bfa', fontWeight: 'bold', fontSize: '12px', marginBottom: '4px' }}>{title}</p>
-              <p style={{ color: '#a0c8ff', fontSize: '11px', margin: 0 }}>{desc}</p>
+              <p style={{ color: '#a78bfa', fontWeight: 'bold', fontSize: '16px', marginBottom: '4px' }}>{title}</p>
+              <p style={{ color: '#a0c8ff', fontSize: '15px', margin: 0 }}>{desc}</p>
             </div>
           ))}
         </div>
@@ -177,7 +177,7 @@ function TabConcepts() {
   return (
     <div style={{ animation: 'float-up 0.5s ease-out' }}>
       <Section title="🔵 States: Mendefinisikan Kondisi" color="blue">
-        <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '12px' }}>
+        <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '12px' }}>
           State harus bersifat <strong style={{ color: '#64c8ff' }}>mutually exclusive</strong> (entitas tidak bisa berada
           di dua state sekaligus) dan <strong style={{ color: '#4ade80' }}>collectively exhaustive</strong> (semua kondisi valid tercakup).
         </p>
@@ -212,7 +212,7 @@ INSERT INTO order_statuses VALUES
       </Section>
 
       <Section title="🔀 Transitions: Aturan Perpindahan State" color="yellow">
-        <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '12px' }}>
+        <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '12px' }}>
           Transition matrix mendefinisikan <strong style={{ color: '#fbbf24' }}>from_state → to_state</strong> yang valid beserta event dan guard condition-nya.
         </p>
         <CodeBlock code={`-- Transition table: mendefinisikan semua perpindahan yang legal
@@ -240,7 +240,7 @@ INSERT INTO order_transitions_allowed (from_status, to_status, event_name, requi
       </Section>
 
       <Section title="📋 Transition History: Audit Log" color="green">
-        <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '12px' }}>
+        <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '12px' }}>
           Setiap transition harus dicatat. Ini memberikan full audit trail, memungkinkan debugging,
           dan membuka kemungkinan analitik time-in-state.
         </p>
@@ -330,7 +330,7 @@ CREATE TRIGGER orders_set_updated_at
       </Section>
 
       <Section title="⚙️ Transition Function: Safe State Change" color="purple">
-        <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '12px' }}>
+        <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '12px' }}>
           Bungkus semua transition dalam satu function. Ini memastikan validasi, update, dan history insert selalu atomic.
         </p>
         <CodeBlock code={`-- Transition function dengan validasi
@@ -441,11 +441,11 @@ function TabPgImpl() {
             { title: 'Lookup Table', pros: ['Full metadata', 'Runtime configurable', 'FK integrity'], cons: ['JOIN overhead', 'More schema complexity'], color: '#4ade80' },
           ].map(({ title, pros, cons, color }) => (
             <div key={title} style={{ background: `${color}11`, border: `1px solid ${color}33`, borderRadius: '10px', padding: '12px' }}>
-              <p style={{ color, fontWeight: 'bold', fontSize: '13px', marginBottom: '8px' }}>{title}</p>
-              <p style={{ color: '#4ade80', fontSize: '11px', marginBottom: '4px' }}>✅ Pros</p>
-              {pros.map(p => <p key={p} style={{ color: '#a0c8ff', fontSize: '11px', margin: '2px 0' }}>• {p}</p>)}
-              <p style={{ color: '#f87171', fontSize: '11px', marginTop: '8px', marginBottom: '4px' }}>❌ Cons</p>
-              {cons.map(c => <p key={c} style={{ color: '#a0c8ff', fontSize: '11px', margin: '2px 0' }}>• {c}</p>)}
+              <p style={{ color, fontWeight: 'bold', fontSize: '17px', marginBottom: '8px' }}>{title}</p>
+              <p style={{ color: '#4ade80', fontSize: '15px', marginBottom: '4px' }}>✅ Pros</p>
+              {pros.map(p => <p key={p} style={{ color: '#a0c8ff', fontSize: '15px', margin: '2px 0' }}>• {p}</p>)}
+              <p style={{ color: '#f87171', fontSize: '15px', marginTop: '8px', marginBottom: '4px' }}>❌ Cons</p>
+              {cons.map(c => <p key={c} style={{ color: '#a0c8ff', fontSize: '15px', margin: '2px 0' }}>• {c}</p>)}
             </div>
           ))}
         </div>
@@ -502,7 +502,7 @@ ORDER BY o.updated_at;`} />
       </Section>
 
       <Section title="🔔 NOTIFY: Real-time Transition Events" color="purple">
-        <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '12px' }}>
+        <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '12px' }}>
           PostgreSQL <code style={{ color: '#a78bfa' }}>LISTEN/NOTIFY</code> bisa digunakan untuk push events ke aplikasi
           setiap kali state berubah — tanpa polling.
         </p>
@@ -542,7 +542,7 @@ function TabTransitions() {
   return (
     <div style={{ animation: 'float-up 0.5s ease-out' }}>
       <Section title="🛡️ Guard Conditions: Validasi Sebelum Transition" color="yellow">
-        <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '12px' }}>
+        <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '12px' }}>
           Guard conditions memastikan business rules terpenuhi sebelum state berubah.
           Implementasikan di function level, bukan hanya di UI.
         </p>
@@ -635,7 +635,7 @@ CREATE TRIGGER orders_after_status_change
       </Section>
 
       <Section title="📏 Idempotent Transitions" color="green">
-        <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '12px' }}>
+        <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '12px' }}>
           Transition function harus idempotent: jika event yang sama dikirim dua kali, hasilnya tetap konsisten.
         </p>
         <CodeBlock code={`-- Idempotent transition: jika sudah di target state, return sukses (no-op)
@@ -669,7 +669,7 @@ function TabAdvanced() {
   return (
     <div style={{ animation: 'float-up 0.5s ease-out' }}>
       <Section title="🏗️ Hierarchical State Machine" color="blue">
-        <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '12px' }}>
+        <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '12px' }}>
           State machine dapat bersarang (hierarchical / statechart). Berguna untuk workflow multi-level
           seperti Order → Payment → Shipment yang masing-masing punya state sendiri.
         </p>
@@ -707,7 +707,7 @@ CREATE TRIGGER orders_ship_guard
       </Section>
 
       <Section title="⏰ Time-Based Automatic Transitions" color="yellow">
-        <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '12px' }}>
+        <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '12px' }}>
           Beberapa transition terjadi otomatis berdasarkan waktu — misalnya pembayaran yang expire setelah 24 jam.
           Implementasikan dengan pg_cron atau background job.
         </p>
@@ -754,7 +754,7 @@ ORDER BY expires_at;`} />
       </Section>
 
       <Section title="🔀 Parallel State Machines" color="purple">
-        <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '12px' }}>
+        <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '12px' }}>
           Beberapa entitas bisa berjalan secara paralel dan saling mempengaruhi state masing-masing.
         </p>
         <CodeBlock code={`-- Contoh: Workflow approval multi-level
@@ -887,7 +887,7 @@ function TabSimulator() {
   return (
     <div style={{ animation: 'float-up 0.5s ease-out' }}>
       <Section title="▶️ Interactive Order State Machine" color="blue">
-        <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '16px' }}>
+        <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '16px' }}>
           Klik event untuk melakukan state transition. Hanya transisi yang valid yang ditampilkan.
         </p>
 
@@ -901,19 +901,19 @@ function TabSimulator() {
             padding: '12px 32px',
             boxShadow: `0 0 24px ${stateInfo.color}44`,
           }}>
-            <p style={{ color: '#708090', fontSize: '11px', marginBottom: '4px' }}>CURRENT STATE</p>
-            <p style={{ color: stateInfo.color, fontSize: '22px', fontWeight: 'bold', margin: 0 }}>
+            <p style={{ color: '#708090', fontSize: '15px', marginBottom: '4px' }}>CURRENT STATE</p>
+            <p style={{ color: stateInfo.color, fontSize: '26px', fontWeight: 'bold', margin: 0 }}>
               {stateInfo.label.toUpperCase()}
             </p>
             {stateInfo.terminal && (
-              <p style={{ color: '#f87171', fontSize: '11px', marginTop: '4px', marginBottom: 0 }}>🏁 Terminal State</p>
+              <p style={{ color: '#f87171', fontSize: '15px', marginTop: '4px', marginBottom: 0 }}>🏁 Terminal State</p>
             )}
           </div>
         </div>
 
         {/* Available transitions */}
         <div style={{ marginBottom: '16px' }}>
-          <p style={{ color: '#708090', fontSize: '12px', marginBottom: '10px' }}>
+          <p style={{ color: '#708090', fontSize: '16px', marginBottom: '10px' }}>
             {availableTransitions.length > 0
               ? '🔀 Available Transitions:'
               : '🏁 No more transitions — terminal state reached.'}
@@ -937,8 +937,8 @@ function TabSimulator() {
                   onMouseEnter={e => { e.currentTarget.style.background = `${targetInfo.color}33`; e.currentTarget.style.borderColor = targetInfo.color }}
                   onMouseLeave={e => { e.currentTarget.style.background = `${targetInfo.color}22`; e.currentTarget.style.borderColor = `${targetInfo.color}55` }}
                 >
-                  <p style={{ color: '#a0c8ff', fontSize: '11px', marginBottom: '2px' }}>event: <strong style={{ color: '#e0f2ff' }}>{t.event}</strong></p>
-                  <p style={{ color: targetInfo.color, fontWeight: 'bold', fontSize: '13px', margin: 0 }}>
+                  <p style={{ color: '#a0c8ff', fontSize: '15px', marginBottom: '2px' }}>event: <strong style={{ color: '#e0f2ff' }}>{t.event}</strong></p>
+                  <p style={{ color: targetInfo.color, fontWeight: 'bold', fontSize: '17px', margin: 0 }}>
                     → {targetInfo.label}
                   </p>
                 </button>
@@ -949,7 +949,7 @@ function TabSimulator() {
 
         <button
           onClick={reset}
-          style={{ background: 'rgba(248,113,113,0.2)', border: '1px solid rgba(248,113,113,0.4)', color: '#f87171', padding: '8px 20px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', fontWeight: 'bold', marginBottom: '16px' }}
+          style={{ background: 'rgba(248,113,113,0.2)', border: '1px solid rgba(248,113,113,0.4)', color: '#f87171', padding: '8px 20px', borderRadius: '6px', cursor: 'pointer', fontSize: '16px', fontWeight: 'bold', marginBottom: '16px' }}
         >
           🔄 Reset to Draft
         </button>
@@ -970,7 +970,7 @@ function TabSimulator() {
                 transition: 'all 0.3s',
               }}
             >
-              <p style={{ color: info.color, fontWeight: 'bold', fontSize: '12px', margin: 0 }}>
+              <p style={{ color: info.color, fontWeight: 'bold', fontSize: '16px', margin: 0 }}>
                 {info.label}
                 {info.terminal ? ' 🏁' : ''}
               </p>
@@ -979,7 +979,7 @@ function TabSimulator() {
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
           {ORDER_FSM.transitions.map((t, i) => (
-            <span key={i} style={{ fontSize: '11px', color: '#708090', background: 'rgba(255,255,255,0.04)', borderRadius: '4px', padding: '2px 8px' }}>
+            <span key={i} style={{ fontSize: '15px', color: '#708090', background: 'rgba(255,255,255,0.04)', borderRadius: '4px', padding: '2px 8px' }}>
               <span style={{ color: ORDER_FSM.states[t.from].color }}>{t.from}</span>
               {' → '}
               <span style={{ color: '#a0c8ff' }}>{t.event}</span>
@@ -995,14 +995,14 @@ function TabSimulator() {
         <div style={{ maxHeight: '220px', overflowY: 'auto' }}>
           {log.slice().reverse().map((entry, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 0', borderBottom: '1px solid rgba(100,200,255,0.08)' }}>
-              <span style={{ color: '#708090', fontSize: '10px', minWidth: '55px' }}>{entry.at}</span>
+              <span style={{ color: '#708090', fontSize: '14px', minWidth: '55px' }}>{entry.at}</span>
               {entry.from
-                ? <span style={{ color: ORDER_FSM.states[entry.from]?.color, fontSize: '11px', fontWeight: 'bold' }}>{entry.from}</span>
-                : <span style={{ color: '#708090', fontSize: '11px' }}>—</span>}
-              <span style={{ color: '#708090', fontSize: '11px' }}>→</span>
-              <span style={{ color: '#a0c8ff', fontSize: '11px', fontStyle: 'italic' }}>{entry.event}</span>
-              <span style={{ color: '#708090', fontSize: '11px' }}>→</span>
-              <span style={{ color: ORDER_FSM.states[entry.to]?.color, fontSize: '11px', fontWeight: 'bold' }}>{entry.to}</span>
+                ? <span style={{ color: ORDER_FSM.states[entry.from]?.color, fontSize: '15px', fontWeight: 'bold' }}>{entry.from}</span>
+                : <span style={{ color: '#708090', fontSize: '15px' }}>—</span>}
+              <span style={{ color: '#708090', fontSize: '15px' }}>→</span>
+              <span style={{ color: '#a0c8ff', fontSize: '15px', fontStyle: 'italic' }}>{entry.event}</span>
+              <span style={{ color: '#708090', fontSize: '15px' }}>→</span>
+              <span style={{ color: ORDER_FSM.states[entry.to]?.color, fontSize: '15px', fontWeight: 'bold' }}>{entry.to}</span>
             </div>
           ))}
         </div>
@@ -1040,7 +1040,7 @@ function StateMachine() {
               <h1 style={{ color: '#e0f2ff', fontSize: '28px', fontWeight: 'bold', margin: 0 }}>
                 State Machine Pattern
               </h1>
-              <p style={{ color: '#a0c8ff', fontSize: '14px', margin: '4px 0 0' }}>
+              <p style={{ color: '#a0c8ff', fontSize: '18px', margin: '4px 0 0' }}>
                 Modeling, implementing, and querying finite state machines in PostgreSQL
               </p>
             </div>
@@ -1065,7 +1065,7 @@ function StateMachine() {
                 color: activeTab === tab.id ? '#64c8ff' : '#708090',
                 padding: '8px 14px',
                 cursor: 'pointer',
-                fontSize: '12px',
+                fontSize: '16px',
                 fontWeight: activeTab === tab.id ? 'bold' : 'normal',
                 transition: 'all 0.2s',
                 display: 'flex',

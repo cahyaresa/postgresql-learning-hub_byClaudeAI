@@ -24,7 +24,7 @@ export function Navigation() {
     textDecoration: 'none',
     color: active ? '#64c8ff' : '#a0c8ff',
     fontWeight: active ? 'bold' : '500',
-    fontSize: '14px',
+    fontSize: '18px',
     background: active ? 'rgba(100, 200, 255, 0.1)' : 'transparent',
     border: active ? '1px solid rgba(100, 200, 255, 0.3)' : '1px solid transparent',
     transition: 'all 0.2s',
@@ -44,7 +44,7 @@ export function Navigation() {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '70px' }}>
           <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
             <span style={{ fontSize: '28px' }}>🚀</span>
-            <span style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff' }}>PostgreSQL Hub</span>
+            <span style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff' }}>PostgreSQL Hub</span>
           </Link>
 
           <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>

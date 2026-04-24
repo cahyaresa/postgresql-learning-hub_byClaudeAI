@@ -23,11 +23,11 @@ const DataPartitioningModule = () => {
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 PostgreSQL Data Partitioning
               </h3>
               
-              <p style={{ color: '#a0c8ff', lineHeight: '1.8', fontSize: '14px', marginBottom: '16px' }}>
+              <p style={{ color: '#a0c8ff', lineHeight: '1.8', fontSize: '18px', marginBottom: '16px' }}>
                 <strong>Table Partitioning</strong> memecah satu tabel besar menjadi multiple smaller physical tables 
                 (partitions) berdasarkan criteria tertentu (range, list, hash). Logically masih terlihat sebagai satu tabel, 
                 tetapi physically data tersebar. PostgreSQL 10+ mendukung declarative partitioning dengan performance benefits signifikan.
@@ -35,7 +35,7 @@ const DataPartitioningModule = () => {
 
               <div style={{ background: 'rgba(100, 200, 255, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #64c8ff', marginBottom: '16px' }}>
                 <p style={{ color: '#64c8ff', fontWeight: 'bold', marginBottom: '12px' }}>💡 What is Partitioning?</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '13px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '17px', marginLeft: '16px' }}>
                   <li>✓ Split one large table into smaller partitions</li>
                   <li>✓ Partitions are separate physical tables</li>
                   <li>✓ Logical view is still single table</li>
@@ -46,7 +46,7 @@ const DataPartitioningModule = () => {
 
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80', marginBottom: '16px' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '12px' }}>🎯 Key Benefits</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '13px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '17px', marginLeft: '16px' }}>
                   <li>✓ <strong>Speed:</strong> Partition elimination (scan fewer rows)</li>
                   <li>✓ <strong>Scalability:</strong> Handle billions of rows efficiently</li>
                   <li>✓ <strong>Maintenance:</strong> Manage old partitions separately</li>
@@ -58,7 +58,7 @@ const DataPartitioningModule = () => {
 
               <div style={{ background: 'rgba(251, 191, 36, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #fbbf24' }}>
                 <p style={{ color: '#fbbf24', fontWeight: 'bold', marginBottom: '12px' }}>⚠️ When to Use Partitioning</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li>✓ Tables &gt; 1GB (significant performance gains)</li>
                   <li>✓ Natural partition key exists (date, region, user_id)</li>
                   <li>✓ Queries filter by partition key</li>
@@ -74,7 +74,7 @@ const DataPartitioningModule = () => {
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Partition Types Overview
               </h3>
 
@@ -111,22 +111,22 @@ const DataPartitioningModule = () => {
                   marginBottom: '12px',
                   borderLeft: `3px solid ${idx % 2 === 0 ? '#4ade80' : '#fbbf24'}`
                 }}>
-                  <p style={{ color: idx % 2 === 0 ? '#4ade80' : '#fbbf24', fontWeight: 'bold', marginBottom: '4px', fontSize: '13px' }}>
+                  <p style={{ color: idx % 2 === 0 ? '#4ade80' : '#fbbf24', fontWeight: 'bold', marginBottom: '4px', fontSize: '17px' }}>
                     {type.name}
                   </p>
-                  <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '8px' }}>
+                  <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '8px' }}>
                     <strong>Description:</strong> {type.description}
                   </p>
-                  <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '4px' }}>
+                  <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '4px' }}>
                     <strong>Example:</strong> {type.example}
                   </p>
-                  <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '4px' }}>
+                  <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '4px' }}>
                     <strong>Pros:</strong> {type.pros}
                   </p>
-                  <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '4px' }}>
+                  <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '4px' }}>
                     <strong>Cons:</strong> {type.cons}
                   </p>
-                  <p style={{ color: '#a0c8ff', fontSize: '12px' }}>
+                  <p style={{ color: '#a0c8ff', fontSize: '16px' }}>
                     <strong>Best for:</strong> {type.use}
                   </p>
                 </div>
@@ -134,7 +134,7 @@ const DataPartitioningModule = () => {
 
               <div style={{ background: 'rgba(167, 139, 250, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #a78bfa', marginTop: '16px' }}>
                 <p style={{ color: '#a78bfa', fontWeight: 'bold', marginBottom: '8px' }}>🔀 Comparison Table</p>
-                <table style={{ width: '100%', color: '#a0c8ff', fontSize: '11px', marginTop: '8px' }}>
+                <table style={{ width: '100%', color: '#a0c8ff', fontSize: '15px', marginTop: '8px' }}>
                   <tbody>
                     <tr style={{ borderBottom: '1px solid rgba(100, 200, 255, 0.3)' }}>
                       <td style={{ padding: '4px' }}><strong>Aspect</strong></td>
@@ -177,11 +177,11 @@ const DataPartitioningModule = () => {
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 RANGE Partitioning (Most Common)
               </h3>
 
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '12px', color: '#a0c8ff', marginBottom: '16px' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '16px', color: '#a0c8ff', marginBottom: '16px' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '12px', fontWeight: 'bold' }}>Syntax & Example</p>
                 <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '8px', borderRadius: '4px', margin: '0 0 12px 0', overflow: 'auto' }}>
 {`CREATE TABLE orders (
@@ -220,7 +220,7 @@ SELECT * FROM orders WHERE order_date >= '2024-01-01'
 
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80', marginBottom: '16px' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '8px' }}>✅ Range Partitioning Use Cases</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li>✓ Time-series data (daily, monthly, yearly partitions)</li>
                   <li>✓ Log files (partition by timestamp)</li>
                   <li>✓ Transactions (partition by date)</li>
@@ -232,7 +232,7 @@ SELECT * FROM orders WHERE order_date >= '2024-01-01'
 
               <div style={{ background: 'rgba(251, 191, 36, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #fbbf24' }}>
                 <p style={{ color: '#fbbf24', fontWeight: 'bold', marginBottom: '8px' }}>⚠️ Maintenance: Adding Partitions</p>
-                <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '8px', borderRadius: '4px', color: '#fbbf24', fontSize: '11px', overflow: 'auto' }}>
+                <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '8px', borderRadius: '4px', color: '#fbbf24', fontSize: '15px', overflow: 'auto' }}>
 {`-- For 2025 data (add before year starts)
 CREATE TABLE orders_2025 PARTITION OF orders
   FOR VALUES FROM ('2025-01-01') TO ('2026-01-01');
@@ -250,11 +250,11 @@ CREATE TABLE orders_future PARTITION OF orders
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 LIST Partitioning (Discrete Values)
               </h3>
 
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '12px', color: '#a0c8ff', marginBottom: '16px' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '16px', color: '#a0c8ff', marginBottom: '16px' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '12px', fontWeight: 'bold' }}>Example: Partition by Region</p>
                 <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '8px', borderRadius: '4px', margin: '0 0 12px 0', overflow: 'auto' }}>
 {`CREATE TABLE users (
@@ -290,7 +290,7 @@ SELECT * FROM users WHERE region IN ('US', 'FR');`}
 
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '8px' }}>✅ LIST Partitioning Use Cases</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li>✓ Geographic regions (US, EU, ASIA)</li>
                   <li>✓ Product categories (Electronics, Clothing, Food)</li>
                   <li>✓ Status values (active, inactive, archived)</li>
@@ -306,11 +306,11 @@ SELECT * FROM users WHERE region IN ('US', 'FR');`}
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 HASH Partitioning (Even Distribution)
               </h3>
 
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '12px', color: '#a0c8ff', marginBottom: '16px' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '16px', color: '#a0c8ff', marginBottom: '16px' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '12px', fontWeight: 'bold' }}>Example: Even Load Distribution</p>
                 <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '8px', borderRadius: '4px', margin: '0 0 12px 0', overflow: 'auto' }}>
 {`CREATE TABLE sessions (
@@ -352,7 +352,7 @@ CREATE TABLE sessions_3 PARTITION OF sessions
 
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '8px' }}>✅ HASH Partitioning Benefits</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li>✓ Perfect even distribution (no unbalanced partitions)</li>
                   <li>✓ Good for parallel processing</li>
                   <li>✓ No need to know all values upfront</li>
@@ -369,13 +369,13 @@ CREATE TABLE sessions_3 PARTITION OF sessions
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Performance Benefits & Optimization
               </h3>
 
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80', marginBottom: '16px' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '12px' }}>🚀 Key Performance Improvements</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li><strong>Partition Elimination:</strong> Skip partitions not matching WHERE clause (2-10x faster)</li>
                   <li><strong>Smaller Indexes:</strong> Indexes on small partition vs large table (faster lookups)</li>
                   <li><strong>Parallel Execution:</strong> Query across multiple partitions in parallel</li>
@@ -384,7 +384,7 @@ CREATE TABLE sessions_3 PARTITION OF sessions
                 </ul>
               </div>
 
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', marginBottom: '16px' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', marginBottom: '16px' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '8px', fontWeight: 'bold' }}>Partition Elimination Example</p>
                 <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '8px', borderRadius: '4px', margin: 0, overflow: 'auto' }}>
 {`-- Table: 1 BILLION rows total
@@ -406,7 +406,7 @@ SELECT * FROM orders WHERE order_date = '2024-05-15';
 
               <div style={{ background: 'rgba(251, 191, 36, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #fbbf24' }}>
                 <p style={{ color: '#fbbf24', fontWeight: 'bold', marginBottom: '12px' }}>📊 Performance Metrics</p>
-                <table style={{ width: '100%', color: '#a0c8ff', fontSize: '11px', marginTop: '8px' }}>
+                <table style={{ width: '100%', color: '#a0c8ff', fontSize: '15px', marginTop: '8px' }}>
                   <tbody>
                     <tr style={{ borderBottom: '1px solid rgba(251, 191, 36, 0.3)' }}>
                       <td style={{ padding: '4px' }}><strong>Scenario</strong></td>
@@ -449,11 +449,11 @@ SELECT * FROM orders WHERE order_date = '2024-05-15';
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Practical Examples
               </h3>
 
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', marginBottom: '16px' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', marginBottom: '16px' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '8px', fontWeight: 'bold' }}>Example 1: E-commerce Orders by Year</p>
                 <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '8px', borderRadius: '4px', margin: '0 0 12px 0', overflow: 'auto' }}>
 {`-- Range partition by order date
@@ -536,11 +536,11 @@ ORDER BY tablename;`}
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 Partition Maintenance & Operations
               </h3>
 
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', marginBottom: '16px' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', marginBottom: '16px' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '8px', fontWeight: 'bold' }}>Adding New Partitions (Before data needed!)</p>
                 <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '8px', borderRadius: '4px', margin: '0 0 12px 0', overflow: 'auto' }}>
 {`-- Create 2025 partition before year starts
@@ -579,7 +579,7 @@ ALTER TABLE orders ATTACH PARTITION orders_2022
 
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '8px' }}>✅ Maintenance Checklist</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li>✓ Create next month/year partition in advance</li>
                   <li>✓ Archive old data before dropping partitions</li>
                   <li>✓ Monitor partition sizes regularly</li>
@@ -596,11 +596,11 @@ ALTER TABLE orders ATTACH PARTITION orders_2022
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 PostgreSQL Indexing Strategies
               </h3>
 
-              <p style={{ color: '#a0c8ff', lineHeight: '1.8', fontSize: '14px', marginBottom: '16px' }}>
+              <p style={{ color: '#a0c8ff', lineHeight: '1.8', fontSize: '18px', marginBottom: '16px' }}>
                 Index adalah struktur data tambahan yang mempercepat query dengan menghindari full table scan.
                 PostgreSQL menyediakan berbagai tipe index untuk use case berbeda — memilih tipe yang tepat
                 sangat krusial untuk performance optimal.
@@ -691,10 +691,10 @@ SELECT * FROM logs WHERE created_at BETWEEN '2024-01-01' AND '2024-02-01';`,
               ].map((idx, i) => (
                 <div key={i} style={{ background: 'rgba(0,0,0,0.25)', borderRadius: '8px', marginBottom: '14px', overflow: 'hidden', border: `1px solid ${idx.color}33` }}>
                   <div style={{ padding: '10px 14px', background: `${idx.color}18`, borderBottom: `1px solid ${idx.color}33` }}>
-                    <span style={{ color: idx.color, fontWeight: 'bold', fontSize: '13px' }}>{idx.name}</span>
-                    <p style={{ color: '#a0c8ff', fontSize: '12px', margin: '4px 0 0 0' }}>{idx.desc}</p>
+                    <span style={{ color: idx.color, fontWeight: 'bold', fontSize: '17px' }}>{idx.name}</span>
+                    <p style={{ color: '#a0c8ff', fontSize: '16px', margin: '4px 0 0 0' }}>{idx.desc}</p>
                   </div>
-                  <pre style={{ background: 'rgba(0,0,0,0.3)', padding: '12px 14px', margin: 0, fontSize: '11px', color: '#a0c8ff', overflow: 'auto', fontFamily: 'monospace' }}>
+                  <pre style={{ background: 'rgba(0,0,0,0.3)', padding: '12px 14px', margin: 0, fontSize: '15px', color: '#a0c8ff', overflow: 'auto', fontFamily: 'monospace' }}>
                     {idx.sql}
                   </pre>
                 </div>
@@ -702,7 +702,7 @@ SELECT * FROM logs WHERE created_at BETWEEN '2024-01-01' AND '2024-02-01';`,
 
               <div style={{ background: 'rgba(251, 191, 36, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #fbbf24', marginTop: '8px' }}>
                 <p style={{ color: '#fbbf24', fontWeight: 'bold', marginBottom: '10px' }}>📊 Index Type Comparison</p>
-                <table style={{ width: '100%', color: '#a0c8ff', fontSize: '11px' }}>
+                <table style={{ width: '100%', color: '#a0c8ff', fontSize: '15px' }}>
                   <tbody>
                     <tr style={{ borderBottom: '1px solid rgba(251,191,36,0.3)' }}>
                       <td style={{ padding: '4px 6px' }}><strong>Type</strong></td>
@@ -730,7 +730,7 @@ SELECT * FROM logs WHERE created_at BETWEEN '2024-01-01' AND '2024-02-01';`,
 
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80', marginTop: '14px' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '8px' }}>✅ Index Best Practices</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li>✓ Use <strong>EXPLAIN ANALYZE</strong> to verify index is used</li>
                   <li>✓ Partial indexes for filtered subsets (WHERE status = 'active')</li>
                   <li>✓ Composite index: put most selective column first</li>
@@ -747,11 +747,11 @@ SELECT * FROM logs WHERE created_at BETWEEN '2024-01-01' AND '2024-02-01';`,
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '16px' }}>
                 TOAST — The Oversized Attribute Storage Technique
               </h3>
 
-              <p style={{ color: '#a0c8ff', lineHeight: '1.8', fontSize: '14px', marginBottom: '16px' }}>
+              <p style={{ color: '#a0c8ff', lineHeight: '1.8', fontSize: '18px', marginBottom: '16px' }}>
                 TOAST adalah mekanisme PostgreSQL untuk menyimpan nilai yang terlalu besar untuk satu page (8KB).
                 PostgreSQL secara otomatis memecah nilai besar ke tabel TOAST tersendiri, transparan bagi aplikasi.
                 Memahami TOAST penting untuk optimasi kolom TEXT, BYTEA, JSONB, dan array besar.
@@ -759,7 +759,7 @@ SELECT * FROM logs WHERE created_at BETWEEN '2024-01-01' AND '2024-02-01';`,
 
               <div style={{ background: 'rgba(100, 200, 255, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #64c8ff', marginBottom: '16px' }}>
                 <p style={{ color: '#64c8ff', fontWeight: 'bold', marginBottom: '10px' }}>💡 How TOAST Works</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '13px', marginLeft: '16px', lineHeight: '1.9' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '17px', marginLeft: '16px', lineHeight: '1.9' }}>
                   <li>✓ PostgreSQL page size = <strong>8KB</strong></li>
                   <li>✓ Row must fit in one page — large values trigger TOAST</li>
                   <li>✓ TOAST threshold: ~2KB per value (¼ of page)</li>
@@ -770,7 +770,7 @@ SELECT * FROM logs WHERE created_at BETWEEN '2024-01-01' AND '2024-02-01';`,
                 </ul>
               </div>
 
-              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', marginBottom: '16px' }}>
+              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', marginBottom: '16px' }}>
                 <p style={{ color: '#fbbf24', marginBottom: '8px', fontWeight: 'bold' }}>TOAST Storage Strategies</p>
                 <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '8px', borderRadius: '4px', margin: '0 0 12px 0', overflow: 'auto' }}>
 {`-- View current storage strategy for each column
@@ -846,7 +846,7 @@ CREATE INDEX idx_products_color ON products
 
               <div style={{ background: 'rgba(167, 139, 250, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #a78bfa', marginBottom: '14px' }}>
                 <p style={{ color: '#a78bfa', fontWeight: 'bold', marginBottom: '10px' }}>📊 TOAST Strategy Comparison</p>
-                <table style={{ width: '100%', color: '#a0c8ff', fontSize: '11px' }}>
+                <table style={{ width: '100%', color: '#a0c8ff', fontSize: '15px' }}>
                   <tbody>
                     <tr style={{ borderBottom: '1px solid rgba(167,139,250,0.3)' }}>
                       <td style={{ padding: '4px 6px' }}><strong>Strategy</strong></td>
@@ -873,7 +873,7 @@ CREATE INDEX idx_products_color ON products
 
               <div style={{ background: 'rgba(74, 222, 128, 0.1)', padding: '16px', borderRadius: '8px', borderLeft: '3px solid #4ade80' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '8px' }}>✅ TOAST Best Practices</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                   <li>✓ <strong>SELECT only columns you need</strong> — avoids unnecessary TOAST reads</li>
                   <li>✓ Use <strong>EXTERNAL</strong> for BYTEA if you need substring/slice access</li>
                   <li>✓ Use <strong>EXTENDED</strong> (default) for TEXT/JSONB — best compression ratio</li>
@@ -891,10 +891,10 @@ CREATE INDEX idx_products_color ON products
         return (
           <div style={{ animation: 'float-up 0.6s ease-out' }}>
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '8px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 'bold', color: '#64c8ff', marginBottom: '8px' }}>
                 CHECK Constraints pada Partitioned Tables
               </h3>
-              <p style={{ color: '#a0c8ff', fontSize: '13px', lineHeight: '1.8', marginBottom: '20px' }}>
+              <p style={{ color: '#a0c8ff', fontSize: '17px', lineHeight: '1.8', marginBottom: '20px' }}>
                 Pada partitioned tables, CHECK constraint memiliki perilaku khusus. Partisi inherits constraint dari parent,
                 tapi ada kondisi di mana kamu perlu menambahkan CHECK secara eksplisit di partisi —
                 terutama saat <strong>ATTACH PARTITION</strong> tabel yang sudah ada, atau saat menggunakan
@@ -903,8 +903,8 @@ CREATE INDEX idx_products_color ON products
 
               {/* Kenapa CHECK dibutuhkan di partisi */}
               <div style={{ background: 'rgba(251,191,36,0.08)', border: '1px solid rgba(251,191,36,0.25)', borderRadius: '8px', padding: '14px 16px', marginBottom: '14px' }}>
-                <p style={{ color: '#fbbf24', fontWeight: 'bold', fontSize: '12px', marginBottom: '10px' }}>⚠️ Kapan CHECK Constraint Diperlukan?</p>
-                <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px', lineHeight: '2' }}>
+                <p style={{ color: '#fbbf24', fontWeight: 'bold', fontSize: '16px', marginBottom: '10px' }}>⚠️ Kapan CHECK Constraint Diperlukan?</p>
+                <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px', lineHeight: '2' }}>
                   <li>✓ <strong>ATTACH PARTITION</strong> — PostgreSQL harus verifikasi semua baris cocok dengan partition bound; CHECK membuktikan ini tanpa full table scan</li>
                   <li>✓ <strong>constraint_exclusion</strong> — planner gunakan CHECK untuk skip partisi yang tidak relevan (legacy; declarative partitioning sudah handle ini otomatis)</li>
                   <li>✓ <strong>Tabel legacy / non-declarative</strong> — tabel biasa yang dijadikan partisi butuh CHECK eksplisit</li>
@@ -913,7 +913,7 @@ CREATE INDEX idx_products_color ON products
               </div>
 
               {/* Skenario 1: ATTACH PARTITION tabel yang sudah ada */}
-              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', marginBottom: '14px' }}>
+              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', marginBottom: '14px' }}>
                 <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '12px' }}>📌 Skenario 1: ATTACH tabel existing sebagai partisi</p>
                 <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '10px', borderRadius: '4px', margin: '0 0 12px 0', overflow: 'auto' }}>
 {`-- Parent table
@@ -966,7 +966,7 @@ SELECT conname, contype FROM pg_constraint WHERE conrelid = 'orders_2024'::regcl
 
               {/* NOT VALID explained */}
               <div style={{ background: 'rgba(74,222,128,0.08)', border: '1px solid rgba(74,222,128,0.25)', borderRadius: '8px', padding: '14px 16px', marginBottom: '14px' }}>
-                <p style={{ color: '#4ade80', fontWeight: 'bold', fontSize: '12px', marginBottom: '10px' }}>💡 NOT VALID + VALIDATE CONSTRAINT — Teknik Zero-Lock</p>
+                <p style={{ color: '#4ade80', fontWeight: 'bold', fontSize: '16px', marginBottom: '10px' }}>💡 NOT VALID + VALIDATE CONSTRAINT — Teknik Zero-Lock</p>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
                   {[
                     {
@@ -991,8 +991,8 @@ SELECT conname, contype FROM pg_constraint WHERE conrelid = 'orders_2024'::regcl
                     },
                   ].map((s, i) => (
                     <div key={i} style={{ background: `${s.color}11`, border: `1px solid ${s.color}33`, borderRadius: '6px', padding: '10px' }}>
-                      <p style={{ color: s.color, fontWeight: 'bold', fontSize: '11px', marginBottom: '6px' }}>{s.title}</p>
-                      <ul style={{ color: '#a0c8ff', fontSize: '11px', marginLeft: '12px', lineHeight: '1.9' }}>
+                      <p style={{ color: s.color, fontWeight: 'bold', fontSize: '15px', marginBottom: '6px' }}>{s.title}</p>
+                      <ul style={{ color: '#a0c8ff', fontSize: '15px', marginLeft: '12px', lineHeight: '1.9' }}>
                         {s.points.map((p, j) => <li key={j}>{p}</li>)}
                       </ul>
                     </div>
@@ -1001,7 +1001,7 @@ SELECT conname, contype FROM pg_constraint WHERE conrelid = 'orders_2024'::regcl
               </div>
 
               {/* Skenario 2: constraint_exclusion */}
-              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', marginBottom: '14px' }}>
+              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', marginBottom: '14px' }}>
                 <p style={{ color: '#a78bfa', fontWeight: 'bold', marginBottom: '12px' }}>📌 Skenario 2: constraint_exclusion untuk legacy partisi manual</p>
                 <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '10px', borderRadius: '4px', margin: '0 0 12px 0', overflow: 'auto' }}>
 {`-- PostgreSQL lama (pre-10) atau tabel inheritance manual:
@@ -1052,7 +1052,7 @@ EXPLAIN SELECT * FROM orders WHERE order_date = '2024-06-15';
               </div>
 
               {/* Skenario 3: CHECK tambahan untuk validasi bisnis */}
-              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', marginBottom: '14px' }}>
+              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', marginBottom: '14px' }}>
                 <p style={{ color: '#38bdf8', fontWeight: 'bold', marginBottom: '12px' }}>📌 Skenario 3: CHECK bisnis di partisi (di luar partition key)</p>
                 <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '10px', borderRadius: '4px', margin: 0, overflow: 'auto' }}>
 {`-- CHECK di parent: otomatis diwariskan ke semua partisi
@@ -1089,7 +1089,7 @@ ALTER TABLE order_items_2026_q1
               </div>
 
               {/* Investigasi */}
-              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', marginBottom: '14px' }}>
+              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', marginBottom: '14px' }}>
                 <p style={{ color: '#f87171', fontWeight: 'bold', marginBottom: '12px' }}>🔍 Investigasi CHECK Constraints pada Partisi</p>
                 <pre style={{ background: 'rgba(0,0,0,0.2)', padding: '10px', borderRadius: '4px', margin: 0, overflow: 'auto' }}>
 {`-- Lihat semua constraint di tabel (termasuk partisi)
@@ -1133,9 +1133,9 @@ WHERE relname = 'orders';`}
 
               {/* Ringkasan */}
               <div style={{ background: 'rgba(74,222,128,0.1)', border: '1px solid rgba(74,222,128,0.3)', borderRadius: '8px', padding: '14px 16px' }}>
-                <p style={{ color: '#4ade80', fontWeight: 'bold', fontSize: '12px', marginBottom: '10px' }}>✅ Ringkasan — Kapan Pakai CHECK di Partisi</p>
+                <p style={{ color: '#4ade80', fontWeight: 'bold', fontSize: '16px', marginBottom: '10px' }}>✅ Ringkasan — Kapan Pakai CHECK di Partisi</p>
                 <div style={{ overflowX: 'auto' }}>
-                  <table style={{ width: '100%', color: '#a0c8ff', fontSize: '11px', borderCollapse: 'collapse' }}>
+                  <table style={{ width: '100%', color: '#a0c8ff', fontSize: '15px', borderCollapse: 'collapse' }}>
                     <tbody>
                       <tr style={{ borderBottom: '1px solid rgba(74,222,128,0.3)' }}>
                         {['Kondisi', 'Perlu CHECK?', 'Cara'].map((h, i) => (
@@ -1153,7 +1153,7 @@ WHERE relname = 'orders';`}
                         <tr key={i} style={{ borderBottom: '1px solid rgba(100,200,255,0.08)' }}>
                           <td style={{ padding: '6px 8px' }}>{row[0]}</td>
                           <td style={{ padding: '6px 8px', color: row[1] === 'Wajib' ? '#f87171' : row[1] === 'Tidak perlu' ? '#4ade80' : '#fbbf24' }}>{row[1]}</td>
-                          <td style={{ padding: '6px 8px', color: '#708090', fontSize: '10px' }}>{row[2]}</td>
+                          <td style={{ padding: '6px 8px', color: '#708090', fontSize: '14px' }}>{row[2]}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -1181,10 +1181,10 @@ WHERE relname = 'orders';`}
       {/* Header */}
       <header style={{ borderBottom: '1px solid rgba(100, 200, 255, 0.2)', background: 'rgba(15, 20, 25, 0.8)' }}>
         <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '40px 24px' }}>
-          <h1 style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '8px', color: '#e0f2ff' }}>
+          <h1 style={{ fontSize: '36px', fontWeight: 'bold', marginBottom: '8px', color: '#e0f2ff' }}>
             Data Partitioning 📊
           </h1>
-          <p style={{ color: '#a0c8ff', fontSize: '16px' }}>
+          <p style={{ color: '#a0c8ff', fontSize: '20px' }}>
             Master table partitioning untuk massive scalability dan performance optimization
           </p>
         </div>
@@ -1201,7 +1201,7 @@ WHERE relname = 'orders';`}
                 padding: '12px 16px',
                 fontWeight: '500',
                 whiteSpace: 'nowrap',
-                fontSize: '13px',
+                fontSize: '17px',
                 border: 'none',
                 background: 'transparent',
                 cursor: 'pointer',
@@ -1221,10 +1221,10 @@ WHERE relname = 'orders';`}
 
       {/* Footer */}
       <footer style={{ background: 'rgba(15, 20, 25, 0.5)', borderTop: '1px solid rgba(100, 200, 255, 0.2)', marginTop: '60px', padding: '40px 0', textAlign: 'center' }}>
-        <p style={{ color: '#708090', fontSize: '14px', marginBottom: '8px' }}>
+        <p style={{ color: '#708090', fontSize: '18px', marginBottom: '8px' }}>
           📊 Partitioning = Scalability & Performance for Billion-Row Tables
         </p>
-        <p style={{ color: '#708090', fontSize: '14px' }}>
+        <p style={{ color: '#708090', fontSize: '18px' }}>
           💡 Tip: Partition early, scale indefinitely! 🚀
         </p>
       </footer>

@@ -1,47 +1,119 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 const tabs = [
-  { id: 'ddl',        label: '🏗️ DDL',           desc: 'CREATE, ALTER, DROP, TRUNCATE' },
-  { id: 'dml',        label: '✏️ DML',            desc: 'INSERT, UPDATE, DELETE, MERGE' },
-  { id: 'select',     label: '🔍 SELECT',          desc: 'Query & filtering' },
-  { id: 'joins',      label: '🔗 JOINs',           desc: 'INNER, LEFT, RIGHT, FULL, CROSS' },
-  { id: 'aggregate',  label: '📊 Aggregate',       desc: 'GROUP BY, HAVING, window functions' },
-  { id: 'subquery',   label: '📦 Subquery & CTE',  desc: 'WITH, EXISTS, IN, lateral' },
-  { id: 'indexes',    label: '⚡ Indexes',          desc: 'CREATE INDEX, EXPLAIN' },
-  { id: 'constraints',label: '🔒 Constraints',     desc: 'PK, FK, UNIQUE, CHECK' },
-  { id: 'transactions',label:'💳 Transactions',    desc: 'BEGIN, COMMIT, ROLLBACK, SAVEPOINT' },
-  { id: 'functions',  label: '⚙️ Functions',        desc: 'CREATE FUNCTION, PL/pgSQL' },
-  { id: 'json',       label: '📄 JSON/JSONB',       desc: 'Operator & fungsi JSON' },
-  { id: 'advanced',   label: '🚀 Advanced',         desc: 'COPY, LISTEN/NOTIFY, LATERAL, DISTINCT ON' },
-  { id: 'roles',      label: '👤 Users & Roles',    desc: 'CREATE ROLE, GRANT, pg_hba.conf' },
-]
+  { id: "ddl", label: "🏗️ DDL", desc: "CREATE, ALTER, DROP, TRUNCATE" },
+  { id: "dml", label: "✏️ DML", desc: "INSERT, UPDATE, DELETE, MERGE" },
+  { id: "select", label: "🔍 SELECT", desc: "Query & filtering" },
+  { id: "joins", label: "🔗 JOINs", desc: "INNER, LEFT, RIGHT, FULL, CROSS" },
+  {
+    id: "aggregate",
+    label: "📊 Aggregate",
+    desc: "GROUP BY, HAVING, window functions",
+  },
+  {
+    id: "subquery",
+    label: "📦 Subquery & CTE",
+    desc: "WITH, EXISTS, IN, lateral",
+  },
+  { id: "indexes", label: "⚡ Indexes", desc: "CREATE INDEX, EXPLAIN" },
+  { id: "constraints", label: "🔒 Constraints", desc: "PK, FK, UNIQUE, CHECK" },
+  {
+    id: "transactions",
+    label: "💳 Transactions",
+    desc: "BEGIN, COMMIT, ROLLBACK, SAVEPOINT",
+  },
+  { id: "functions", label: "⚙️ Functions", desc: "CREATE FUNCTION, PL/pgSQL" },
+  { id: "json", label: "📄 JSON/JSONB", desc: "Operator & fungsi JSON" },
+  {
+    id: "advanced",
+    label: "🚀 Advanced",
+    desc: "COPY, LISTEN/NOTIFY, LATERAL, DISTINCT ON",
+  },
+  {
+    id: "roles",
+    label: "👤 Users & Roles",
+    desc: "CREATE ROLE, GRANT, pg_hba.conf",
+  },
+  {
+    id: "queryexec",
+    label: "⚙️ Query Execution",
+    desc: "Bagaimana query dijalankan di PostgreSQL",
+  },
+];
 
-const Block = ({ title, color = '#64c8ff', children }) => (
-  <div style={{ background: `${color}0d`, border: `1px solid ${color}33`, borderRadius: '8px', padding: '14px 16px', marginBottom: '14px' }}>
-    <p style={{ color, fontWeight: 'bold', fontSize: '12px', marginBottom: '10px' }}>{title}</p>
+const Block = ({ title, color = "#64c8ff", children }) => (
+  <div
+    style={{
+      background: `${color}0d`,
+      border: `1px solid ${color}33`,
+      borderRadius: "8px",
+      padding: "14px 16px",
+      marginBottom: "14px",
+    }}
+  >
+    <p
+      style={{
+        color,
+        fontWeight: "bold",
+        fontSize: "12px",
+        marginBottom: "10px",
+      }}
+    >
+      {title}
+    </p>
     {children}
   </div>
-)
+);
 
-const Code = ({ children, color = '#a0c8ff' }) => (
-  <pre style={{ background: 'rgba(0,0,0,0.35)', padding: '12px', borderRadius: '6px', fontFamily: 'monospace', fontSize: '11px', color, overflow: 'auto', lineHeight: '1.85', margin: 0 }}>
+const Code = ({ children, color = "#a0c8ff" }) => (
+  <pre
+    style={{
+      background: "rgba(0,0,0,0.35)",
+      padding: "12px",
+      borderRadius: "6px",
+      fontFamily: "monospace",
+      fontSize: "11px",
+      color,
+      overflow: "auto",
+      lineHeight: "1.85",
+      margin: 0,
+    }}
+  >
     {children}
   </pre>
-)
+);
 
 const Note = ({ children }) => (
-  <p style={{ color: '#708090', fontSize: '11px', marginTop: '8px', lineHeight: '1.7' }}>{children}</p>
-)
+  <p
+    style={{
+      color: "#708090",
+      fontSize: "11px",
+      marginTop: "8px",
+      lineHeight: "1.7",
+    }}
+  >
+    {children}
+  </p>
+);
 
 // ─── TAB CONTENT ───────────────────────────────────────────────────────────────
 
 const DDL = () => (
   <div>
-    <h3 style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '16px', marginBottom: '16px' }}>DDL — Data Definition Language</h3>
+    <h3
+      style={{
+        color: "#64c8ff",
+        fontWeight: "bold",
+        fontSize: "16px",
+        marginBottom: "16px",
+      }}
+    >
+      DDL — Data Definition Language
+    </h3>
 
     <Block title="CREATE TABLE — Membuat tabel baru" color="#64c8ff">
       <Code>
-{`CREATE TABLE employees (
+        {`CREATE TABLE employees (
   -- Kolom dengan tipe data
   id          BIGSERIAL       PRIMARY KEY,          -- auto-increment 64-bit
   name        VARCHAR(100)    NOT NULL,
@@ -75,7 +147,7 @@ CREATE TABLE products (
 
     <Block title="ALTER TABLE — Modifikasi struktur tabel" color="#4ade80">
       <Code>
-{`-- Tambah kolom
+        {`-- Tambah kolom
 ALTER TABLE employees ADD COLUMN phone VARCHAR(20);
 ALTER TABLE employees ADD COLUMN bio TEXT DEFAULT '';
 
@@ -113,7 +185,7 @@ ALTER TABLE employees DROP CONSTRAINT IF EXISTS uq_email;`}
 
     <Block title="DROP & TRUNCATE — Hapus tabel / data" color="#f87171">
       <Code>
-{`-- Drop tabel
+        {`-- Drop tabel
 DROP TABLE employees;
 DROP TABLE IF EXISTS employees;              -- aman, tidak error jika tidak ada
 DROP TABLE employees CASCADE;               -- ikut drop semua dependensi (views, FK, dll)
@@ -128,12 +200,15 @@ TRUNCATE TABLE employees RESTART IDENTITY; -- reset SERIAL/SEQUENCE ke 1
 TRUNCATE TABLE employees CASCADE;          -- truncate termasuk tabel yang FK ke sini
 TRUNCATE TABLE a, b, c;                    -- truncate multiple tabel sekaligus`}
       </Code>
-      <Note>TRUNCATE jauh lebih cepat dari DELETE untuk hapus semua baris — TRUNCATE tidak scan tiap baris.</Note>
+      <Note>
+        TRUNCATE jauh lebih cepat dari DELETE untuk hapus semua baris — TRUNCATE
+        tidak scan tiap baris.
+      </Note>
     </Block>
 
     <Block title="CREATE / DROP SCHEMA, DATABASE, SEQUENCE" color="#a78bfa">
       <Code>
-{`-- Schema
+        {`-- Schema
 CREATE SCHEMA analytics;
 CREATE SCHEMA IF NOT EXISTS reports;
 DROP SCHEMA analytics CASCADE;
@@ -170,15 +245,24 @@ REFRESH MATERIALIZED VIEW CONCURRENTLY monthly_revenue; -- tanpa lock read`}
       </Code>
     </Block>
   </div>
-)
+);
 
 const DML = () => (
   <div>
-    <h3 style={{ color: '#4ade80', fontWeight: 'bold', fontSize: '16px', marginBottom: '16px' }}>DML — Data Manipulation Language</h3>
+    <h3
+      style={{
+        color: "#4ade80",
+        fontWeight: "bold",
+        fontSize: "16px",
+        marginBottom: "16px",
+      }}
+    >
+      DML — Data Manipulation Language
+    </h3>
 
     <Block title="INSERT — Memasukkan data" color="#4ade80">
       <Code>
-{`-- Insert satu baris
+        {`-- Insert satu baris
 INSERT INTO employees (name, email, department, salary)
 VALUES ('Budi Santoso', 'budi@company.com', 'Engineering', 8000000);
 
@@ -216,7 +300,7 @@ WHERE is_active = FALSE;`}
 
     <Block title="UPDATE — Mengubah data" color="#fbbf24">
       <Code>
-{`-- Update semua baris (HATI-HATI: tanpa WHERE = semua baris!)
+        {`-- Update semua baris (HATI-HATI: tanpa WHERE = semua baris!)
 UPDATE employees SET is_active = FALSE;  -- ⚠️ berbahaya tanpa WHERE
 
 -- Update dengan WHERE
@@ -258,7 +342,7 @@ WHERE category = 'Electronics';`}
 
     <Block title="DELETE — Menghapus data" color="#f87171">
       <Code>
-{`-- Delete dengan kondisi
+        {`-- Delete dengan kondisi
 DELETE FROM employees WHERE is_active = FALSE;
 DELETE FROM logs WHERE created_at < NOW() - INTERVAL '90 days';
 
@@ -281,7 +365,7 @@ DELETE FROM temp_data;`}
 
     <Block title="MERGE (PostgreSQL 15+) — Upsert kompleks" color="#a78bfa">
       <Code>
-{`-- MERGE: INSERT, UPDATE, atau DELETE dalam satu statement
+        {`-- MERGE: INSERT, UPDATE, atau DELETE dalam satu statement
 MERGE INTO employees AS target
 USING new_employees AS source
 ON target.email = source.email
@@ -296,18 +380,30 @@ WHEN NOT MATCHED THEN
   INSERT (name, email, department, salary)
   VALUES (source.name, source.email, source.department, source.salary);`}
       </Code>
-      <Note>MERGE tersedia sejak PostgreSQL 15. Untuk versi lebih lama, gunakan INSERT ... ON CONFLICT.</Note>
+      <Note>
+        MERGE tersedia sejak PostgreSQL 15. Untuk versi lebih lama, gunakan
+        INSERT ... ON CONFLICT.
+      </Note>
     </Block>
   </div>
-)
+);
 
 const SelectTab = () => (
   <div>
-    <h3 style={{ color: '#38bdf8', fontWeight: 'bold', fontSize: '16px', marginBottom: '16px' }}>SELECT — Query & Filtering</h3>
+    <h3
+      style={{
+        color: "#38bdf8",
+        fontWeight: "bold",
+        fontSize: "16px",
+        marginBottom: "16px",
+      }}
+    >
+      SELECT — Query & Filtering
+    </h3>
 
     <Block title="Struktur lengkap SELECT" color="#38bdf8">
       <Code>
-{`-- Urutan klausa SELECT (harus ditulis dalam urutan ini):
+        {`-- Urutan klausa SELECT (harus ditulis dalam urutan ini):
 SELECT   [DISTINCT] kolom1, kolom2, ekspresi  -- 1. kolom yang diambil
 FROM     tabel                                 -- 2. sumber data
 JOIN     tabel2 ON kondisi                     -- 3. gabungkan tabel
@@ -322,7 +418,7 @@ OFFSET   n;                                    -- 9. lewati n baris pertama`}
 
     <Block title="WHERE — Filter baris" color="#4ade80">
       <Code>
-{`-- Perbandingan dasar
+        {`-- Perbandingan dasar
 SELECT * FROM employees WHERE salary > 5000000;
 SELECT * FROM employees WHERE department = 'Engineering';
 SELECT * FROM employees WHERE salary BETWEEN 5000000 AND 10000000;
@@ -360,7 +456,7 @@ SELECT * FROM employees WHERE salary > ALL(SELECT salary FROM employees WHERE de
 
     <Block title="ORDER BY, LIMIT, OFFSET" color="#fbbf24">
       <Code>
-{`-- Sorting
+        {`-- Sorting
 SELECT * FROM employees ORDER BY salary DESC;
 SELECT * FROM employees ORDER BY department ASC, salary DESC;
 SELECT * FROM employees ORDER BY hire_date DESC NULLS LAST;
@@ -388,7 +484,7 @@ ORDER BY department, salary DESC;  -- pilih yang salary tertinggi per department
 
     <Block title="Ekspresi & fungsi dalam SELECT" color="#a78bfa">
       <Code>
-{`-- Alias kolom
+        {`-- Alias kolom
 SELECT name AS employee_name,
        salary AS monthly_salary,
        salary * 12 AS annual_salary
@@ -435,15 +531,24 @@ FROM employees;`}
       </Code>
     </Block>
   </div>
-)
+);
 
 const Joins = () => (
   <div>
-    <h3 style={{ color: '#fb923c', fontWeight: 'bold', fontSize: '16px', marginBottom: '16px' }}>JOINs — Menggabungkan Tabel</h3>
+    <h3
+      style={{
+        color: "#fb923c",
+        fontWeight: "bold",
+        fontSize: "16px",
+        marginBottom: "16px",
+      }}
+    >
+      JOINs — Menggabungkan Tabel
+    </h3>
 
     <Block title="Jenis-jenis JOIN" color="#fb923c">
       <Code>
-{`-- Setup contoh
+        {`-- Setup contoh
 -- employees: id, name, department_id
 -- departments: id, name, manager_id
 
@@ -485,7 +590,7 @@ LEFT JOIN employees m ON e.manager_id = m.id;`}
 
     <Block title="Multiple JOINs & kondisi kompleks" color="#4ade80">
       <Code>
-{`-- Chain beberapa JOIN
+        {`-- Chain beberapa JOIN
 SELECT
   e.name,
   d.name  AS department,
@@ -523,7 +628,7 @@ SELECT * FROM employees NATURAL JOIN departments;`}
 
     <Block title="LATERAL JOIN — subquery per baris" color="#a78bfa">
       <Code>
-{`-- LATERAL: jalankan subquery untuk setiap baris dari tabel kiri
+        {`-- LATERAL: jalankan subquery untuk setiap baris dari tabel kiri
 SELECT d.name AS department,
        top3.name AS top_earner,
        top3.salary
@@ -541,15 +646,24 @@ CROSS JOIN LATERAL (
       </Code>
     </Block>
   </div>
-)
+);
 
 const Aggregate = () => (
   <div>
-    <h3 style={{ color: '#e879f9', fontWeight: 'bold', fontSize: '16px', marginBottom: '16px' }}>Aggregate, GROUP BY & Window Functions</h3>
+    <h3
+      style={{
+        color: "#e879f9",
+        fontWeight: "bold",
+        fontSize: "16px",
+        marginBottom: "16px",
+      }}
+    >
+      Aggregate, GROUP BY & Window Functions
+    </h3>
 
     <Block title="Fungsi Agregat Dasar" color="#e879f9">
       <Code>
-{`-- Fungsi agregat standar
+        {`-- Fungsi agregat standar
 SELECT
   COUNT(*)                  AS total_rows,
   COUNT(department)         AS non_null_dept,
@@ -602,7 +716,7 @@ GROUP BY GROUPING SETS (
 
     <Block title="Window Functions — Agregat tanpa GROUP BY" color="#38bdf8">
       <Code>
-{`-- Sintaks: fungsi() OVER (PARTITION BY ... ORDER BY ... ROWS/RANGE ...)
+        {`-- Sintaks: fungsi() OVER (PARTITION BY ... ORDER BY ... ROWS/RANGE ...)
 
 -- ROW_NUMBER, RANK, DENSE_RANK
 SELECT name, department, salary,
@@ -657,7 +771,7 @@ WHERE rn <= 3;  -- top 3 tertinggi per departemen`}
 
     <Block title="FILTER — Kondisi dalam agregat" color="#fbbf24">
       <Code>
-{`-- FILTER: agregat hanya baris yang memenuhi kondisi
+        {`-- FILTER: agregat hanya baris yang memenuhi kondisi
 SELECT
   COUNT(*)                               AS total,
   COUNT(*) FILTER (WHERE is_active)      AS active,
@@ -667,15 +781,24 @@ FROM employees;`}
       </Code>
     </Block>
   </div>
-)
+);
 
 const Subquery = () => (
   <div>
-    <h3 style={{ color: '#34d399', fontWeight: 'bold', fontSize: '16px', marginBottom: '16px' }}>Subquery & CTE (Common Table Expressions)</h3>
+    <h3
+      style={{
+        color: "#34d399",
+        fontWeight: "bold",
+        fontSize: "16px",
+        marginBottom: "16px",
+      }}
+    >
+      Subquery & CTE (Common Table Expressions)
+    </h3>
 
     <Block title="Subquery — Query dalam query" color="#34d399">
       <Code>
-{`-- Subquery di WHERE
+        {`-- Subquery di WHERE
 SELECT name, salary FROM employees
 WHERE salary > (SELECT AVG(salary) FROM employees);
 
@@ -723,9 +846,12 @@ WHERE salary > ALL (
       </Code>
     </Block>
 
-    <Block title="CTE (WITH) — Named subquery yang bisa dipakai ulang" color="#64c8ff">
+    <Block
+      title="CTE (WITH) — Named subquery yang bisa dipakai ulang"
+      color="#64c8ff"
+    >
       <Code>
-{`-- CTE dasar
+        {`-- CTE dasar
 WITH high_earners AS (
   SELECT id, name, salary, department
   FROM employees
@@ -779,9 +905,12 @@ SELECT DISTINCT id FROM reachable;`}
       </Code>
     </Block>
 
-    <Block title="CTE Writable — INSERT/UPDATE/DELETE dalam CTE" color="#fbbf24">
+    <Block
+      title="CTE Writable — INSERT/UPDATE/DELETE dalam CTE"
+      color="#fbbf24"
+    >
       <Code>
-{`-- DELETE dan INSERT dalam satu statement (move data)
+        {`-- DELETE dan INSERT dalam satu statement (move data)
 WITH deleted AS (
   DELETE FROM employees
   WHERE is_active = FALSE
@@ -802,15 +931,24 @@ SELECT name, salary AS new_salary FROM updated;`}
       </Code>
     </Block>
   </div>
-)
+);
 
 const Indexes = () => (
   <div>
-    <h3 style={{ color: '#fb923c', fontWeight: 'bold', fontSize: '16px', marginBottom: '16px' }}>Indexes — Strategi & EXPLAIN</h3>
+    <h3
+      style={{
+        color: "#fb923c",
+        fontWeight: "bold",
+        fontSize: "16px",
+        marginBottom: "16px",
+      }}
+    >
+      Indexes — Strategi & EXPLAIN
+    </h3>
 
     <Block title="CREATE INDEX" color="#fb923c">
       <Code>
-{`-- Index B-Tree (default)
+        {`-- Index B-Tree (default)
 CREATE INDEX idx_employees_email    ON employees (email);
 CREATE INDEX idx_employees_dept_sal ON employees (department, salary DESC);
 
@@ -850,7 +988,7 @@ DROP INDEX CONCURRENTLY idx_orders_user_id;`}
 
     <Block title="EXPLAIN ANALYZE — Membaca query plan" color="#64c8ff">
       <Code>
-{`-- Lihat query plan (tanpa eksekusi)
+        {`-- Lihat query plan (tanpa eksekusi)
 EXPLAIN SELECT * FROM employees WHERE email = 'budi@company.com';
 
 -- Lihat plan + eksekusi nyata (waktu, rows aktual)
@@ -878,12 +1016,15 @@ WHERE e.salary > 8000000;
 -- Nested Loop    → join baris per baris (bagus untuk satu sisi kecil)
 -- Merge Join     → join data sudah terurut`}
       </Code>
-      <Note>Perhatikan cost=X..Y (perkiraan) vs actual time=X..Y (nyata). Jika selisih besar, statistik tabel mungkin perlu di-ANALYZE.</Note>
+      <Note>
+        Perhatikan cost=X..Y (perkiraan) vs actual time=X..Y (nyata). Jika
+        selisih besar, statistik tabel mungkin perlu di-ANALYZE.
+      </Note>
     </Block>
 
     <Block title="Query optimization tips" color="#4ade80">
       <Code>
-{`-- Update statistik tabel
+        {`-- Update statistik tabel
 ANALYZE employees;
 ANALYZE;          -- semua tabel
 
@@ -910,15 +1051,24 @@ SET enable_seqscan = ON;     -- kembalikan normal`}
       </Code>
     </Block>
   </div>
-)
+);
 
 const Constraints = () => (
   <div>
-    <h3 style={{ color: '#f87171', fontWeight: 'bold', fontSize: '16px', marginBottom: '16px' }}>Constraints — Integritas Data</h3>
+    <h3
+      style={{
+        color: "#f87171",
+        fontWeight: "bold",
+        fontSize: "16px",
+        marginBottom: "16px",
+      }}
+    >
+      Constraints — Integritas Data
+    </h3>
 
     <Block title="PRIMARY KEY, UNIQUE, NOT NULL" color="#f87171">
       <Code>
-{`CREATE TABLE orders (
+        {`CREATE TABLE orders (
   -- NOT NULL
   id          BIGSERIAL NOT NULL,
   user_id     BIGINT    NOT NULL,
@@ -953,7 +1103,7 @@ CREATE TABLE events (
 
     <Block title="FOREIGN KEY — Relasi antar tabel" color="#fbbf24">
       <Code>
-{`CREATE TABLE order_items (
+        {`CREATE TABLE order_items (
   id         BIGSERIAL PRIMARY KEY,
   order_id   BIGINT NOT NULL,
   product_id BIGINT NOT NULL,
@@ -991,7 +1141,7 @@ SET session_replication_role = 'origin';   -- kembalikan`}
 
     <Block title="CHECK — Validasi nilai kolom" color="#a78bfa">
       <Code>
-{`CREATE TABLE products (
+        {`CREATE TABLE products (
   id       SERIAL PRIMARY KEY,
   name     TEXT NOT NULL,
   price    NUMERIC CHECK (price >= 0),
@@ -1018,7 +1168,7 @@ ALTER TABLE users
 
     <Block title="EXCLUDE — Constraint tidak overlap" color="#38bdf8">
       <Code>
-{`-- EXCLUDE: tidak boleh ada dua baris yang kondisinya conflict
+        {`-- EXCLUDE: tidak boleh ada dua baris yang kondisinya conflict
 -- Butuh extension btree_gist untuk tipe non-range
 CREATE EXTENSION IF NOT EXISTS btree_gist;
 
@@ -1036,15 +1186,24 @@ INSERT INTO room_bookings VALUES (1, '[2026-01-03, 2026-01-07)');  -- ERROR!`}
       </Code>
     </Block>
   </div>
-)
+);
 
 const Transactions = () => (
   <div>
-    <h3 style={{ color: '#4ade80', fontWeight: 'bold', fontSize: '16px', marginBottom: '16px' }}>Transactions — BEGIN, COMMIT, ROLLBACK, SAVEPOINT</h3>
+    <h3
+      style={{
+        color: "#4ade80",
+        fontWeight: "bold",
+        fontSize: "16px",
+        marginBottom: "16px",
+      }}
+    >
+      Transactions — BEGIN, COMMIT, ROLLBACK, SAVEPOINT
+    </h3>
 
     <Block title="Transaction dasar" color="#4ade80">
       <Code>
-{`-- Mulai transaksi eksplisit
+        {`-- Mulai transaksi eksplisit
 BEGIN;
 -- atau: START TRANSACTION;
 
@@ -1061,7 +1220,7 @@ SELECT current_setting('transaction_isolation');`}
 
     <Block title="SAVEPOINT — Checkpoint dalam transaksi" color="#fbbf24">
       <Code>
-{`BEGIN;
+        {`BEGIN;
   INSERT INTO orders (user_id, total) VALUES (1, 100000);
 
   SAVEPOINT setelah_order;   -- buat checkpoint
@@ -1081,7 +1240,7 @@ COMMIT;`}
 
     <Block title="Isolation Level" color="#a78bfa">
       <Code>
-{`-- Set isolation level untuk transaksi ini
+        {`-- Set isolation level untuk transaksi ini
 BEGIN TRANSACTION ISOLATION LEVEL SERIALIZABLE;
 BEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ;
 BEGIN TRANSACTION ISOLATION LEVEL READ COMMITTED;  -- default PostgreSQL
@@ -1116,7 +1275,7 @@ SELECT * FROM accounts WHERE id = 1 FOR UPDATE NOWAIT; -- error jika tidak bisa 
 
     <Block title="Advisory Locks — Lock aplikasi" color="#f87171">
       <Code>
-{`-- Advisory lock: lock bebas pakai yang dikontrol aplikasi
+        {`-- Advisory lock: lock bebas pakai yang dikontrol aplikasi
 -- Berguna untuk mutex/semaphore level aplikasi
 
 -- Session-level lock (sampai session berakhir atau unlock eksplisit)
@@ -1135,15 +1294,24 @@ SELECT pg_try_advisory_lock(99);   -- return true/false`}
       </Code>
     </Block>
   </div>
-)
+);
 
 const Functions = () => (
   <div>
-    <h3 style={{ color: '#a78bfa', fontWeight: 'bold', fontSize: '16px', marginBottom: '16px' }}>Functions & PL/pgSQL</h3>
+    <h3
+      style={{
+        color: "#a78bfa",
+        fontWeight: "bold",
+        fontSize: "16px",
+        marginBottom: "16px",
+      }}
+    >
+      Functions & PL/pgSQL
+    </h3>
 
     <Block title="CREATE FUNCTION — SQL function" color="#a78bfa">
       <Code>
-{`-- SQL function sederhana
+        {`-- SQL function sederhana
 CREATE OR REPLACE FUNCTION get_full_name(first TEXT, last TEXT)
 RETURNS TEXT AS $$
   SELECT first || ' ' || last;
@@ -1169,7 +1337,7 @@ SELECT * FROM get_active_employees();  -- semua dept`}
 
     <Block title="PL/pgSQL — Procedural language" color="#64c8ff">
       <Code>
-{`-- PL/pgSQL dengan IF, LOOP, variabel
+        {`-- PL/pgSQL dengan IF, LOOP, variabel
 CREATE OR REPLACE FUNCTION transfer_balance(
   from_id  BIGINT,
   to_id    BIGINT,
@@ -1210,7 +1378,7 @@ SELECT transfer_balance(1, 2, 500000);`}
 
     <Block title="LOOP, FOR, WHILE dalam PL/pgSQL" color="#4ade80">
       <Code>
-{`CREATE OR REPLACE FUNCTION generate_report(start_date DATE, end_date DATE)
+        {`CREATE OR REPLACE FUNCTION generate_report(start_date DATE, end_date DATE)
 RETURNS TEXT AS $$
 DECLARE
   rec        RECORD;
@@ -1249,7 +1417,7 @@ $$ LANGUAGE plpgsql;`}
 
     <Block title="TRIGGER — Otomatis saat data berubah" color="#fbbf24">
       <Code>
-{`-- Trigger function
+        {`-- Trigger function
 CREATE OR REPLACE FUNCTION set_updated_at()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -1293,15 +1461,24 @@ DROP TRIGGER IF EXISTS trg_employees_audit ON employees;`}
       </Code>
     </Block>
   </div>
-)
+);
 
 const Json = () => (
   <div>
-    <h3 style={{ color: '#38bdf8', fontWeight: 'bold', fontSize: '16px', marginBottom: '16px' }}>JSON / JSONB — Operator & Fungsi</h3>
+    <h3
+      style={{
+        color: "#38bdf8",
+        fontWeight: "bold",
+        fontSize: "16px",
+        marginBottom: "16px",
+      }}
+    >
+      JSON / JSONB — Operator & Fungsi
+    </h3>
 
     <Block title="Operator dasar JSON/JSONB" color="#38bdf8">
       <Code>
-{`-- Contoh kolom: metadata JSONB
+        {`-- Contoh kolom: metadata JSONB
 -- Data: {"role": "admin", "tags": ["pg", "dba"], "address": {"city": "Jakarta"}}
 
 -- -> : ambil field, return JSONB
@@ -1340,7 +1517,7 @@ SELECT * FROM users WHERE metadata ?& ARRAY['role', 'tags'];`}
 
     <Block title="Fungsi JSONB" color="#4ade80">
       <Code>
-{`-- jsonb_set — update nilai dalam JSONB
+        {`-- jsonb_set — update nilai dalam JSONB
 UPDATE users
 SET metadata = jsonb_set(metadata, '{role}', '"superadmin"')
 WHERE id = 1;
@@ -1395,7 +1572,7 @@ SELECT jsonb_agg(name ORDER BY name) FROM employees;  -- aggregate ke JSON array
 
     <Block title="Index JSONB & Full-Text Search" color="#fbbf24">
       <Code>
-{`-- GIN index untuk operator @>, ?, ?|, ?&
+        {`-- GIN index untuk operator @>, ?, ?|, ?&
 CREATE INDEX idx_users_metadata ON users USING GIN (metadata);
 
 -- GIN index untuk path tertentu (lebih kecil)
@@ -1421,15 +1598,24 @@ ORDER BY rank DESC;`}
       </Code>
     </Block>
   </div>
-)
+);
 
 const Advanced = () => (
   <div>
-    <h3 style={{ color: '#e879f9', fontWeight: 'bold', fontSize: '16px', marginBottom: '16px' }}>Advanced SQL — COPY, Array, LISTEN/NOTIFY, dan lainnya</h3>
+    <h3
+      style={{
+        color: "#e879f9",
+        fontWeight: "bold",
+        fontSize: "16px",
+        marginBottom: "16px",
+      }}
+    >
+      Advanced SQL — COPY, Array, LISTEN/NOTIFY, dan lainnya
+    </h3>
 
     <Block title="COPY — Import/Export data cepat" color="#e879f9">
       <Code>
-{`-- Export ke CSV
+        {`-- Export ke CSV
 COPY employees TO '/tmp/employees.csv' CSV HEADER DELIMITER ',';
 COPY employees TO '/tmp/employees.tsv' DELIMITER E'\t';
 
@@ -1452,7 +1638,7 @@ COPY employees FROM '/tmp/data.csv'
 
     <Block title="Array — Tipe data array PostgreSQL" color="#64c8ff">
       <Code>
-{`-- Deklarasi kolom array
+        {`-- Deklarasi kolom array
 CREATE TABLE articles (
   id     SERIAL PRIMARY KEY,
   title  TEXT,
@@ -1496,7 +1682,7 @@ SELECT array_agg(name ORDER BY salary DESC) FROM employees;`}
 
     <Block title="LISTEN / NOTIFY — Pub/Sub real-time" color="#4ade80">
       <Code>
-{`-- NOTIFY: kirim notifikasi ke channel
+        {`-- NOTIFY: kirim notifikasi ke channel
 NOTIFY order_updates, '{"order_id": 123, "status": "shipped"}';
 SELECT pg_notify('order_updates', json_build_object('id', 123, 'status', 'shipped')::TEXT);
 
@@ -1527,7 +1713,7 @@ UNLISTEN *;               -- berhenti semua`}
 
     <Block title="DISTINCT ON, RETURNING, GENERATE_SERIES" color="#fbbf24">
       <Code>
-{`-- DISTINCT ON (PostgreSQL-specific) — ambil satu baris per group
+        {`-- DISTINCT ON (PostgreSQL-specific) — ambil satu baris per group
 SELECT DISTINCT ON (department)
   department, name, salary
 FROM employees
@@ -1558,7 +1744,7 @@ SELECT * FROM (VALUES
 
     <Block title="Tipe data khusus PostgreSQL" color="#a78bfa">
       <Code>
-{`-- UUID
+        {`-- UUID
 CREATE TABLE sessions (
   id         UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   user_id    BIGINT NOT NULL,
@@ -1599,26 +1785,61 @@ ALTER TYPE order_status ADD VALUE 'refunded' AFTER 'delivered';`}
       </Code>
     </Block>
   </div>
-)
+);
 
 const Roles = () => (
   <div>
-    <h3 style={{ color: '#f97316', fontWeight: 'bold', fontSize: '16px', marginBottom: '16px' }}>Users, Groups & Roles — Manajemen Akses PostgreSQL</h3>
+    <h3
+      style={{
+        color: "#f97316",
+        fontWeight: "bold",
+        fontSize: "16px",
+        marginBottom: "16px",
+      }}
+    >
+      Users, Groups & Roles — Manajemen Akses PostgreSQL
+    </h3>
 
-    <div style={{ background: 'rgba(249,115,22,0.08)', border: '1px solid rgba(249,115,22,0.25)', borderRadius: '8px', padding: '14px 16px', marginBottom: '14px' }}>
-      <p style={{ color: '#f97316', fontWeight: 'bold', fontSize: '12px', marginBottom: '8px' }}>💡 Konsep Dasar</p>
-      <p style={{ color: '#a0c8ff', fontSize: '12px', lineHeight: '1.8' }}>
-        Di PostgreSQL, <strong>USER</strong> dan <strong>ROLE</strong> adalah hal yang sama — <code style={{ color: '#86efac', fontFamily: 'monospace' }}>CREATE USER</code> adalah alias
-        dari <code style={{ color: '#86efac', fontFamily: 'monospace' }}>CREATE ROLE ... LOGIN</code>. Role bisa berperan sebagai <em>user</em> (punya LOGIN)
-        maupun sebagai <em>group</em> (tidak punya LOGIN, hanya dipakai untuk kumpulkan privilege).
-        Alur akses: <strong>pg_hba.conf</strong> menentukan <em>siapa boleh konek dari mana</em>,
-        lalu <strong>GRANT</strong> menentukan <em>apa yang boleh dilakukan</em> setelah konek.
+    <div
+      style={{
+        background: "rgba(249,115,22,0.08)",
+        border: "1px solid rgba(249,115,22,0.25)",
+        borderRadius: "8px",
+        padding: "14px 16px",
+        marginBottom: "14px",
+      }}
+    >
+      <p
+        style={{
+          color: "#f97316",
+          fontWeight: "bold",
+          fontSize: "12px",
+          marginBottom: "8px",
+        }}
+      >
+        💡 Konsep Dasar
+      </p>
+      <p style={{ color: "#a0c8ff", fontSize: "12px", lineHeight: "1.8" }}>
+        Di PostgreSQL, <strong>USER</strong> dan <strong>ROLE</strong> adalah
+        hal yang sama —{" "}
+        <code style={{ color: "#86efac", fontFamily: "monospace" }}>
+          CREATE USER
+        </code>{" "}
+        adalah alias dari{" "}
+        <code style={{ color: "#86efac", fontFamily: "monospace" }}>
+          CREATE ROLE ... LOGIN
+        </code>
+        . Role bisa berperan sebagai <em>user</em> (punya LOGIN) maupun sebagai{" "}
+        <em>group</em> (tidak punya LOGIN, hanya dipakai untuk kumpulkan
+        privilege). Alur akses: <strong>pg_hba.conf</strong> menentukan{" "}
+        <em>siapa boleh konek dari mana</em>, lalu <strong>GRANT</strong>{" "}
+        menentukan <em>apa yang boleh dilakukan</em> setelah konek.
       </p>
     </div>
 
     <Block title="CREATE ROLE / USER — Buat user baru" color="#f97316">
       <Code>
-{`-- CREATE USER (alias: CREATE ROLE ... LOGIN)
+        {`-- CREATE USER (alias: CREATE ROLE ... LOGIN)
 CREATE USER appuser WITH PASSWORD 'secret123';
 
 -- CREATE ROLE tanpa login (group role)
@@ -1656,7 +1877,7 @@ ORDER BY rolname;
 
     <Block title="ALTER ROLE — Modifikasi user/role" color="#fbbf24">
       <Code>
-{`-- Ganti password
+        {`-- Ganti password
 ALTER ROLE appuser PASSWORD 'NewP@ss456';
 ALTER USER appuser WITH PASSWORD 'NewP@ss456';   -- sama saja
 
@@ -1688,7 +1909,7 @@ ALTER ROLE appuser RESET ALL;`}
 
     <Block title="GROUP ROLE — Kumpulkan privilege dalam grup" color="#4ade80">
       <Code>
-{`-- Buat group roles (tidak punya LOGIN)
+        {`-- Buat group roles (tidak punya LOGIN)
 CREATE ROLE role_readonly;
 CREATE ROLE role_readwrite;
 CREATE ROLE role_admin;
@@ -1732,7 +1953,7 @@ ORDER BY r.rolname, m.rolname;`}
 
     <Block title="GRANT — Berikan privilege ke object" color="#64c8ff">
       <Code>
-{`-- ─── DATABASE ───────────────────────────────────────────
+        {`-- ─── DATABASE ───────────────────────────────────────────
 GRANT CONNECT ON DATABASE appdb TO appuser;
 GRANT CREATE  ON DATABASE appdb TO developer;
 REVOKE CONNECT ON DATABASE appdb FROM PUBLIC;  -- cabut akses default semua user
@@ -1777,9 +1998,12 @@ REVOKE ALL ON ALL TABLES IN SCHEMA public FROM old_user;`}
       </Code>
     </Block>
 
-    <Block title="ROW LEVEL SECURITY (RLS) — Filter baris per user" color="#a78bfa">
+    <Block
+      title="ROW LEVEL SECURITY (RLS) — Filter baris per user"
+      color="#a78bfa"
+    >
       <Code>
-{`-- Aktifkan RLS pada tabel
+        {`-- Aktifkan RLS pada tabel
 ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
 ALTER TABLE orders FORCE ROW LEVEL SECURITY;   -- berlaku juga untuk owner tabel
 
@@ -1818,7 +2042,7 @@ WHERE schemaname = 'public';`}
 
     <Block title="DROP ROLE & Investigasi permission" color="#f87171">
       <Code>
-{`-- Drop role (harus revoke semua privilege dulu!)
+        {`-- Drop role (harus revoke semua privilege dulu!)
 REVOKE ALL ON ALL TABLES IN SCHEMA public FROM old_user;
 REVOKE ALL ON ALL SEQUENCES IN SCHEMA public FROM old_user;
 REVOKE ALL ON DATABASE appdb FROM old_user;
@@ -1856,9 +2080,12 @@ SELECT has_database_privilege('appuser', 'appdb', 'CONNECT');
       </Code>
     </Block>
 
-    <Block title="Kaitan dengan pg_hba.conf — Dua Lapis Keamanan" color="#38bdf8">
+    <Block
+      title="Kaitan dengan pg_hba.conf — Dua Lapis Keamanan"
+      color="#38bdf8"
+    >
       <Code>
-{`-- ══════════════════════════════════════════════════════════════
+        {`-- ══════════════════════════════════════════════════════════════
 -- LAPISAN 1: pg_hba.conf — "Siapa boleh konek dari mana?"
 -- ══════════════════════════════════════════════════════════════
 -- File: $PGDATA/pg_hba.conf
@@ -1907,12 +2134,16 @@ GRANT ALL ON DATABASE appdb TO dba_super;
 -- 5. PostgreSQL cek: apakah appuser punya SELECT pada tabel orders? → GRANT ada → OK ✅
 -- 6. Jika GRANT tidak ada → ERROR: permission denied for table orders`}
       </Code>
-      <Note>pg_hba.conf = penjaga pintu masuk (authentication). GRANT = penjaga di dalam (authorization). Keduanya HARUS dikonfigurasi dengan benar — lolos pg_hba.conf tidak otomatis bisa akses semua tabel.</Note>
+      <Note>
+        pg_hba.conf = penjaga pintu masuk (authentication). GRANT = penjaga di
+        dalam (authorization). Keduanya HARUS dikonfigurasi dengan benar — lolos
+        pg_hba.conf tidak otomatis bisa akses semua tabel.
+      </Note>
     </Block>
 
     <Block title="Contoh setup lengkap: Aplikasi production" color="#4ade80">
       <Code>
-{`-- ── STEP 1: Buat database & schema ──────────────────────────
+        {`-- ── STEP 1: Buat database & schema ──────────────────────────
 CREATE DATABASE appdb;
 \c appdb
 CREATE SCHEMA app;
@@ -1966,7 +2197,583 @@ SELECT pg_reload_conf();`}
       </Code>
     </Block>
   </div>
-)
+);
+
+// ─── STEP BOX untuk alur query execution ───────────────────────────────────
+const StepBox = ({ number, title, color, items, example }) => (
+  <div
+    style={{
+      background: `${color}0d`,
+      border: `1.5px solid ${color}40`,
+      borderRadius: "10px",
+      padding: "14px 16px",
+      marginBottom: "12px",
+    }}
+  >
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "10px",
+        marginBottom: "10px",
+      }}
+    >
+      <div
+        style={{
+          background: color,
+          color: "#0f1419",
+          fontWeight: "bold",
+          fontSize: "12px",
+          borderRadius: "50%",
+          width: "24px",
+          height: "24px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexShrink: 0,
+        }}
+      >
+        {number}
+      </div>
+      <p style={{ color, fontWeight: "bold", fontSize: "13px", margin: 0 }}>
+        {title}
+      </p>
+    </div>
+    {items && (
+      <ul style={{ margin: "0 0 8px 0", paddingLeft: "20px" }}>
+        {items.map((item, i) => (
+          <li
+            key={i}
+            style={{ color: "#a0c8ff", fontSize: "11px", lineHeight: "1.8" }}
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
+    )}
+    {example && (
+      <pre
+        style={{
+          background: "rgba(0,0,0,0.35)",
+          padding: "8px 12px",
+          borderRadius: "6px",
+          fontFamily: "monospace",
+          fontSize: "11px",
+          color: "#86efac",
+          margin: 0,
+          lineHeight: "1.7",
+        }}
+      >
+        {example}
+      </pre>
+    )}
+  </div>
+);
+
+const QueryExecution = () => (
+  <div>
+    <h3
+      style={{
+        color: "#64c8ff",
+        fontWeight: "bold",
+        fontSize: "16px",
+        marginBottom: "4px",
+      }}
+    >
+      Bagaimana Sebuah Query Dijalankan di PostgreSQL
+    </h3>
+    <p style={{ color: "#708090", fontSize: "12px", marginBottom: "20px" }}>
+      Dari saat kamu mengetik{" "}
+      <code style={{ color: "#86efac", fontFamily: "monospace" }}>
+        SELECT * FROM table1 WHERE id = 10;
+      </code>{" "}
+      hingga hasil dikembalikan ke client — inilah semua yang terjadi di balik
+      layar.
+    </p>
+    {/* ── ALUR UTAMA ─────────────────────────────────────────── */}
+    <div
+      style={{
+        background: "rgba(100,200,255,0.05)",
+        border: "1px solid rgba(100,200,255,0.2)",
+        borderRadius: "10px",
+        padding: "16px",
+        marginBottom: "20px",
+      }}
+    >
+      <p
+        style={{
+          color: "#64c8ff",
+          fontWeight: "bold",
+          fontSize: "12px",
+          marginBottom: "12px",
+        }}
+      >
+        Ringkasan Alur Lengkap
+      </p>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "6px",
+          alignItems: "center",
+        }}
+      >
+        {[
+          { label: "Client (Query)", color: "#64c8ff" },
+          { label: "Parser (Syntax Check)", color: "#4ade80" },
+          { label: "Rewriter (Rule)", color: "#fbbf24" },
+          { label: "Planner (Optimize)", color: "#a78bfa" },
+          { label: "Executor (Run Plan)", color: "#f87171" },
+          { label: "Buffer Manager (Cache Page)", color: "#fbbf24" },
+          { label: "Storage (Page/Block)", color: "#38bdf8" },
+          { label: "WAL (If Write)", color: "#e879f9" },
+          { label: "Commit (Flush)", color: "#4ade80" },
+          { label: "Result ke Client", color: "#64c8ff" },
+        ].map((step, i, arr) => (
+          <React.Fragment key={i}>
+            <span
+              style={{
+                background: `${step.color}20`,
+                border: `1px solid ${step.color}50`,
+                color: step.color,
+                fontSize: "10px",
+                padding: "3px 8px",
+                borderRadius: "4px",
+                fontWeight: "500",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {step.label}
+            </span>
+            {i < arr.length - 1 && (
+              <span style={{ color: "#708090", fontSize: "12px" }}>→</span>
+            )}
+          </React.Fragment>
+        ))}
+      </div>
+    </div>
+    {/* placeholder to image from assets */}
+    <div style={{textAlign: 'center', margin: '20px', padding: '10px', background: 'white'}}>
+      <img src="src/assets/query-journey.png" style={{width: '900px'}}/>
+    </div>
+    {/* ── 10 LANGKAH ─────────────────────────────────────────── */}
+    <StepBox
+      number="1"
+      color="#64c8ff"
+      title="Client — Kirim Query"
+      items={[
+        "psql / aplikasi mengirim string SQL melalui protocol PostgreSQL (libpq)",
+        "Query dikirim sebagai teks mentah ke backend process PostgreSQL",
+      ]}
+      example={`psql -h localhost -U appuser -d appdb\nSELECT * FROM table1 WHERE id = 10;`}
+    />
+    <StepBox
+      number="2"
+      color="#4ade80"
+      title="Parsing — Syntax & Semantic Check"
+      items={[
+        "Lexer & Parser: tokenisasi query menjadi Parse Tree",
+        "Membentuk Parse Tree dari token-token SQL",
+        "Validasi Syntax: apakah SQL valid secara grammar?",
+        "Validasi Semantic: apakah tabel/kolom ada? Type checking OK?",
+      ]}
+      example={`-- Jika syntax error:
+ERROR:  syntax error at or near "FORM"
+LINE 1: SELECT * FORM table1;
+
+-- Jika tabel tidak ada:
+ERROR:  relation "table1" does not exist`}
+    />
+    <StepBox
+      number="3"
+      color="#fbbf24"
+      title="Rewriting — Rule System"
+      items={[
+        "Query Rewriter mengaplikasikan rule yang ada (misalnya: VIEW expansion)",
+        "Expand View: query ke view diganti dengan query underlying-nya",
+        "Apply Rules: transformasi lain dari pg_rewrite",
+      ]}
+      example={`-- Query original ke view:
+SELECT * FROM my_view;
+
+-- Setelah rewrite (view expanded):
+SELECT * FROM underlying_table
+WHERE is_active = TRUE;`}
+    />
+    <StepBox
+      number="4"
+      color="#a78bfa"
+      title="Planning / Optimization — Query Planner"
+      items={[
+        "Cost-Based Optimizer: hitung estimasi cost tiap rencana eksekusi",
+        "Gunakan statistik dari pg_statistic (di-update oleh ANALYZE)",
+        "Pilih rencana termurah (lowest estimated cost)",
+        "Contoh pilihan plan: Seq Scan, Index Scan, Bitmap Heap Scan, Hash Join, Merge Join, Nested Loop",
+      ]}
+      example={`-- Lihat rencana yang dipilih planner:
+EXPLAIN SELECT * FROM table1 WHERE id = 10;
+
+-- Output:
+Index Scan using idx_id on table1
+  (cost=0.29..8.31 rows=1 width=120)
+  Index Cond: (id = 10)`}
+    />
+    <StepBox
+      number="5"
+      color="#f87171"
+      title="Execution — Executor"
+      items={[
+        "Executor menjalankan Plan Tree node by node (iterator model)",
+        "Contoh alur Index Scan:",
+        "  1. Baca index page → temukan pointer (ctid) ke heap page",
+        "  2. Baca heap page yang berisi baris aktual",
+        "  3. Ambil row dari page",
+        "  4. Cek Visibility (MVCC): apakah row ini visible untuk transaksi ini?",
+      ]}
+      example={`-- MVCC Visibility Check:
+-- Setiap row punya: xmin (transaksi yang INSERT) & xmax (transaksi yang DELETE/UPDATE)
+-- Row visible jika: xmin sudah commit & xmax belum commit (atau tidak ada)
+
+-- Cek snapshot transaksi saat ini:
+SELECT txid_current();
+SELECT * FROM pg_stat_activity WHERE state = 'active';`}
+    />
+    <StepBox
+      number="6"
+      color="#fbbf24"
+      title="Buffer Manager — Shared Buffers (Cache)"
+      items={[
+        "Sebelum baca dari disk, executor cek Shared Buffers (RAM cache) dulu",
+        "Page Hit: page sudah ada di Shared Buffers → langsung ambil (sangat cepat)",
+        "Page Miss: page belum di cache → minta Storage baca dari disk, lalu simpan ke Shared Buffers",
+        "Konfigurasi: shared_buffers (default 128MB, rekomendasi 25% RAM untuk server dedicated)",
+      ]}
+      example={`-- Cek berapa banyak hit vs read (miss):
+SELECT
+  sum(heap_blks_hit)  AS buffer_hits,
+  sum(heap_blks_read) AS disk_reads,
+  round(
+    sum(heap_blks_hit)::numeric /
+    nullif(sum(heap_blks_hit) + sum(heap_blks_read), 0) * 100, 2
+  ) AS hit_ratio_pct
+FROM pg_statio_user_tables;
+
+-- Cek ukuran shared buffers:
+SHOW shared_buffers;`}
+    />
+    <StepBox
+      number="7"
+      color="#38bdf8"
+      title="Storage — Page / Block"
+      items={[
+        "Semua data disimpan dalam unit page (block) berukuran 8KB (default)",
+        "File fisik per tabel/index ada di $PGDATA/base/<database_oid>/<relation_oid>",
+        "Satu file relasi bisa terdiri dari banyak page (Page 0, Page 1, dst.)",
+        "Setiap file relasi punya beberapa fork: main (data), FSM (Free Space Map), VM (Visibility Map)",
+      ]}
+      example={`-- Cek ukuran block:
+SHOW block_size;   -- default: 8192
+
+-- Cek lokasi file fisik tabel:
+SELECT pg_relation_filepath('employees');
+-- Output: base/16384/24601
+
+-- Cek ukuran tabel dan index:
+SELECT
+  pg_size_pretty(pg_table_size('employees'))        AS table_size,
+  pg_size_pretty(pg_indexes_size('employees'))      AS indexes_size,
+  pg_size_pretty(pg_total_relation_size('employees')) AS total_size;`}
+    />
+    number="8" color="#e879f9" title="WAL — Write-Ahead Logging (Hanya untuk
+    Write)" items=
+    {[
+      "Untuk query INSERT / UPDATE / DELETE: perubahan TIDAK langsung ditulis ke data file",
+      "Langkah 1: Tulis perubahan ke WAL (Write-Ahead Log) dulu",
+      "Langkah 2: WAL di-flush ke disk (fsync) → barulah transaksi dianggap aman",
+      "Durability: WAL harus lebih dulu dari data — inilah yang menjamin data tidak hilang saat crash",
+      "WAL file ada di $PGDATA/pg_wal/",
+    ]}
+    example=
+    {`-- Cek posisi WAL saat ini:
+SELECT pg_current_wal_lsn();
+
+-- Cek ukuran WAL:
+SELECT pg_size_pretty(pg_wal_lsn_diff(pg_current_wal_lsn(), '0/0'));
+
+-- Cek konfigurasi WAL:
+SHOW wal_level;          -- minimal, replica, logical
+SHOW synchronous_commit; -- on = tunggu WAL flush sebelum return ke client
+SHOW checkpoint_timeout; -- interval checkpoint
+SHOW max_wal_size;       -- batas ukuran WAL sebelum checkpoint dipaksa`}
+    <StepBox
+      number="9"
+      color="#4ade80"
+      title="Commit — Finalisasi Transaksi"
+      items={[
+        "Langkah 1: Flush WAL ke disk (pastikan semua perubahan aman)",
+        "Langkah 2: Tandai transaksi sebagai selesai (commit record di WAL)",
+        "Data halaman (dirty pages) di Shared Buffers akan ditulis ke disk saat checkpoint",
+        "Checkpoint terjadi secara berkala atau saat WAL mencapai max_wal_size",
+      ]}
+      example={`-- Transaksi eksplisit:
+BEGIN;
+  UPDATE accounts SET balance = balance - 100000 WHERE id = 1;
+  UPDATE accounts SET balance = balance + 100000 WHERE id = 2;
+COMMIT;   -- Flush WAL + tandai commit
+
+-- Paksa checkpoint (flush semua dirty pages ke disk):
+CHECKPOINT;
+
+-- Cek kapan checkpoint terakhir:
+SELECT checkpoint_time, checkpoints_timed, checkpoints_req
+FROM pg_stat_bgwriter;`}
+    />
+    <StepBox
+      number="10"
+      color="#64c8ff"
+      title="Return Result — Kirim Hasil ke Client"
+      items={[
+        "Executor mengumpulkan semua row yang lolos filter & visibility check",
+        "Row dikembalikan ke client melalui protocol PostgreSQL",
+        "Untuk query besar, bisa menggunakan CURSOR agar tidak load semua ke memory sekaligus",
+      ]}
+      example={`-- Gunakan CURSOR untuk hasil besar:
+BEGIN;
+DECLARE my_cursor CURSOR FOR
+  SELECT * FROM large_table WHERE is_active = TRUE;
+
+FETCH 100 FROM my_cursor;   -- ambil 100 baris per batch
+FETCH 100 FROM my_cursor;   -- ambil 100 berikutnya
+CLOSE my_cursor;
+COMMIT;
+
+-- Cek query yang sedang berjalan:
+SELECT pid, now() - query_start AS duration, query, state
+FROM pg_stat_activity
+WHERE state != 'idle'
+ORDER BY duration DESC;`}
+    />
+    {/* ── STRUKTUR PENYIMPANAN ──────────────────────────────── */}
+    <Block
+      title="Struktur Penyimpanan di PostgreSQL ($PGDATA/base/<database_oid>/)"
+      color="#38bdf8"
+    >
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+          gap: "12px",
+          marginBottom: "12px",
+        }}
+      >
+        {[
+          {
+            title: "File Relasi (per tabel/index)",
+            color: "#fbbf24",
+            lines: [
+              "2602       → main data file (heap)",
+              "2602_fsm   → Free Space Map",
+              "2602_vm    → Visibility Map",
+              "2602_init  → opsional, unlogged table",
+              "",
+              "Setiap relasi punya beberapa FORK",
+            ],
+          },
+          {
+            title: "FSM (Free Space Map)",
+            color: "#4ade80",
+            lines: [
+              "Menyimpan informasi free space per page (approximate)",
+              "",
+              "Digunakan saat INSERT/UPDATE untuk mencari page yang ada ruang kosong",
+            ],
+          },
+          {
+            title: "VM (Visibility Map)",
+            color: "#a78bfa",
+            lines: [
+              "Menyimpan visibility status per page (2 bit per page):",
+              "• all-visible",
+              "• all-frozen",
+              "",
+              "Digunakan untuk VACUUM dan Index-Only Scan",
+            ],
+          },
+        ].map((card, i) => (
+          <div
+            key={i}
+            style={{
+              background: `${card.color}0d`,
+              border: `1px solid ${card.color}30`,
+              borderRadius: "8px",
+              padding: "12px",
+            }}
+          >
+            <p
+              style={{
+                color: card.color,
+                fontWeight: "bold",
+                fontSize: "11px",
+                marginBottom: "8px",
+              }}
+            >
+              {card.title}
+            </p>
+            {card.lines.map((line, j) => (
+              <p
+                key={j}
+                style={{
+                  color: "#a0c8ff",
+                  fontSize: "11px",
+                  lineHeight: "1.7",
+                  fontFamily:
+                    line &&
+                    !line.startsWith("Menyimpan") &&
+                    !line.startsWith("Digunakan") &&
+                    !line.startsWith("•")
+                      ? "monospace"
+                      : "inherit",
+                  margin: 0,
+                }}
+              >
+                {line || " "}
+              </p>
+            ))}
+          </div>
+        ))}
+      </div>
+      <Code>
+        {`-- Contoh: file 2602 berukuran 56KB = 7 page (block), 1 page = 8KB
+-- Page 0 (8KB), Page 1 (8KB), Page 2 (8KB), ..., Page 6 (8KB)
+
+-- Cek ukuran block:
+SHOW block_size;    -- 8192
+
+-- Cek semua file relasi yang dimiliki tabel:
+SELECT pg_relation_filepath('employees');          -- main fork
+-- FSM  → path || '_fsm'
+-- VM   → path || '_vm'
+
+-- Cek total halaman (page) dalam tabel:
+SELECT relpages, reltuples FROM pg_class WHERE relname = 'employees';`}
+      </Code>
+    </Block>
+    {/* ── LEGENDA & KOMPONEN KUNCI ──────────────────────────── */}
+    <Block title="Komponen Kunci & Perannya" color="#64c8ff">
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+          gap: "8px",
+        }}
+      >
+        {[
+          {
+            name: "Parser",
+            color: "#4ade80",
+            desc: "Memahami query (syntax & semantic check)",
+          },
+          {
+            name: "Planner",
+            color: "#a78bfa",
+            desc: "Menentukan cara terbaik (rencana eksekusi)",
+          },
+          {
+            name: "Executor",
+            color: "#f87171",
+            desc: "Menjalankan rencana node by node",
+          },
+          {
+            name: "Buffer",
+            color: "#fbbf24",
+            desc: "Cache page di RAM (Shared Buffers)",
+          },
+          {
+            name: "Storage",
+            color: "#38bdf8",
+            desc: "Simpan page di disk (8KB per page)",
+          },
+          {
+            name: "WAL",
+            color: "#e879f9",
+            desc: "Jamin durabilitas (write-ahead log)",
+          },
+          {
+            name: "MVCC",
+            color: "#64c8ff",
+            desc: "Menentukan visibility row per transaksi",
+          },
+        ].map((comp, i) => (
+          <div
+            key={i}
+            style={{
+              background: `${comp.color}10`,
+              border: `1px solid ${comp.color}30`,
+              borderRadius: "6px",
+              padding: "10px",
+            }}
+          >
+            <p
+              style={{
+                color: comp.color,
+                fontWeight: "bold",
+                fontSize: "12px",
+                marginBottom: "4px",
+              }}
+            >
+              {comp.name}
+            </p>
+            <p
+              style={{
+                color: "#708090",
+                fontSize: "10px",
+                lineHeight: "1.6",
+                margin: 0,
+              }}
+            >
+              {comp.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+    </Block>
+    {/* ── MVCC ─────────────────────────────────────────────── */}
+    <Block title="MVCC — Multi-Version Concurrency Control" color="#e879f9">
+      <Code>
+        {`-- Setiap row di heap punya header:
+--   xmin  = transaction ID yang INSERT row ini
+--   xmax  = transaction ID yang DELETE/UPDATE row ini (0 jika masih ada)
+--   ctid  = lokasi fisik (page, offset) row ini
+
+-- Row VISIBLE untuk transaksi T jika:
+--   xmin sudah COMMIT sebelum T mulai snapshot
+--   AND xmax belum COMMIT (atau xmax = 0, row belum dihapus)
+
+-- Contoh: dua transaksi bersamaan
+-- T1: UPDATE employees SET salary = 9000000 WHERE id = 1;
+-- T2: SELECT salary FROM employees WHERE id = 1;
+--
+-- PostgreSQL TIDAK lock T2, melainkan:
+-- T2 membaca versi lama (xmax = T1 yang belum commit) → konsisten!
+-- Setelah T1 commit, T2 baru yang mulai sesudahnya akan lihat versi baru.
+
+-- Cek dead tuples (row lama yang sudah tidak visible):
+SELECT relname, n_dead_tup, n_live_tup, last_autovacuum
+FROM pg_stat_user_tables
+ORDER BY n_dead_tup DESC;
+
+-- VACUUM membersihkan dead tuples:
+VACUUM employees;
+VACUUM ANALYZE employees;
+VACUUM FULL employees;   -- rewrite tabel, klaim space — butuh exclusive lock!`}
+      </Code>
+      <Note>
+        MVCC memungkinkan reader tidak memblokir writer dan sebaliknya — ini
+        alasan PostgreSQL sangat efisien untuk beban baca-tulis bersamaan.
+      </Note>
+    </Block>
+  </div>
+);
 
 const contentMap = {
   ddl: <DDL />,
@@ -1982,13 +2789,19 @@ const contentMap = {
   json: <Json />,
   advanced: <Advanced />,
   roles: <Roles />,
-}
+  queryexec: <QueryExecution />,
+};
 
 const SqlSyntaxModule = () => {
-  const [activeTab, setActiveTab] = useState('ddl')
+  const [activeTab, setActiveTab] = useState("ddl");
 
   return (
-    <div style={{ background: 'linear-gradient(135deg, #0f1419 0%, #1a2332 100%)', minHeight: '100vh' }}>
+    <div
+      style={{
+        background: "linear-gradient(135deg, #0f1419 0%, #1a2332 100%)",
+        minHeight: "100vh",
+      }}
+    >
       <style>{`
         @keyframes float-up {
           0% { transform: translateY(20px); opacity: 0; }
@@ -1996,35 +2809,62 @@ const SqlSyntaxModule = () => {
         }
       `}</style>
 
-      <header style={{ borderBottom: '1px solid rgba(100, 200, 255, 0.2)', background: 'rgba(15, 20, 25, 0.8)' }}>
-        <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '40px 24px' }}>
-          <h1 style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '8px', color: '#e0f2ff' }}>
+      <header
+        style={{
+          borderBottom: "1px solid rgba(100, 200, 255, 0.2)",
+          background: "rgba(15, 20, 25, 0.8)",
+        }}
+      >
+        <div
+          style={{ maxWidth: "80rem", margin: "0 auto", padding: "40px 24px" }}
+        >
+          <h1
+            style={{
+              fontSize: "32px",
+              fontWeight: "bold",
+              marginBottom: "8px",
+              color: "#e0f2ff",
+            }}
+          >
             SQL Syntax PostgreSQL 📘
           </h1>
-          <p style={{ color: '#a0c8ff', fontSize: '16px' }}>
-            Referensi lengkap DDL, DML, SELECT, JOIN, Aggregate, CTE, Index, Constraints, Transactions, Functions, JSON, dan Advanced SQL
+          <p style={{ color: "#a0c8ff", fontSize: "16px" }}>
+            Referensi lengkap DDL, DML, SELECT, JOIN, Aggregate, CTE, Index,
+            Constraints, Transactions, Functions, JSON, dan Advanced SQL
           </p>
         </div>
       </header>
 
-      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '40px 24px' }}>
+      <div
+        style={{ maxWidth: "80rem", margin: "0 auto", padding: "40px 24px" }}
+      >
         {/* Tab Navigation */}
-        <div style={{ display: 'flex', gap: '6px', marginBottom: '32px', borderBottom: '1px solid rgba(100, 200, 255, 0.2)', paddingBottom: '16px', overflowX: 'auto' }}>
-          {tabs.map(tab => (
+        <div
+          style={{
+            display: "flex",
+            gap: "6px",
+            marginBottom: "32px",
+            borderBottom: "1px solid rgba(100, 200, 255, 0.2)",
+            paddingBottom: "16px",
+            overflowX: "auto",
+          }}
+        >
+          {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               style={{
-                padding: '10px 14px',
-                fontWeight: '500',
-                whiteSpace: 'nowrap',
-                fontSize: '12px',
-                border: 'none',
-                background: 'transparent',
-                cursor: 'pointer',
-                color: activeTab === tab.id ? '#64c8ff' : '#708090',
-                borderBottom: activeTab === tab.id ? '3px solid #64c8ff' : 'none',
-                transition: 'all 0.25s',
+                padding: "10px 14px",
+                fontWeight: "500",
+                whiteSpace: "nowrap",
+                fontSize: "12px",
+                border: "none",
+                background: "transparent",
+                cursor: "pointer",
+                color: activeTab === tab.id ? "#64c8ff" : "#708090",
+                borderBottom:
+                  activeTab === tab.id ? "3px solid #64c8ff" : "none",
+                transition: "all 0.25s",
               }}
             >
               {tab.label}
@@ -2033,21 +2873,31 @@ const SqlSyntaxModule = () => {
         </div>
 
         {/* Content */}
-        <div style={{ animation: 'float-up 0.5s ease-out' }}>
+        <div style={{ animation: "float-up 0.5s ease-out" }}>
           {contentMap[activeTab]}
         </div>
       </div>
 
-      <footer style={{ background: 'rgba(15, 20, 25, 0.5)', borderTop: '1px solid rgba(100, 200, 255, 0.2)', marginTop: '60px', padding: '40px 0', textAlign: 'center' }}>
-        <p style={{ color: '#708090', fontSize: '14px', marginBottom: '8px' }}>
-          📘 SQL Syntax Reference — DDL · DML · SELECT · JOIN · Aggregate · CTE · Index · Constraints · Transactions · Functions · JSON · Advanced
+      <footer
+        style={{
+          background: "rgba(15, 20, 25, 0.5)",
+          borderTop: "1px solid rgba(100, 200, 255, 0.2)",
+          marginTop: "60px",
+          padding: "40px 0",
+          textAlign: "center",
+        }}
+      >
+        <p style={{ color: "#708090", fontSize: "14px", marginBottom: "8px" }}>
+          📘 SQL Syntax Reference — DDL · DML · SELECT · JOIN · Aggregate · CTE
+          · Index · Constraints · Transactions · Functions · JSON · Advanced
         </p>
-        <p style={{ color: '#708090', fontSize: '14px' }}>
-          💡 Tip: Gunakan EXPLAIN ANALYZE untuk memahami query plan sebelum optimasi! 🚀
+        <p style={{ color: "#708090", fontSize: "14px" }}>
+          💡 Tip: Gunakan EXPLAIN ANALYZE untuk memahami query plan sebelum
+          optimasi! 🚀
         </p>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default SqlSyntaxModule
+export default SqlSyntaxModule;

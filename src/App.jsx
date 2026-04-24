@@ -20,6 +20,12 @@ import RdbmsTypes from './modules/RdbmsTypes'
 import InstallPostgres from './modules/InstallPostgres'
 import SqlSyntax from './modules/SqlSyntax'
 import ScalingModule from './modules/ScalingModule'
+import ACID from './modules/ACID'
+import Benchmarking from './modules/Benchmarking'
+import BackupRestore from './modules/BackupRestore'
+import Replication from './modules/Replication'
+import HaDr from './modules/HaDr'
+import Monitoring from './modules/Monitoring'
 
 function App() {
   return (
@@ -46,6 +52,12 @@ function App() {
             <Route path="/search" element={<SearchPage />} />
             <Route path="/learning-paths" element={<LearningPathPage />} />
             <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/acid-concepts" element={<ACID />} />
+            <Route path="/benchmarking" element={<Benchmarking />} />
+            <Route path="/backup-restore" element={<BackupRestore />} />
+            <Route path="/replication" element={<Replication />} />
+            <Route path="/ha-dr" element={<HaDr />} />
+            <Route path="/monitoring" element={<Monitoring />} />
             <Route path="*" element={<Dashboard />} />
           </Routes>
         </main>

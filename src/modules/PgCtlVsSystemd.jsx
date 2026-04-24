@@ -36,7 +36,7 @@ const PostgreSQLPgCtlVsSystemd = () => {
           <h1 className="text-4xl font-bold mb-2" style={{ color: '#e0f2ff', fontFamily: 'Segoe UI' }}>
             pg_ctl vs systemd 🔄
           </h1>
-          <p style={{ color: '#a0c8ff', fontSize: '16px' }}>
+          <p style={{ color: '#a0c8ff', fontSize: '20px' }}>
             Comprehensive comparison: Traditional pg_ctl vs Modern systemd Linux Administration
           </p>
         </div>
@@ -73,11 +73,11 @@ const PostgreSQLPgCtlVsSystemd = () => {
           <div className="space-y-8 animate-float">
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
               <h3 className="text-lg font-bold mb-4" style={{ color: '#64c8ff' }}>🎯 What is systemd?</h3>
-              <p style={{ color: '#a0c8ff', lineHeight: '1.8', fontSize: '14px', marginBottom: '12px' }}>
+              <p style={{ color: '#a0c8ff', lineHeight: '1.8', fontSize: '18px', marginBottom: '12px' }}>
                 <strong>systemd</strong> adalah modern service management system untuk Linux. Menggantikan traditional init.d scripts.
                 Ini adalah the first process yang run (PID 1) ketika Linux boot, dan manage semua services.
               </p>
-              <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '12px', color: '#a0c8ff', lineHeight: '1.8' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '16px', color: '#a0c8ff', lineHeight: '1.8' }}>
                 <p>systemd adalah:</p>
                 <p style={{ marginLeft: '20px' }}>✓ Service manager (start/stop/restart services)</p>
                 <p style={{ marginLeft: '20px' }}>✓ Dependency manager (manage service order)</p>
@@ -124,7 +124,7 @@ const PostgreSQLPgCtlVsSystemd = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', borderLeft: '3px solid #64c8ff' }}>
                   <p style={{ color: '#64c8ff', fontWeight: 'bold', marginBottom: '8px' }}>Use pg_ctl when:</p>
-                  <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '12px' }}>
+                  <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '12px' }}>
                     <li>• Development/testing locally</li>
                     <li>• Custom scripts need full control</li>
                     <li>• Legacy systems (old Linux)</li>
@@ -133,7 +133,7 @@ const PostgreSQLPgCtlVsSystemd = () => {
                 </div>
                 <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', borderLeft: '3px solid #10b981' }}>
                   <p style={{ color: '#10b981', fontWeight: 'bold', marginBottom: '8px' }}>Use systemd when:</p>
-                  <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '12px' }}>
+                  <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '12px' }}>
                     <li>• Production servers (RECOMMENDED)</li>
                     <li>• Modern Linux (Ubuntu 16+, CentOS 7+)</li>
                     <li>• Want automatic restart/failover</li>
@@ -260,10 +260,10 @@ const PostgreSQLPgCtlVsSystemd = () => {
                 <div className="space-y-3">
                   {section.items.map((item, itemIdx) => (
                     <div key={itemIdx} style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', borderLeft: '3px solid #64c8ff' }}>
-                      <p style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '12px', marginBottom: '4px' }}>
+                      <p style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '16px', marginBottom: '4px' }}>
                         {item.aspect}:
                       </p>
-                      <p style={{ color: '#a0c8ff', fontSize: '12px' }}>{item.desc}</p>
+                      <p style={{ color: '#a0c8ff', fontSize: '16px' }}>{item.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -278,7 +278,7 @@ const PostgreSQLPgCtlVsSystemd = () => {
 
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-4" style={{ color: '#64c8ff' }}>Architecture</h4>
-              <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '12px', color: '#a0c8ff', lineHeight: '2' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '16px', color: '#a0c8ff', lineHeight: '2' }}>
                 <p style={{ color: '#64c8ff', marginBottom: '12px', fontWeight: 'bold' }}>Linux Boot Process:</p>
                 <p>BIOS/UEFI</p>
                 <p style={{ marginLeft: '20px', color: '#4ade80' }}>↓ Load bootloader</p>
@@ -296,10 +296,10 @@ const PostgreSQLPgCtlVsSystemd = () => {
 
             <div style={{ background: 'rgba(74, 222, 128, 0.1)', border: '1px solid rgba(74, 222, 128, 0.3)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-4" style={{ color: '#4ade80' }}>Unit Files</h4>
-              <p style={{ color: '#a0c8ff', fontSize: '12px', marginBottom: '12px' }}>
+              <p style={{ color: '#a0c8ff', fontSize: '16px', marginBottom: '12px' }}>
                 Unit file = configuration file yang describe service. Format: INI-style, human-readable.
               </p>
-              <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', lineHeight: '1.8' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', lineHeight: '1.8' }}>
                 <p style={{ color: '#64c8ff', marginBottom: '8px', fontWeight: 'bold' }}>Location:</p>
                 <p>/etc/systemd/system/postgresql.service</p>
                 <p style={{ marginTop: '12px', color: '#64c8ff', fontWeight: 'bold' }}>Contents:</p>
@@ -332,10 +332,10 @@ const PostgreSQLPgCtlVsSystemd = () => {
                   { term: 'Environment=', def: 'Set environment variables untuk service' }
                 ].map((item, idx) => (
                   <div key={idx} style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '10px', borderRadius: '6px' }}>
-                    <p style={{ color: '#fbbf24', fontWeight: 'bold', fontSize: '11px', marginBottom: '3px' }}>
+                    <p style={{ color: '#fbbf24', fontWeight: 'bold', fontSize: '15px', marginBottom: '3px' }}>
                       {item.term}
                     </p>
-                    <p style={{ color: '#a0c8ff', fontSize: '11px' }}>{item.def}</p>
+                    <p style={{ color: '#a0c8ff', fontSize: '15px' }}>{item.def}</p>
                   </div>
                 ))}
               </div>
@@ -349,7 +349,7 @@ const PostgreSQLPgCtlVsSystemd = () => {
 
             <div style={{ background: 'rgba(100, 200, 255, 0.08)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-4" style={{ color: '#64c8ff' }}>Complete Example</h4>
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', lineHeight: '1.7', overflowX: 'auto' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', lineHeight: '1.7', overflowX: 'auto' }}>
                 <pre>{`[Unit]
 # Metadata tentang service
 Description=PostgreSQL Database Server
@@ -420,7 +420,7 @@ Before=graphical.target`}</pre>
 
             <div style={{ background: 'rgba(74, 222, 128, 0.1)', border: '1px solid rgba(74, 222, 128, 0.3)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-4" style={{ color: '#4ade80' }}>Minimal Version (Simple)</h4>
-              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '11px', color: '#a0c8ff', lineHeight: '1.8' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '15px', color: '#a0c8ff', lineHeight: '1.8' }}>
                 <pre>{`[Unit]
 Description=PostgreSQL Database Server
 After=network.target
@@ -438,7 +438,7 @@ WantedBy=multi-user.target`}</pre>
 
             <div style={{ background: 'rgba(251, 191, 36, 0.1)', border: '1px solid rgba(251, 191, 36, 0.3)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-4" style={{ color: '#fbbf24' }}>📝 How to Create/Edit</h4>
-              <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '12px', color: '#a0c8ff', lineHeight: '2' }}>
+              <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', fontFamily: 'monospace', fontSize: '16px', color: '#a0c8ff', lineHeight: '2' }}>
                 <p># Edit atau create unit file</p>
                 <p style={{ color: '#4ade80' }}>sudo nano /etc/systemd/system/postgresql.service</p>
                 <p style={{ marginTop: '12px' }}># Reload systemd to read new/changed unit files</p>
@@ -532,8 +532,8 @@ WantedBy=multi-user.target`}</pre>
                   ].map((row, idx) => (
                     <tr key={idx} style={{ borderBottom: '1px solid rgba(100, 200, 255, 0.2)' }}>
                       <td style={{ color: '#a0c8ff', padding: '8px', fontWeight: 'bold' }}>{row.task}</td>
-                      <td style={{ color: '#64c8ff', padding: '8px', fontFamily: 'monospace', fontSize: '11px' }}>{row.pg_ctl}</td>
-                      <td style={{ color: '#10b981', padding: '8px', fontFamily: 'monospace', fontSize: '11px' }}>{row.systemd}</td>
+                      <td style={{ color: '#64c8ff', padding: '8px', fontFamily: 'monospace', fontSize: '15px' }}>{row.pg_ctl}</td>
+                      <td style={{ color: '#10b981', padding: '8px', fontFamily: 'monospace', fontSize: '15px' }}>{row.systemd}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -555,10 +555,10 @@ WantedBy=multi-user.target`}</pre>
                   { cmd: 'journalctl -u postgresql -S 2024-01-15 -U 2024-01-16', desc: 'View logs untuk specific date range' }
                 ].map((item, idx) => (
                   <div key={idx} style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '10px', borderRadius: '6px' }}>
-                    <p style={{ color: '#4ade80', fontWeight: 'bold', fontSize: '11px', fontFamily: 'monospace', marginBottom: '3px' }}>
+                    <p style={{ color: '#4ade80', fontWeight: 'bold', fontSize: '15px', fontFamily: 'monospace', marginBottom: '3px' }}>
                       {item.cmd}
                     </p>
-                    <p style={{ color: '#a0c8ff', fontSize: '11px' }}>{item.desc}</p>
+                    <p style={{ color: '#a0c8ff', fontSize: '15px' }}>{item.desc}</p>
                   </div>
                 ))}
               </div>
@@ -664,7 +664,7 @@ WantedBy=multi-user.target`}</pre>
                 ].map((item, idx) => (
                   <div key={idx} style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px', borderLeft: '3px solid #64c8ff' }}>
                     <p style={{ color: '#64c8ff', fontWeight: 'bold', marginBottom: '8px' }}>{item.step}</p>
-                    <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '16px' }}>
+                    <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '16px' }}>
                       {item.tasks.map((task, tidx) => (
                         <li key={tidx}>{task}</li>
                       ))}
@@ -700,10 +700,10 @@ WantedBy=multi-user.target`}</pre>
                   }
                 ].map((item, idx) => (
                   <div key={idx} style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '10px', borderRadius: '6px' }}>
-                    <p style={{ color: '#fbbf24', fontWeight: 'bold', fontSize: '11px', marginBottom: '3px' }}>
+                    <p style={{ color: '#fbbf24', fontWeight: 'bold', fontSize: '15px', marginBottom: '3px' }}>
                       ❌ {item.issue}
                     </p>
-                    <p style={{ color: '#a0c8ff', fontSize: '11px' }}>✓ Solution: {item.solution}</p>
+                    <p style={{ color: '#a0c8ff', fontSize: '15px' }}>✓ Solution: {item.solution}</p>
                   </div>
                 ))}
               </div>
@@ -761,10 +761,10 @@ WantedBy=multi-user.target`}</pre>
                   }
                 ].map((item, idx) => (
                   <div key={idx} style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '12px', borderRadius: '8px' }}>
-                    <p style={{ color: '#4ade80', fontWeight: 'bold', fontSize: '12px', marginBottom: '4px' }}>
+                    <p style={{ color: '#4ade80', fontWeight: 'bold', fontSize: '16px', marginBottom: '4px' }}>
                       {item.title}
                     </p>
-                    <p style={{ color: '#a0c8ff', fontSize: '11px' }}>{item.desc}</p>
+                    <p style={{ color: '#a0c8ff', fontSize: '15px' }}>{item.desc}</p>
                   </div>
                 ))}
               </div>
@@ -772,7 +772,7 @@ WantedBy=multi-user.target`}</pre>
 
             <div style={{ background: 'rgba(100, 200, 255, 0.1)', border: '1px solid rgba(100, 200, 255, 0.2)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-4" style={{ color: '#64c8ff' }}>📋 Production Checklist</h4>
-              <ul style={{ color: '#a0c8ff', fontSize: '12px', marginLeft: '12px' }}>
+              <ul style={{ color: '#a0c8ff', fontSize: '16px', marginLeft: '12px' }}>
                 <li>☑️ PostgreSQL version tested on production Linux version</li>
                 <li>☑️ Unit file reviewed dan customized untuk environment</li>
                 <li>☑️ Database backup exist before migration</li>
@@ -790,7 +790,7 @@ WantedBy=multi-user.target`}</pre>
 
             <div style={{ background: 'rgba(248, 113, 113, 0.1)', border: '1px solid rgba(248, 113, 113, 0.3)', borderRadius: '12px', padding: '20px' }}>
               <h4 className="text-base font-bold mb-4" style={{ color: '#f87171' }}>⚠️ Avoid These Mistakes</h4>
-              <ul style={{ color: '#fca5a5', fontSize: '12px', marginLeft: '12px' }}>
+              <ul style={{ color: '#fca5a5', fontSize: '16px', marginLeft: '12px' }}>
                 <li>✗ Running pg_ctl directly in production (use systemd)</li>
                 <li>✗ Forgetting systemctl daemon-reload after unit changes</li>
                 <li>✗ Not enabling service (system reboot lose PostgreSQL!)</li>
@@ -808,10 +808,10 @@ WantedBy=multi-user.target`}</pre>
 
       {/* Footer */}
       <footer style={{ background: 'rgba(15, 20, 25, 0.5)', borderTop: '1px solid rgba(100, 200, 255, 0.2)', marginTop: '60px', padding: '40px 0', textAlign: 'center' }}>
-        <p style={{ color: '#708090', fontSize: '14px', marginBottom: '8px' }}>
+        <p style={{ color: '#708090', fontSize: '18px', marginBottom: '8px' }}>
           🔄 pg_ctl = Legacy approach. systemd = Modern, recommended way untuk manage PostgreSQL
         </p>
-        <p style={{ color: '#708090', fontSize: '14px' }}>
+        <p style={{ color: '#708090', fontSize: '18px' }}>
           💡 Use systemd in production! Auto-restart, logging, dependencies, reliability - semua built-in! 🚀
         </p>
       </footer>
