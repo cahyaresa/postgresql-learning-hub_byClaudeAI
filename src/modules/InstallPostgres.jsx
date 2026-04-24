@@ -92,7 +92,7 @@ berbeda dengan instalasi dari package manager (apt/yum) yang menggunakan path de
         note: '$(whoami) otomatis diganti username Anda'
       },
       {
-        cmd: './configure --prefix=/home/agrresac9704/Documents/postgres-training/training/apps/psql/18.3 --without-icu',
+        cmd: './configure --prefix=/home/username/Documents/postgres-training/training/apps/psql/18.3 --without-icu',
         note: 'Atau ganti manual dengan username Anda'
       },
     ],
