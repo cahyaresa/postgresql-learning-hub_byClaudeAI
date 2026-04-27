@@ -314,6 +314,41 @@ function EnhancedDashboard() {
           </div>
         )}
 
+        {/* Mock Test Banner */}
+        <div style={{ margin: '32px 0px' }}>
+          <Link
+            to="/mock-test"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              background: 'linear-gradient(135deg, rgba(100,200,255,0.12) 0%, rgba(167,139,250,0.12) 100%)',
+              border: '1px solid rgba(100,200,255,0.35)',
+              borderRadius: '12px',
+              padding: '20px 28px',
+              textDecoration: 'none',
+              transition: 'box-shadow 0.2s',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 0 24px rgba(100,200,255,0.18)')}
+            onMouseLeave={e => (e.currentTarget.style.boxShadow = 'none')}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+              <span style={{ fontSize: '36px' }}>📝</span>
+              <div>
+                <p style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '18px', margin: 0 }}>
+                  Mock Test — Uji Pemahamanmu
+                </p>
+                <p style={{ color: '#a0c8ff', fontSize: '14px', margin: '4px 0 0' }}>
+                  19 modul × 10 soal pilihan ganda · feedback instan · review jawaban
+                </p>
+              </div>
+            </div>
+            <span style={{ color: '#64c8ff', fontWeight: 'bold', fontSize: '15px', flexShrink: 0 }}>
+              Mulai Tes →
+            </span>
+          </Link>
+        </div>
+
         {/* All Modules Section */}
         <div style={{ animate: 'float-up 0.6s ease-out' }}>
           <h2 style={{ fontSize: '28px', fontWeight: 'bold', color: '#e0f2ff', marginBottom: '16px' }}>

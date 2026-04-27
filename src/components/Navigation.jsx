@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, Home, BookOpen, Search, Target, Settings } from 'lucide-react'
+import { Menu, X, Home, BookOpen, Search, Target, Settings, ClipboardCheck } from 'lucide-react'
 
 const NAV_ITEMS = [
   { path: '/', icon: <Home size={18} />, label: 'Dashboard' },
   { path: '/learning-paths', icon: <Target size={18} />, label: 'Learning Paths' },
+  { path: '/mock-test', icon: <ClipboardCheck size={18} />, label: 'Mock Test' },
   { path: '/search', icon: <Search size={18} />, label: 'Search' },
   { path: '/settings', icon: <Settings size={18} />, label: 'Settings' },
 ]

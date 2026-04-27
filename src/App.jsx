@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard'
 import SearchPage from './pages/SearchPage'
 import LearningPathPage from './pages/LearningPathPage'
 import SettingsPage from './pages/SettingsPage'
+import MockTest from './pages/MockTest'
 import PgCtl from './modules/PgCtl'
 import PgCtlVsSystemd from './modules/PgCtlVsSystemd'
 import HostBasedAuth from './modules/HostBasedAuth'
@@ -52,6 +53,7 @@ function App() {
             <Route path="/search" element={<SearchPage />} />
             <Route path="/learning-paths" element={<LearningPathPage />} />
             <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/mock-test" element={<MockTest />} />
             <Route path="/acid-concepts" element={<ACID />} />
             <Route path="/benchmarking" element={<Benchmarking />} />
             <Route path="/backup-restore" element={<BackupRestore />} />
